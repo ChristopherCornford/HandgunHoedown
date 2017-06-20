@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-
+	public Vector3 gunShot;
 	public GameObject movement;
 	public int m_playerNumber = 0;
 	public float speed = 12f;
@@ -96,7 +96,15 @@ public class PlayerMovement : MonoBehaviour {
 	
 		Move ();
 		Turn ();
-		if 
+
+		if (Input.GetAxis(actionKeyAxisName) > 0) {
+			
+			Action ();
+		}
+		if (Input.GetAxis(actionJoyAxisName) > 0) {
+
+			Action ();
+		}
 
 	}
 
@@ -127,6 +135,23 @@ public class PlayerMovement : MonoBehaviour {
 		Quaternion joyTurnRotation = Quaternion.Euler (0f, joyTurn, 0f);
 
 		rb.MoveRotation (rb.rotation * joyTurnRotation);
+	}
+	private void Action() {
+		RaycastHit hit;
+		Ray gunShot = new Ray (transform.position, Vector3.forward);
+
+
+		if (Physics.Raycast (gunShot, out hit, 10) ){
+			print ("Boom, you're dead!");
+		}
+
+	}
+
+	private void Aim () {
+		
+		Ray aimLine = new Ray (transform.position, Vector3.forward);		
+		Debug.DrawRay(transform.position, Vector3.forward, Color.red);
+
 	}
 }
 
