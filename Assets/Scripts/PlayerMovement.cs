@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void FixedUpdate () {
 
-
+		line.enabled = false;
 	
 		Move ();
 		Turn ();
@@ -156,15 +156,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void Aim () {
 
-		while (Input.GetButton(aimKeyAxisName)) { 
 
-			line.enabled = true;
+		line.enabled = true;
 		
 		Ray aimLine = new Ray (transform.position, transform.forward);		
 		Debug.DrawRay(transform.position, transform.forward, Color.black);
-		}
-			
-		line.enabled = false;
 
 	}
 }
