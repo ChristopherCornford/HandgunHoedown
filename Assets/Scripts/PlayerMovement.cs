@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			Action ();
 		}
-		while (Input.GetButtonDown (aimKeyAxisName)) {
+		if (Input.GetButton (aimKeyAxisName)) {
 			
 			Aim ();
 		}
@@ -156,10 +156,15 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void Aim () {
 
-		line.enabled = true;
+		while (Input.GetButton(aimKeyAxisName)) { 
+
+			line.enabled = true;
 		
 		Ray aimLine = new Ray (transform.position, transform.forward);		
 		Debug.DrawRay(transform.position, transform.forward, Color.black);
+		}
+			
+		line.enabled = false;
 
 	}
 }
