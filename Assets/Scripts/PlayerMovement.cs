@@ -101,15 +101,15 @@ public class PlayerMovement : MonoBehaviour {
 		Move ();
 		Turn ();
 
-		if (Input.GetAxisRaw(actionKeyAxisName) > 0) {
+		if (Input.GetButtonDown(actionKeyAxisName)) {
 			
 			Action ();
 		}
-		if (Input.GetAxisRaw(actionJoyAxisName) > 0) {
+		if (Input.GetButtonDown(actionJoyAxisName)) {
 
 			Action ();
 		}
-		while (Input.GetAxisRaw (aimKeyAxisName) > 0) {
+		while (Input.GetButtonDown (aimKeyAxisName)) {
 			
 			Aim ();
 		}
