@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour {
 	public string dashJoyAxisName;
 
 	private Rigidbody rb;
+	private LineRenderer line;
 
 	private float movementKeyInputValue;
 	private float strafeKeyInputValue;
@@ -62,6 +63,9 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void Start () {
 
+		line = this.GetComponent<LineRenderer> ();
+		line.enabled = false;
+
 		movementKeyAxisName = "Player" + m_playerNumber + "KeyMove";
 		strafeKeyAxisName = "Player" + m_playerNumber + "KeyStrafe";
 		turnKeyAxisName = "Player" + m_playerNumber + "KeyTurn";
@@ -97,15 +101,18 @@ public class PlayerMovement : MonoBehaviour {
 		Move ();
 		Turn ();
 
-		if (Input.GetAxis(actionKeyAxisName) > 0) {
+		if (Input.GetAxisRaw(actionKeyAxisName) > 0) {
 			
 			Action ();
 		}
-		if (Input.GetAxis(actionJoyAxisName) > 0) {
+		if (Input.GetAxisRaw(actionJoyAxisName) > 0) {
 
 			Action ();
 		}
-
+		while (Input.GetAxisRaw (aimKeyAxisName) > 0) {
+			
+			Aim ();
+		}
 	}
 
 	private void Move() {
@@ -138,19 +145,21 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	private void Action() {
 		RaycastHit hit;
-		Ray gunShot = new Ray (transform.position, Vector3.forward);
+		Ray gunShot = new Ray (transform.position, transform.forward);
 
 
-		if (Physics.Raycast (gunShot, out hit, 10) ){
+		if (Physics.Raycast (gunShot, out hit, 100f) ){
 			print ("Boom, you're dead!");
 		}
 
 	}
 
 	private void Aim () {
+
+		line.enabled = true;
 		
-		Ray aimLine = new Ray (transform.position, Vector3.forward);		
-		Debug.DrawRay(transform.position, Vector3.forward, Color.red);
+		Ray aimLine = new Ray (transform.position, transform.forward);		
+		Debug.DrawRay(transform.position, transform.forward, Color.black);
 
 	}
 }
