@@ -20,8 +20,6 @@ public class PlayerManager {
 		shooting = instance.GetComponent<PlayerShooting> ();
 
 
-
-
 		movement.m_playerNumber = playerNumber;
 
 		MeshRenderer[] renderers = instance.GetComponentsInChildren<MeshRenderer> ();

@@ -4,26 +4,32 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public Vector3 gunShot;
+	/* Public */
+	[Header("Player Variables")]
+	private Vector3 gunShot;
 	public GameObject movement;
 	public int m_playerNumber = 0;
 	public float speed = 12f;
 	public float turnSpeed = 180f;
 
+	/* Private */
+	// Components
+	private PlayerShooting shooting;
 
-	public string movementKeyAxisName;
-	public string strafeKeyAxisName;
-	public string turnKeyAxisName;
-	public string aimKeyAxisName;
-	public string actionKeyAxisName;
-	public string dashKeyAxisName;
+	// Axis Names
+	private string movementKeyAxisName;
+	private string strafeKeyAxisName;
+	private string turnKeyAxisName;
+	private string aimKeyAxisName;
+	private string actionKeyAxisName;
+	private string dashKeyAxisName;
 
-	public string movementJoyAxisName;
-	public string strafeJoyAxisName;
-	public string turnJoyAxisName;
-	public string aimJoyAxisName;
-	public string actionJoyAxisName;
-	public string dashJoyAxisName;
+	private string movementJoyAxisName;
+	private string strafeJoyAxisName;
+	private string turnJoyAxisName;
+	private string aimJoyAxisName;
+	private string actionJoyAxisName;
+	private string dashJoyAxisName;
 
 	private Rigidbody rb;
 	private LineRenderer line;
@@ -39,7 +45,7 @@ public class PlayerMovement : MonoBehaviour {
 	private void Awake () {
 		
 		rb = GetComponent<Rigidbody> ();
-
+		shooting = GetComponent<PlayerShooting>();
 	}
 
 	private void OnEnable() {
@@ -103,11 +109,11 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (Input.GetButtonDown(actionKeyAxisName)) {
 			
-			Action ();
+			Action();
 		}
 		if (Input.GetButtonDown(actionJoyAxisName)) {
 
-			Action ();
+			Action();
 		}
 		if (Input.GetButton (aimKeyAxisName)) {
 			
@@ -143,10 +149,14 @@ public class PlayerMovement : MonoBehaviour {
 
 		rb.MoveRotation (rb.rotation * joyTurnRotation);
 	}
+
+	// Consider moving this function out of this script into the playershooting?
 	private void Action() {
 		RaycastHit hit;
 		Ray gunShot = new Ray (transform.position, transform.forward);
-
+		
+		// This activates the gunshot method in PlayerShooting to make the sound
+		shooting.Shoot();
 
 		if (Physics.Raycast (gunShot, out hit, 100f) ){
 			print ("Boom, you're dead!");
@@ -155,7 +165,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void Aim () {
-
 
 		line.enabled = true;
 		
