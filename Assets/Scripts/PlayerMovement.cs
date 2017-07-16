@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour {
 	/* Private */
 	// Components
 	private PlayerShooting shooting;
+	private Animator cowboy_anim;
 
 	// Axis Names
 	private string movementKeyAxisName;
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour {
 		
 		rb = GetComponent<Rigidbody> ();
 		shooting = GetComponent<PlayerShooting>();
+		cowboy_anim = GetComponent<Animator>();
 	}
 
 	private void OnEnable() {
@@ -103,12 +105,13 @@ public class PlayerMovement : MonoBehaviour {
 	private void FixedUpdate () {
 
 		line.enabled = false;
-	
+
+		// How the fuck do we detect when someone is or is not moving?
+		// cowboy_anim.SetBool("isMoving", true);
 		Move ();
 		Turn ();
 
 		if (Input.GetButtonDown(actionKeyAxisName)) {
-			
 			Action();
 		}
 		if (Input.GetButtonDown(actionJoyAxisName)) {
@@ -122,12 +125,12 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void Move() {
-
+		
 		Vector3 keyMovement = transform.forward * movementKeyInputValue * speed * Time.deltaTime;
 		Vector3 keyStrafe = transform.right * strafeKeyInputValue * speed * Time.deltaTime;
 
 		Vector3 joyMovement = transform.forward * -movementJoyInputValue * speed * Time.deltaTime;
-		Vector3 joyStrafe = transform.right * strafeJoyInputValue * speed * Time.deltaTime;;
+		Vector3 joyStrafe = transform.right * strafeJoyInputValue * speed * Time.deltaTime;
 
 		rb.MovePosition (rb.position + keyMovement);
 		rb.MovePosition (rb.position + keyStrafe);
