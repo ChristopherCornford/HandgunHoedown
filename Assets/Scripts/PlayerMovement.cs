@@ -107,6 +107,7 @@ public class PlayerMovement : MonoBehaviour {
 		line.enabled = false;
 
 		// How the fuck do we detect when someone is or is not moving?
+		// Once we can do that, I can set animation parameters
 		// cowboy_anim.SetBool("isMoving", true);
 		Move ();
 		Turn ();
