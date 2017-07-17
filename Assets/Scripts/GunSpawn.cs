@@ -9,17 +9,20 @@ public class GunSpawn : MonoBehaviour {
 	public GameObject currentPoint;
 	int index;
 	public GameObject gun;
+	public GameObject gunPrefab;
 	private Vector3 pos;
 
 
 	public void Start() {
 		GunSpawn instance = new GunSpawn ();
 		Invoke ("Respawning", 0f);
+		if (gun.activeInHierarchy == true) {
+			Destroy (gun);
+		}
 
 	}
 	public void Spawn () {
-		gun.transform.position = currentPoint.transform.position;
-		gun.SetActive (true);
+		gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
 
 	}
 	public void Respawning () {
@@ -27,7 +30,6 @@ public class GunSpawn : MonoBehaviour {
 
 	}
 	public IEnumerator Spawning (float sec) {
-		gun.SetActive (false);
 		index = Random.Range (0, spawnPoints.Length);
 		currentPoint = spawnPoints [index];
 		print (currentPoint.name);
