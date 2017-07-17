@@ -101,6 +101,18 @@ public class PlayerMovement : MonoBehaviour {
 		movementJoyInputValue = Input.GetAxisRaw (movementJoyAxisName);
 		strafeJoyInputValue = Input.GetAxisRaw(strafeJoyAxisName);
 		turnJoyInputValue = Input.GetAxisRaw (turnJoyAxisName);
+
+		if (Input.GetButtonDown(actionKeyAxisName)) {
+			Action();
+		}
+		if (Input.GetButtonDown(actionJoyAxisName)) {
+
+			Action();
+		}
+		if (Input.GetButton (aimKeyAxisName)) {
+
+			Aim ();
+		}
 		isAiming = false;
 
 	}
@@ -115,17 +127,7 @@ public class PlayerMovement : MonoBehaviour {
 		Move ();
 		Turn ();
 
-		if (Input.GetButtonDown(actionKeyAxisName)) {
-			Action();
-		}
-		if (Input.GetButtonDown(actionJoyAxisName)) {
 
-			Action();
-		}
-		if (Input.GetButton (aimKeyAxisName)) {
-			
-			Aim ();
-		}
 	}
 
 	private void Move() {
@@ -178,12 +180,12 @@ public class PlayerMovement : MonoBehaviour {
 		Ray aimLine = new Ray (transform.position, transform.forward);		
 		Debug.DrawRay(transform.position, transform.forward, Color.black);
 
-		while (isAiming == true) {
+		/*while (isAiming == true) {
 
-			speed = (speed * 0.5);
-			turnSpeed = (turnSpeed * 0.5);
+			speed = speed / 2;
+			turnSpeed = turnSpeed / 2;
 
-		}
+		}*/
 	}
 
 }
