@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour {
 	private float strafeJoyInputValue;
 	private float turnJoyInputValue;
 
-	private bool isAiming;
+	public bool isAiming;
 
 	//Picking up Gun
 	public GameObject gunHolder;
@@ -122,8 +122,19 @@ public class PlayerMovement : MonoBehaviour {
 
 			Aim ();
 		}
+		if (Input.GetButton (aimJoyAxisName)) {
+
+			Aim ();
+		}
+		if (Input.GetButtonDown (dashKeyAxisName)) {
+			Dash ();
+		}
+		if (Input.GetButtonDown (dashJoyAxisName)) {
+			Dash ();
+		}
 			
-		StartCoroutine (checkForAiming(0f));
+		StartCoroutine (checkForAiming(0.1f));
+		isAiming = false;
 	}
 
 	private void FixedUpdate () {
@@ -139,7 +150,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 
-	private void Move() {
+	public void Move() {
 		
 		Vector3 keyMovement = transform.forward * movementKeyInputValue * speed * Time.deltaTime;
 		Vector3 keyStrafe = transform.right * strafeKeyInputValue * speed * Time.deltaTime;
@@ -151,6 +162,12 @@ public class PlayerMovement : MonoBehaviour {
 		rb.MovePosition (rb.position + keyStrafe);
 		rb.MovePosition (rb.position + joyMovement);
 		rb.MovePosition (rb.position + joyStrafe);
+
+		if (movementKeyInputValue != 0) {
+			cowboy_anim.SetBool ("isMoving", true);
+		} else {
+			cowboy_anim.SetBool("isMoving", false);
+		}
 	}
 
 	private void Turn () {
@@ -170,14 +187,18 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Consider moving this function out of this script into the playershooting?
 	private void Action() {
-		RaycastHit hit;
-		Ray gunShot = new Ray (transform.position, transform.forward);
+		if ((hasGun == true) && (bulletCount > 0)){
+			RaycastHit hit;
+			Ray gunShot = new Ray (transform.position, transform.forward);
 		
-		// This activates the gunshot method in PlayerShooting to make the sound
-		shooting.Shoot();
+			// This activates the gunshot method in PlayerShooting to make the sound
+			shooting.Shoot ();
 
-		if (Physics.Raycast (gunShot, out hit, 100f) ){
-			print ("Boom, you're dead!");
+			if (Physics.Raycast (gunShot, out hit, 100f)) {
+				print ("Boom, you're dead!");
+				hit.transform.SendMessage ("YouAreDead");
+			}
+			bulletCount -= 1;
 		}
 
 	}
@@ -188,6 +209,11 @@ public class PlayerMovement : MonoBehaviour {
 		
 		Ray aimLine = new Ray (transform.position, transform.forward);		
 		Debug.DrawRay(transform.position, transform.forward, Color.black);
+
+	}
+	public void Dash () {
+		Vector3 dash = (transform.forward * Time.deltaTime * (speed * 2));
+		rb.MovePosition (rb.position + dash);
 
 	}
 	public IEnumerator checkForAiming (float sec) {
@@ -215,9 +241,12 @@ public class PlayerMovement : MonoBehaviour {
 			Destroy (gunPickup);
 			hasGun = true;
 			bulletCount = 6;
-
+			cowboy_anim.SetBool("hasGun", true);
 
 		}
+	}
+	void YouAreDead () {
+		cowboy_anim.SetTrigger ("isDead");
 	}
 }
 

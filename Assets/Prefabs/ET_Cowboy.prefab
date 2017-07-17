@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 4094931226052278}
   - component: {fileID: 95275591209167136}
   - component: {fileID: 54648037127130360}
-  - component: {fileID: 136762012797490038}
+  - component: {fileID: 65399435240343242}
   - component: {fileID: 82617563064049882}
   - component: {fileID: 120864223057794174}
   - component: {fileID: 114319371523845956}
@@ -1683,6 +1683,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!65 &65399435240343242
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1298267061167654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 2, z: 1.5}
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!65 &65963962888528504
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1808,6 +1820,7 @@ MonoBehaviour:
   m_playerNumber: 0
   speed: 12
   turnSpeed: 180
+  isAiming: 0
   gunHolder: {fileID: 1238350743084026}
   gunPickup: {fileID: 1318780201197668, guid: a05bd02028784744eb592d9bfb66198d, type: 2}
   gun: {fileID: 1318780201197668, guid: 1a74abfb40fe1ec4ea418ec2597f2d6c, type: 2}
@@ -1913,19 +1926,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
---- !u!136 &136762012797490038
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1298267061167654}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.61
-  m_Height: 1.82
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.68, z: 0}
 --- !u!137 &137009501614616338
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
