@@ -45,6 +45,15 @@ public class PlayerMovement : MonoBehaviour {
 
 	private bool isAiming;
 
+	//Picking up Gun
+	public GameObject gunHolder;
+	public GameObject gunPickup;
+	public GameObject gun;
+	private bool hasGun;
+	public int bulletCount;
+
+
+
 	private void Awake () {
 		
 		rb = GetComponent<Rigidbody> ();
@@ -72,7 +81,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void Start () {
-
+		gun.SetActive(false);
 		line = this.GetComponent<LineRenderer> ();
 		line.enabled = false;
 
@@ -113,8 +122,8 @@ public class PlayerMovement : MonoBehaviour {
 
 			Aim ();
 		}
-		isAiming = false;
-
+			
+		StartCoroutine (checkForAiming(0f));
 	}
 
 	private void FixedUpdate () {
@@ -180,13 +189,35 @@ public class PlayerMovement : MonoBehaviour {
 		Ray aimLine = new Ray (transform.position, transform.forward);		
 		Debug.DrawRay(transform.position, transform.forward, Color.black);
 
-		/*while (isAiming == true) {
+	}
+	public IEnumerator checkForAiming (float sec) {
 
-			speed = speed / 2;
-			turnSpeed = turnSpeed / 2;
+		switch (isAiming) {
+		case true:
+			speed = 6f;
+			turnSpeed = 90f;
+			break;
 
-		}*/
+		case false:
+			speed = 12f;
+			turnSpeed = 180f;
+			break;
+
+		}
+		yield return new WaitForSeconds (sec);
 	}
 
+	void OnTriggerEnter (Collider collider) {
+
+		if ((collider.gameObject.tag == "Gun") && (hasGun == false)) {
+			print ("Got It!");
+			gun.SetActive(true);
+			Destroy (gunPickup);
+			hasGun = true;
+			bulletCount = 6;
+
+
+		}
+	}
 }
 
