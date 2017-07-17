@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void Start () {
-		gun.SetActive(false);
+		gunHolder.SetActive(false);
 		line = this.GetComponent<LineRenderer> ();
 		line.enabled = false;
 
@@ -211,7 +211,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if ((collider.gameObject.tag == "Gun") && (hasGun == false)) {
 			print ("Got It!");
-			gun.SetActive(true);
+			gunHolder.SetActive(true);
 			Destroy (gunPickup);
 			hasGun = true;
 			bulletCount = 6;

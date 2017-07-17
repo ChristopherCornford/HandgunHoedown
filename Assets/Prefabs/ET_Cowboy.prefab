@@ -56,6 +56,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1100355321802152
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4287476554272962}
+  - component: {fileID: 33705404590031822}
+  - component: {fileID: 23186791415968404}
+  m_Layer: 0
+  m_Name: default
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1104599505964980
 GameObject:
   m_ObjectHideFlags: 1
@@ -67,6 +84,22 @@ GameObject:
   m_Layer: 0
   m_Name: R Finger11
   m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1124357189327860
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4826059493282586}
+  - component: {fileID: 65963962888528504}
+  m_Layer: 0
+  m_Name: Revolver 1
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -201,6 +234,21 @@ GameObject:
   - component: {fileID: 4315146125880984}
   m_Layer: 0
   m_Name: L Clavicle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1238350743084026
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4775736181340052}
+  m_Layer: 0
+  m_Name: GunHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -984,6 +1032,19 @@ Transform:
   m_Father: {fileID: 4047218902410700}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4287476554272962
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1100355321802152}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4826059493282586}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4310735769270424
 Transform:
   m_ObjectHideFlags: 1
@@ -1213,6 +1274,7 @@ Transform:
   - {fileID: 4633954662947858}
   - {fileID: 4950700969294476}
   - {fileID: 4646517266387650}
+  - {fileID: 4775736181340052}
   m_Father: {fileID: 4781217185055872}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1401,6 +1463,20 @@ Transform:
   m_Father: {fileID: 4536779319012662}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4775736181340052
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1238350743084026}
+  m_LocalRotation: {x: 0.5605665, y: 0.56144744, z: 0.4688632, w: 0.38821313}
+  m_LocalPosition: {x: -0.25084838, y: 0.014787493, z: 0.16128685}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4826059493282586}
+  m_Father: {fileID: 4536779319012662}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: -18.218, y: -90.274, z: -90.00001}
 --- !u!4 &4781217185055872
 Transform:
   m_ObjectHideFlags: 1
@@ -1426,6 +1502,20 @@ Transform:
   m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_Children: []
   m_Father: {fileID: 4053942581295506}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4826059493282586
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1124357189327860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0.013}
+  m_LocalScale: {x: 0.375, y: 0.375, z: 0.375}
+  m_Children:
+  - {fileID: 4287476554272962}
+  m_Father: {fileID: 4775736181340052}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4844388541404422
@@ -1539,6 +1629,45 @@ Transform:
   m_Father: {fileID: 4216501445390574}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23186791415968404
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1100355321802152}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: b0c3106971cbe634f998093d53d5c1f3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &33705404590031822
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1100355321802152}
+  m_Mesh: {fileID: 4300000, guid: 412f1aa0c3811b2429b899d988e62f02, type: 3}
 --- !u!54 &54648037127130360
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1554,6 +1683,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!65 &65963962888528504
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1124357189327860}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5045595, y: 1, z: 1.4861827}
+  m_Center: {x: -0.06457472, y: 0, z: -0.029137015}
 --- !u!82 &82617563064049882
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1667,6 +1808,10 @@ MonoBehaviour:
   m_playerNumber: 0
   speed: 12
   turnSpeed: 180
+  gunHolder: {fileID: 1238350743084026}
+  gunPickup: {fileID: 1318780201197668, guid: a05bd02028784744eb592d9bfb66198d, type: 2}
+  gun: {fileID: 1318780201197668, guid: 1a74abfb40fe1ec4ea418ec2597f2d6c, type: 2}
+  bulletCount: 0
 --- !u!114 &114754016558468992
 MonoBehaviour:
   m_ObjectHideFlags: 1
