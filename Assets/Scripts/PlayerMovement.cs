@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour {
 	private float strafeJoyInputValue;
 	private float turnJoyInputValue;
 
+	private bool isAiming;
+
 	private void Awake () {
 		
 		rb = GetComponent<Rigidbody> ();
@@ -99,6 +101,7 @@ public class PlayerMovement : MonoBehaviour {
 		movementJoyInputValue = Input.GetAxisRaw (movementJoyAxisName);
 		strafeJoyInputValue = Input.GetAxisRaw(strafeJoyAxisName);
 		turnJoyInputValue = Input.GetAxisRaw (turnJoyAxisName);
+		isAiming = false;
 
 	}
 
@@ -169,12 +172,19 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void Aim () {
-
+		isAiming = true;
 		line.enabled = true;
 		
 		Ray aimLine = new Ray (transform.position, transform.forward);		
 		Debug.DrawRay(transform.position, transform.forward, Color.black);
 
+		while (isAiming == true) {
+
+			speed = (speed * 0.5);
+			turnSpeed = (turnSpeed * 0.5);
+
+		}
 	}
+
 }
 
