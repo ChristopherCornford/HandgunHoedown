@@ -33,16 +33,13 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private IEnumerator RoundStart(){
+		SetPlayerInput(false);
 		for (int i = 0; i < player.Length; i++) {
 			player[i].instance.transform.position = player[i].spawnPoint.position;
 			player[i].instance.transform.rotation = player[i].spawnPoint.rotation;
 		}
-		/* This is SUPPOSED to wait until the coroutine is done then re-enable playermovement,
-		but it isn't working for some reason >:( */
 		yield return StartCoroutine("RoundStartCountdown");
-		for (int i = 0; i < player.Length; i++){
-			player[i].instance.GetComponent<PlayerMovement>().enabled = true;
-		}
+		SetPlayerInput(true);
 	}
 
 	private IEnumerator RoundStartCountdown(){
@@ -58,18 +55,22 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private void RoundEnd(){
-		for (int i = 0; i < player.Length; i++){
-			player[i].instance.GetComponent<PlayerMovement>().enabled = false;
-		}
+		SetPlayerInput(false);
 	}
 
 	private void GameEnd(int playerNumber){
 		// Disable player movement
+		SetPlayerInput(false);
 		// Show end of game message, play music cue
 		// Display UI prompt to play again or change level or quit
 	}
 
 	// Player Related Shit
+	private void SetPlayerInput(bool status){
+		for (int i = 0; i < player.Length; i++){
+			player[i].instance.GetComponent<PlayerMovement>().enabled = status;
+		}
+	}
 	private void SpawnAllPlayers() {
 		// Spawn players at spawn points
 		for (int i = 0; i < player.Length; i++) {
