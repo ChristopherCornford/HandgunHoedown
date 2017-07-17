@@ -27,7 +27,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	private string movementJoyAxisName;
 	private string strafeJoyAxisName;
-	private string turnJoyAxisName;
+	private string turnJoyAxisNameX;
+	private string turnJoyAxisNameY;
 	private string aimJoyAxisName;
 	private string actionJoyAxisName;
 	private string dashJoyAxisName;
@@ -41,7 +42,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	private float movementJoyInputValue;
 	private float strafeJoyInputValue;
-	private float turnJoyInputValue;
+	private float turnJoyInputValueX;
+	private float turnJoyInputValueY;
 
 	public bool isAiming;
 
@@ -71,7 +73,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		movementJoyInputValue = 0f;
 		strafeJoyInputValue = 0f;
-		turnJoyInputValue = 0f;
+		turnJoyInputValueX = 0f;
+		turnJoyInputValueY = 0f;
 	}
 
 	private void OnDisable () {
@@ -94,7 +97,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		movementJoyAxisName = "Player" + m_playerNumber + "JoyMove";
 		strafeJoyAxisName = "Player" + m_playerNumber + "JoyStrafe";
-		turnJoyAxisName = "Player" + m_playerNumber + "JoyTurn";
+		turnJoyAxisNameX = "Player" + m_playerNumber + "JoyTurnX";
+		turnJoyAxisNameY = "Player" + m_playerNumber + "JoyTurnY";
 		aimJoyAxisName = "Player" + m_playerNumber + "JoyAim";
 		actionJoyAxisName = "Player" + m_playerNumber + "JoyAction";
 		dashJoyAxisName = " Player" + m_playerNumber + "JoyDash";
@@ -109,12 +113,13 @@ public class PlayerMovement : MonoBehaviour {
 
 		movementJoyInputValue = Input.GetAxisRaw (movementJoyAxisName);
 		strafeJoyInputValue = Input.GetAxisRaw(strafeJoyAxisName);
-		turnJoyInputValue = Input.GetAxisRaw (turnJoyAxisName);
+		turnJoyInputValueX = Input.GetAxisRaw (turnJoyAxisNameX);
+		turnJoyInputValueY = Input.GetAxisRaw (turnJoyAxisNameY);
 
-		if (Input.GetButtonDown(actionKeyAxisName)) {
+		if (Input.GetButtonDown (actionKeyAxisName)) {
 			Action();
 		}
-		if (Input.GetButtonDown(actionJoyAxisName)) {
+		if (Input.GetButtonDown (actionJoyAxisName)) {
 
 			Action();
 		}
@@ -123,7 +128,7 @@ public class PlayerMovement : MonoBehaviour {
 			Aim ();
 		}
 		if (Input.GetButton (aimJoyAxisName)) {
-
+			print ("maybe?");
 			Aim ();
 		}
 		if (Input.GetButtonDown (dashKeyAxisName)) {
@@ -168,6 +173,11 @@ public class PlayerMovement : MonoBehaviour {
 		} else {
 			cowboy_anim.SetBool("isMoving", false);
 		}
+		if (movementJoyInputValue != 0) {
+			cowboy_anim.SetBool ("isMoving", true);
+		} else {
+			cowboy_anim.SetBool("isMoving", false);
+		}
 	}
 
 	private void Turn () {
@@ -178,11 +188,18 @@ public class PlayerMovement : MonoBehaviour {
 
 		rb.MoveRotation (rb.rotation * keyTurnRotation);
 
-		float joyTurn = turnJoyInputValue * turnSpeed * Time.deltaTime;
+		float joyTurnX = turnJoyInputValueX * turnSpeed * Time.deltaTime;
+		float joyTurnY = turnJoyInputValueY * turnSpeed * Time.deltaTime;
 
-		Quaternion joyTurnRotation = Quaternion.Euler (0f, joyTurn, 0f);
+		Quaternion joyTurnRotation = Quaternion.Euler (joyTurnX, 0.0f, joyTurnY);
 
 		rb.MoveRotation (rb.rotation * joyTurnRotation);
+
+
+		/*Vector3 nextDir = new Vector3 (turnJoyInputValueX, turnJoyInputValueY);
+		if (nextDir != Vector3.zero) {
+			transform.rotation = Quaternion.LookRotation (nextDir);
+		}*/
 	}
 
 	// Consider moving this function out of this script into the playershooting?
