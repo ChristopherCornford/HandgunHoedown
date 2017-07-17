@@ -29,24 +29,12 @@ public class PlayerManager {
 		}
 	}
 
-	/*public void DisableControls () {
-
-		movement.enabled = false;
-		shooting.enabled = false;
-	}
-
-	public void EnableControls () { 
-
-		movement.enabled = true;
-		shooting.enabled = true;
-	}
-
-	public void Reset () { 
+	/* public void Reset () { 
 
 		instance.transform.position = spawnPoint.position;
 		instance.transform.rotation = spawnPoint.rotation;
 
 		instance.SetActive (false);
 		instance.SetActive (true);
-	}*/
+	} */
 }

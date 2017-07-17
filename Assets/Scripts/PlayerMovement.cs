@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
 	/* Public */
+	private GameManager gamemanager;
 	[Header("Player Variables")]
 	private Vector3 gunShot;
 	public GameObject movement;
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		shooting = GetComponent<PlayerShooting>();
 		cowboy_anim = GetComponent<Animator>();
+		gamemanager = GameObject.Find("/Managers/GameManager").GetComponent<GameManager>();
 	}
 
 	private void OnEnable() {
@@ -197,10 +199,10 @@ public class PlayerMovement : MonoBehaviour {
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
 				print ("Boom, you're dead!");
 				hit.transform.SendMessage ("YouAreDead");
+				gamemanager.RoundEnd(m_playerNumber);
 			}
 			bulletCount -= 1;
 		}
-
 	}
 
 	private void Aim () {
@@ -242,7 +244,6 @@ public class PlayerMovement : MonoBehaviour {
 			hasGun = true;
 			bulletCount = 6;
 			cowboy_anim.SetBool("hasGun", true);
-
 		}
 	}
 	void YouAreDead () {

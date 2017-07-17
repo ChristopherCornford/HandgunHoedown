@@ -24,14 +24,6 @@ public class GameManager : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.L)){StartCoroutine("RoundStart");}
 	} 
 
-	public void PlayerScore(int playerNumber){
-		// there's defintiely a better way to do this but i'll come back to it
-		if (playerNumber == 1){ player1Score++;}
-		if (playerNumber == 2){ player2Score++;}
-		if (player1Score == 3 || player2Score == 3){GameEnd(playerNumber);}
-		else {RoundEnd();}
-	}
-
 	private IEnumerator RoundStart(){
 		SetPlayerInput(false);
 		for (int i = 0; i < player.Length; i++) {
@@ -54,12 +46,23 @@ public class GameManager : MonoBehaviour {
 		yield return null;
 	}
 
-	private void RoundEnd(){
+	public void RoundEnd(int playerNumber){
+		// Currently happens instantaneously - need to wait fo seconds, run coroutine
 		SetPlayerInput(false);
+		// Put the UI stuff in here too
+		switch (playerNumber){
+			case 1:
+				player1Score++;
+				break;
+			case 2:
+				player2Score++;
+				break;
+		}
+		if (player1Score == 3 || player2Score == 3){GameEnd(playerNumber);}
+		else {StartCoroutine("RoundStart");}
 	}
 
 	private void GameEnd(int playerNumber){
-		// Disable player movement
 		SetPlayerInput(false);
 		// Show end of game message, play music cue
 		// Display UI prompt to play again or change level or quit
