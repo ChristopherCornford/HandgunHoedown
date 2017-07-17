@@ -1,46 +1,81 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-	public int numRoundsToWin = 5;
-	public float startDelay = 3f;
-	public float endDelay = 3f;
-	public CameraControl cameraControl;
-	public Text messageText;
+	[HeaderAttribute("Player Data")]
+	public int player1Score;
+	public int player2Score;
+	
+	[HeaderAttribute("Player References")]
 	public PlayerManager[] player;
 	public GameObject playerPrefab;
+	public CameraControl cameraControl;
 	public GameObject t_camera;
 
-	private int roundNumber;
-	private WaitForSeconds startWait;
-	private WaitForSeconds endWait;
-	private PlayerManager roundWinner;
-	private PlayerManager gameWinner;
-
-	// Use this for initialization
-	void Start () {
-		startWait = new WaitForSeconds (startDelay);
-		endWait = new WaitForSeconds (endDelay);
-
+	void Awake () {
 		SpawnAllPlayers ();
 		SetCameraTargets ();
+		cameraControl.SetStartPositionAndSize ();
+	}
+	// DEBUG INPUTS
+	 void Update(){
+		if(Input.GetKeyDown(KeyCode.L)){StartCoroutine("RoundStart");}
+	} 
 
-		StartCoroutine (GameLoop ());
+	public void PlayerScore(int playerNumber){
+		// there's defintiely a better way to do this but i'll come back to it
+		if (playerNumber == 1){ player1Score++;}
+		if (playerNumber == 2){ player2Score++;}
+		if (player1Score == 3 || player2Score == 3){GameEnd(playerNumber);}
+		else {StartCoroutine("RoundStart");}
 	}
 
-	private void SpawnAllPlayers() {
+	private IEnumerator RoundStart(){
 		for (int i = 0; i < player.Length; i++) {
+			player[i].instance.transform.position = player[i].spawnPoint.position;
+			player[i].instance.transform.rotation = player[i].spawnPoint.rotation;
+		}
+		yield return StartCoroutine("RoundStartCountdown");
+		for (int i = 0; i < player.Length; i++){
+			player[i].instance.GetComponent<PlayerMovement>().enabled = true;
+		}
+	}
 
+	private IEnumerator RoundStartCountdown(){
+		// Write a corutine for counting down the start of the round, displaying that as UI
+		int countDown = 3;
+		yield return new WaitForSeconds(1.0f);
+			countDown -= 1;
+		yield return new WaitForSeconds(1.0f);
+			countDown -= 1;
+		yield return new WaitForSeconds(1.0f);
+			countDown -= 1;
+		Debug.Log(countDown);
+		yield return null;
+	}
+
+	private void RoundEnd(){
+		for (int i = 0; i < player.Length; i++){
+			player[i].instance.GetComponent<PlayerMovement>().enabled = false;
+		}
+	}
+
+	private void GameEnd(int playerNumber){
+		// Disable player movement
+		// Show end of game message, play music cue
+		// Display UI prompt to play again or change level or quit
+	}
+
+	// Player Related Shit
+	private void SpawnAllPlayers() {
+		// Spawn players at spawn points
+		for (int i = 0; i < player.Length; i++) {
 			player [i].instance = 
 				Instantiate (playerPrefab, player [i].spawnPoint.position, player [i].spawnPoint.rotation) as GameObject;
 			player [i].playerNumber = i + 1;
 			player [i].Setup ();
-
-
-
 		}
 	}
 
@@ -54,102 +89,4 @@ public class GameManager : MonoBehaviour {
 		}
 		t_camera.GetComponent<CameraControl>().m_Targets = targets;
 	}
-	private IEnumerator GameLoop() {
-
-		yield return StartCoroutine (RoundStarting ());
-
-		//yield return StartCoroutine (RoundPlaying ());
-
-		//yield return StartCoroutine (RoundEnding());
-
-	/*	if (gameWinner != null) {
-			Application.LoadLevel (Application.loadedLevel);
-		} else {
-			StartCoroutine (GameLoop ());
-		}*/
-
-	}
-
-	private IEnumerator RoundStarting() {
-	//	ResetAllPlayers ();
-	//	DisablePlayerControls ();
-
-		cameraControl.SetStartPositionAndSize ();
-
-		//roundNumber++;
-
-		yield return startWait;
-	}
-
-/*	private IEnumerator RoundPlaying() {
-		EnablePlayerControl ();
-
-		while (!OnePlayerLeft ()) {
-			yield return null;
-		}
-	}
-
-	private IEnumerator RoundEnding() {
-		DisablePlayerControls ();
-
-		roundWinner = GetRoundWinner ();
-
-		if (roundWinner != null) {
-			roundWinner.wins++;
-		}
-		gameWinner = GetGameWinner ();
-
-		yield return endWait;
-	}
-
-	private bool OnePlayerLeft () {
-
-		int numPlayersLeft = 0;
-
-		for (int i = 0; i < player.Length; i++) {
-
-			if (player [i].instance.activeSelf) {
-				return player [i];
-			}
-			return numPlayersLeft <= 1;
-		}
-	}
-	private PlayerManager GetRoundWinnewr() {
-
-		for (int i = 0; i < player.Length; i++) {
-			if (player [i].instance.activeSelf)
-				return player [i];
-		}
-		return null;
-	}*/
-
-	private PlayerManager GetGameWinnewr() {
-
-		for (int i = 0; i < player.Length; i++) {
-			if (player [i].wins == numRoundsToWin)
-				return player [i];
-		}
-		return null;
-	}
-	
-	/*private void ResetAllPlayers () {
-
-			for (int i = 0; i < player.Length; i++) {
-				player[i].Reset();
-			}
-	}
-
-	private void EnablePlayeControl (){
-
-		for (int i = 0; i < player.Length; i++) {
-			player [i].EnableControls ();
-		}
-	}
-
-	private void DisablePlayerControls (){
-
-		for (int i = 0; i < player.Length; i++) {
-			player [i].DisableControls ();
-		}
-	}*/
 }
