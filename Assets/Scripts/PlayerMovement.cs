@@ -113,8 +113,8 @@ public class PlayerMovement : MonoBehaviour {
 
 			Aim ();
 		}
-		isAiming = false;
-
+			
+		StartCoroutine (checkForAiming(0f));
 	}
 
 	private void FixedUpdate () {
@@ -180,12 +180,22 @@ public class PlayerMovement : MonoBehaviour {
 		Ray aimLine = new Ray (transform.position, transform.forward);		
 		Debug.DrawRay(transform.position, transform.forward, Color.black);
 
-		/*while (isAiming == true) {
+	}
+	public IEnumerator checkForAiming (float sec) {
 
-			speed = speed / 2;
-			turnSpeed = turnSpeed / 2;
+		switch (isAiming) {
+		case true:
+			speed = 6f;
+			turnSpeed = 90f;
+			break;
 
-		}*/
+		case false:
+			speed = 12f;
+			turnSpeed = 180f;
+			break;
+
+		}
+		yield return new WaitForSeconds (sec);
 	}
 
 }
