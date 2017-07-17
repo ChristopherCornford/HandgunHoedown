@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour {
 		if (playerNumber == 1){ player1Score++;}
 		if (playerNumber == 2){ player2Score++;}
 		if (player1Score == 3 || player2Score == 3){GameEnd(playerNumber);}
-		else {StartCoroutine("RoundStart");}
+		else {RoundEnd();}
 	}
 
 	private IEnumerator RoundStart(){
@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour {
 			player[i].instance.transform.position = player[i].spawnPoint.position;
 			player[i].instance.transform.rotation = player[i].spawnPoint.rotation;
 		}
+		/* This is SUPPOSED to wait until the coroutine is done then re-enable playermovement,
+		but it isn't working for some reason >:( */
 		yield return StartCoroutine("RoundStartCountdown");
 		for (int i = 0; i < player.Length; i++){
 			player[i].instance.GetComponent<PlayerMovement>().enabled = true;
@@ -52,7 +54,6 @@ public class GameManager : MonoBehaviour {
 			countDown -= 1;
 		yield return new WaitForSeconds(1.0f);
 			countDown -= 1;
-		Debug.Log(countDown);
 		yield return null;
 	}
 
