@@ -147,5 +147,8 @@ MonoBehaviour:
   m_playerNumber: 0
   speed: 12
   turnSpeed: 180
-  movementAxisName: 
-  turnAxisName: 
+  isAiming: 0
+  gunHolder: {fileID: 0}
+  gunPickup: {fileID: 0}
+  gun: {fileID: 0}
+  bulletCount: 0

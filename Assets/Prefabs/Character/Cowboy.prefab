@@ -1817,23 +1817,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6db22e0c99a2242aac4dbbeea55aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunShot: {x: 0, y: 0, z: 0}
   movement: {fileID: 112068}
   m_playerNumber: 0
   speed: 12
   turnSpeed: 180
-  movementKeyAxisName: 
-  strafeKeyAxisName: 
-  turnKeyAxisName: 
-  aimKeyAxisName: 
-  actionKeyAxisName: 
-  dashKeyAxisName: 
-  movementJoyAxisName: 
-  strafeJoyAxisName: 
-  turnJoyAxisName: 
-  aimJoyAxisName: 
-  actionJoyAxisName: 
-  dashJoyAxisName: 
+  isAiming: 0
+  gunHolder: {fileID: 0}
+  gunPickup: {fileID: 0}
+  gun: {fileID: 0}
+  bulletCount: 0
 --- !u!114 &114706023636390538
 MonoBehaviour:
   m_ObjectHideFlags: 1
