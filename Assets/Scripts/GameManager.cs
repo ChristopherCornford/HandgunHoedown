@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
+	private UI_Manager UI_Manager;
 	[HeaderAttribute("Player Data")]
 	public int player1Score;
 	public int player2Score;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour {
 		SpawnAllPlayers ();
 		SetCameraTargets ();
 		cameraControl.SetStartPositionAndSize ();
+		UI_Manager = GetComponent<UI_Manager>();
 	}
 	// DEBUG INPUTS
 	 void Update(){
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private IEnumerator RoundStartCountdown(){
-		// Write a corutine for counting down the start of the round, displaying that as UI
+		//TODO:  Write a corutine for counting down the start of the round, displaying that as UI
 		int countDown = 3;
 		yield return new WaitForSeconds(1.0f);
 			countDown -= 1;
@@ -46,11 +48,11 @@ public class GameManager : MonoBehaviour {
 		yield return null;
 	}
 
-	public void RoundEnd(int playerNumber){
-		// Currently happens instantaneously - need to wait fo seconds, run coroutine
+	public void RoundEnd(int playerindex){
+		// TODO: Currently happens instantaneously - need to wait fo seconds, run coroutine
 		SetPlayerInput(false);
-		// Put the UI stuff in here too
-		switch (playerNumber){
+		// TODO: Put the UI stuff in here too
+		switch (playerindex){
 			case 1:
 				player1Score++;
 				break;
@@ -58,14 +60,14 @@ public class GameManager : MonoBehaviour {
 				player2Score++;
 				break;
 		}
-		if (player1Score == 3 || player2Score == 3){GameEnd(playerNumber);}
+		if (player1Score == 3 || player2Score == 3){GameEnd(playerindex);}
 		else {StartCoroutine("RoundStart");}
 	}
 
-	private void GameEnd(int playerNumber){
+	private void GameEnd(int playerindex){
 		SetPlayerInput(false);
-		// Show end of game message, play music cue
-		// Display UI prompt to play again or change level or quit
+		// TODO: Show end of game message, play music cue
+		// TODO: Display UI prompt to play again or change level or quit
 	}
 
 	// Player Related Shit

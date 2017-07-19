@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-	/* Public */
+	/* Managers */
 	private GameManager gamemanager;
+	private UI_Manager UI_Manager;
+	
+	/* Public */
 	[Header("Player Variables")]
 	private Vector3 gunShot;
 	public GameObject movement;
 	public int m_playerNumber = 0;
 	public float speed = 12f;
 	public float turnSpeed = 180f;
+	public bool isAiming;
+
+	//Picking up Gun
+	[Header("Gun References & Variables")]
+	public GameObject gunHolder;
+	public GameObject gunPickup;
+	public GameObject gun;
+	private bool hasGun;
+	public int bulletCount;
 
 	/* Private */
 	// Components
@@ -46,23 +58,13 @@ public class PlayerMovement : MonoBehaviour {
 	private float turnJoyInputValueX;
 	private float turnJoyInputValueY;
 
-	public bool isAiming;
-
-	//Picking up Gun
-	public GameObject gunHolder;
-	public GameObject gunPickup;
-	public GameObject gun;
-	private bool hasGun;
-	public int bulletCount;
-
-
-
 	private void Awake () {
 		
 		rb = GetComponent<Rigidbody> ();
 		shooting = GetComponent<PlayerShooting>();
 		cowboy_anim = GetComponent<Animator>();
 		gamemanager = GameObject.Find("/Managers/GameManager").GetComponent<GameManager>();
+		UI_Manager = GameObject.Find("/Managers/UI_Manager").GetComponent<UI_Manager>();
 	}
 
 	private void OnEnable() {
@@ -219,6 +221,7 @@ public class PlayerMovement : MonoBehaviour {
 				gamemanager.RoundEnd(m_playerNumber);
 			}
 			bulletCount -= 1;
+			UI_Manager.removeBullets(m_playerNumber, bulletCount);
 		}
 	}
 
@@ -261,6 +264,7 @@ public class PlayerMovement : MonoBehaviour {
 			hasGun = true;
 			bulletCount = 6;
 			cowboy_anim.SetBool("hasGun", true);
+			UI_Manager.GiveBullets(m_playerNumber);
 		}
 	}
 	void YouAreDead () {
