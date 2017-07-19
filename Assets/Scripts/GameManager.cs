@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-	private UI_Manager UI_Manager;
+	public UI_Manager UI_Manager;
 	[HeaderAttribute("Player Data")]
 	public int player1Score;
 	public int player2Score;
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
 		SpawnAllPlayers ();
 		SetCameraTargets ();
 		cameraControl.SetStartPositionAndSize ();
-		UI_Manager = GetComponent<UI_Manager>();
+		// UI_Manager = GameObject.Find("Managers/UI_Manager").GetComponent<UI_Manager>();
 	}
 	// DEBUG INPUTS
 	 void Update(){
@@ -55,11 +55,15 @@ public class GameManager : MonoBehaviour {
 		switch (playerindex){
 			case 1:
 				player1Score++;
+				UI_Manager.GiveStars(playerindex, player1Score);
 				break;
 			case 2:
 				player2Score++;
+				UI_Manager.GiveStars(playerindex, player2Score);
 				break;
 		}
+		Debug.Log(player1Score);
+		Debug.Log(player2Score);
 		if (player1Score == 3 || player2Score == 3){GameEnd(playerindex);}
 		else {StartCoroutine("RoundStart");}
 	}
