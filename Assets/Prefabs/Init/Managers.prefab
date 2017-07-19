@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1776fad6e8a7f4e40b1dfd98c549a045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI_Manager: {fileID: 114546717615237306}
   player1Score: 0
   player2Score: 0
   player:
