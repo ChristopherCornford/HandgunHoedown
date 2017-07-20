@@ -55,22 +55,30 @@ public class GameManager : MonoBehaviour {
 		switch (playerindex){
 			case 1:
 				player1Score++;
-				UI_Manager.GiveStars(playerindex, player1Score);
+				UI_Manager.giveStars(playerindex, player1Score);
+				StartCoroutine(UI_Manager.Message("Player 1 Wins!"));
 				break;
 			case 2:
 				player2Score++;
-				UI_Manager.GiveStars(playerindex, player2Score);
+				UI_Manager.giveStars(playerindex, player2Score);
+				StartCoroutine(UI_Manager.Message("Player 2 Wins!"));
 				break;
 		}
-		Debug.Log(player1Score);
-		Debug.Log(player2Score);
 		if (player1Score == 3 || player2Score == 3){GameEnd(playerindex);}
 		else {StartCoroutine("RoundStart");}
 	}
 
 	private void GameEnd(int playerindex){
 		SetPlayerInput(false);
-		// TODO: Show end of game message, play music cue
+		switch (playerindex){
+			case 1:
+				StartCoroutine(UI_Manager.Message("Player 1 Wins!"));
+				break;
+			case 2:
+				StartCoroutine(UI_Manager.Message("Player 2 Wins!"));
+				break;
+		}
+		// TODO: Play music cue
 		// TODO: Display UI prompt to play again or change level or quit
 	}
 

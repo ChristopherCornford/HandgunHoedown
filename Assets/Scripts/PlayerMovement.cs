@@ -264,7 +264,7 @@ public class PlayerMovement : MonoBehaviour {
 			hasGun = true;
 			bulletCount = 6;
 			cowboy_anim.SetBool("hasGun", true);
-			UI_Manager.GiveBullets(m_playerNumber);
+			UI_Manager.giveBullets(m_playerNumber);
 		}
 	}
 	void YouAreDead () {

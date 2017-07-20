@@ -15,10 +15,19 @@ public class UI_Manager : MonoBehaviour {
 	public GameObject P2_BulletContainer;
 	public Image[] P2_Bullets;
 
+	[Header("Message UI")]
+	public GameObject message_panel;
+	public Text message_text;
+
 	/* Private */
 	private Color none = new Color32(0,0,0,0);
 
-	public void GiveBullets(int playerindex){
+	private IEnumerator timerUtil(float timerLength){
+		yield return new WaitForSeconds(timerLength);
+		yield return null;
+	}
+
+	public void giveBullets(int playerindex){
 		switch (playerindex){
 			case 1:
 				P1_BulletContainer.SetActive(true);
@@ -40,7 +49,7 @@ public class UI_Manager : MonoBehaviour {
 		}
 	}
 
-	public void GiveStars(int playerindex, int playerScore){
+	public void giveStars(int playerindex, int playerScore){
 		switch (playerindex){
 			case 1:
 				P1_Stars[playerScore - 1].color = Color.white;
@@ -49,5 +58,12 @@ public class UI_Manager : MonoBehaviour {
 				P2_Stars[playerScore - 1].color = Color.white;
 				break;
 		}
+	}
+
+	public IEnumerator Message(string in_string){
+		message_text.text = in_string;
+		message_panel.SetActive(true);
+		yield return StartCoroutine(timerUtil(3f));
+		message_panel.SetActive(false);
 	}
 }
