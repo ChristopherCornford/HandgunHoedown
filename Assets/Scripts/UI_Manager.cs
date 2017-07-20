@@ -60,10 +60,14 @@ public class UI_Manager : MonoBehaviour {
 		}
 	}
 
-	public IEnumerator Message(string in_string){
+	public IEnumerator Message(string in_string, float wait){
 		message_text.text = in_string;
 		message_panel.SetActive(true);
-		yield return StartCoroutine(timerUtil(3f));
-		message_panel.SetActive(false);
+		if (wait > 0.1f){
+			yield return StartCoroutine(timerUtil(wait));
+			message_panel.SetActive(false);
+		}
+		// if you put in 0f as "wait", it'll just stay up - helpful for countdowns
+		yield return null;
 	}
 }

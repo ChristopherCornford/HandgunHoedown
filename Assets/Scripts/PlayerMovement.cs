@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour {
 	/* Private */
 	// Components
 	private PlayerShooting shooting;
-	private Animator cowboy_anim;
+	public Animator cowboy_anim;
 
 	// Axis Names
 	private string movementKeyAxisName;
@@ -218,7 +218,7 @@ public class PlayerMovement : MonoBehaviour {
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
 				print ("Boom, you're dead!");
 				hit.transform.SendMessage ("YouAreDead");
-				gamemanager.RoundEnd(m_playerNumber);
+				StartCoroutine(gamemanager.RoundEnd(m_playerNumber));
 			}
 			bulletCount -= 1;
 			UI_Manager.removeBullets(m_playerNumber, bulletCount);
