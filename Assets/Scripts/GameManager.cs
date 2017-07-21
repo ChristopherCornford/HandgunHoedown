@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour {
 	public UI_Manager UI_Manager;
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour {
 			player[i].instance.transform.position = player[i].spawnPoint.position;
 			player[i].instance.transform.rotation = player[i].spawnPoint.rotation;
 			player[i].instance.GetComponent<PlayerMovement>().cowboy_anim.Play("Idle");
+			player[i].instance.GetComponent<PlayerMovement>().cowboy_anim.SetBool("hasGun", false);
+			player[i].instance.GetComponent<PlayerMovement>().hasGun = false;
 		}
 		yield return StartCoroutine("RoundStartCountdown");
 		SetPlayerInput(true);
@@ -36,7 +39,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private IEnumerator RoundStartCountdown(){
-		//TODO:  Write a corutine for counting down the start of the round, displaying that as UI
 		int countDown = 3;
 		StartCoroutine(UI_Manager.Message("3", 0f));
 		yield return new WaitForSeconds(1.0f);
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour {
 		StartCoroutine(UI_Manager.Message("1", 0f));
 		yield return new WaitForSeconds(1.0f);
 			countDown -= 1;
-		StartCoroutine(UI_Manager.Message("HOEDOWN!", 2f));
+		StartCoroutine(UI_Manager.Message("HOEDOWN!", 1f));
 		yield return null;
 	}
 
@@ -83,6 +85,9 @@ public class GameManager : MonoBehaviour {
 		}
 		// TODO: Play music cue
 		// TODO: Display UI prompt to play again or change level or quit
+		UI_Manager.EndGameMenu.SetActive(true);
+		EventSystem.current.SetSelectedGameObject(GameObject.Find("PlayAgain_B"));
+		
 	}
 
 	// Player Related Shit

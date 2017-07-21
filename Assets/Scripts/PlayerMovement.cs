@@ -22,7 +22,8 @@ public class PlayerMovement : MonoBehaviour {
 	public GameObject gunHolder;
 	public GameObject gunPickup;
 	public GameObject gun;
-	private bool hasGun;
+	[HideInInspector]
+	public bool hasGun;
 	public int bulletCount;
 
 	/* Private */
@@ -258,12 +259,12 @@ public class PlayerMovement : MonoBehaviour {
 	void OnTriggerEnter (Collider collider) {
 
 		if ((collider.gameObject.tag == "Gun") && (hasGun == false)) {
+			cowboy_anim.SetBool("hasGun", true);
 			print ("Got It!");
 			gunHolder.SetActive(true);
-			Destroy (gunPickup);
+			Destroy(gunPickup);
 			hasGun = true;
 			bulletCount = 6;
-			cowboy_anim.SetBool("hasGun", true);
 			UI_Manager.giveBullets(m_playerNumber);
 		}
 	}

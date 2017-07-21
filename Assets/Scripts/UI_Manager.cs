@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class UI_Manager : MonoBehaviour {
 
 	[Header("Player 1 UI")]
@@ -18,6 +17,9 @@ public class UI_Manager : MonoBehaviour {
 	[Header("Message UI")]
 	public GameObject message_panel;
 	public Text message_text;
+	
+	[HeaderAttribute("PlayCanvas UI Panels")]
+	public GameObject EndGameMenu;
 
 	/* Private */
 	private Color none = new Color32(0,0,0,0);
