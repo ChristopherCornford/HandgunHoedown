@@ -54,9 +54,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public IEnumerator RoundEnd(int playerindex){
-		// TODO: Currently happens instantaneously - need to wait fo seconds, run coroutine
 		SetPlayerInput(false);
-		// TODO: Put the UI stuff in here too
 		switch (playerindex){
 			case 1:
 				player1Score++;
@@ -83,8 +81,7 @@ public class GameManager : MonoBehaviour {
 				StartCoroutine(UI_Manager.Message("Player 2 Wins!", 3f));
 				break;
 		}
-		// TODO: Play music cue
-		// TODO: Display UI prompt to play again or change level or quit
+		// TODO: Change music cue
 		UI_Manager.EndGameMenu.SetActive(true);
 		EventSystem.current.SetSelectedGameObject(GameObject.Find("PlayAgain_B"));
 		
