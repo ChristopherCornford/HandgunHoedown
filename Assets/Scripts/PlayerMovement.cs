@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 	/* Managers */
 	private GameManager GameManager;
 	private UI_Manager UI_Manager;
-	private GunSpawn gunSpawn;
+	private GunSpawn GunSpawn;
 	
 	/* Public */
 	[Header("Player Variables")]
@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour {
 		cowboy_anim = GetComponent<Animator>();
 		GameManager = GameObject.Find("/Managers/GameManager").GetComponent<GameManager>();
 		UI_Manager = GameObject.Find("/Managers/UI_Manager").GetComponent<UI_Manager>();
-		gunSpawn = GameObject.Find ("/Managers/Gun Spawner").GetComponent<GunSpawn> ();
+		GunSpawn = GameObject.Find ("/Managers/GunSpawner").GetComponent<GunSpawn> ();
 	}
 
 	private void OnEnable() {
@@ -294,7 +294,7 @@ public class PlayerMovement : MonoBehaviour {
 			cowboy_anim.SetBool ("hasGun", false);
 			gunHolder.SetActive (false);
 			hasGun = false;
-			gunSpawn.Respawning ();
+			GunSpawn.Spawning ();
 		}
 	}
 

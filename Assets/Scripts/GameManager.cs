@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour {
 	public UI_Manager UI_Manager;
-	private GunSpawn gunSpawn;
+	public GunSpawn GunSpawn;
+	
 	[HeaderAttribute("Player Data")]
 	public int player1Score;
 	public int player2Score;
@@ -25,7 +26,6 @@ public class GameManager : MonoBehaviour {
 		StartCoroutine ("RoundStart");
 		SetCameraTargets ();
 		cameraControl.SetStartPositionAndSize ();
-		gunSpawn = GameObject.Find ("/Managers/Gun Spawner").GetComponent<GunSpawn> ();
 	}
 
 	/*** PAUSING THE GAME ***/
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
 		Debug.Log("The game is now paused!");
 		SetPlayerInput(false);
 		UI_Manager.PauseGameMenu.SetActive(true);
-		EventSystem.current.SetSelectedGameObject(GameObject.Find("Resume_B"));
+		EventSystem.current.SetSelectedGameObject(UI_Manager.PlayAgain);
 		isPaused = true;
 	}
 	public void Resume(){
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour {
 		// If we wanted to lerp the camera add that code here - yield return StarCoroutine
 		yield return StartCoroutine(UI_Manager.RoundStartCountdown());
 		SetPlayerInput(true);
-		GameObject.Find ("/Managers/Gun Spawner").GetComponent<GunSpawn>().Respawning();
+		GunSpawn.Spawning();
 		yield return null;
 	}
 

@@ -15,9 +15,13 @@ public class UI_Manager : MonoBehaviour {
 	[HeaderAttribute("Countdown Images")]
 	public GameObject[] Countdown;
 	
-	[HeaderAttribute("PlayCanvas UI Panels")]
+	[HeaderAttribute("Game Over Menu")]
 	public GameObject EndGameMenu;
+	public GameObject PlayAgain;
+	
+	[HeaderAttribute("Pause Menu")]
 	public GameObject PauseGameMenu;
+	public GameObject Resume;
 
 	[HeaderAttribute("Player Winner Screens")]
 	public GameObject Player1Win;

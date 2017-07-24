@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 4725999173897534}
   - component: {fileID: 114871800861087230}
   m_Layer: 0
-  m_Name: Gun Spawner
+  m_Name: GunSpawner
   m_TagString: GunSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI_Manager: {fileID: 114546717615237306}
+  GunSpawn: {fileID: 114871800861087230}
   player1Score: 0
   player2Score: 0
   isPaused: 0
@@ -420,7 +421,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   EndGameMenu: {fileID: 0}
+  PlayAgain: {fileID: 0}
   PauseGameMenu: {fileID: 0}
+  Resume: {fileID: 0}
   Player1Win: {fileID: 0}
   Player2Win: {fileID: 0}
 --- !u!114 &114871800861087230
