@@ -40,7 +40,8 @@ public class GunSpawn : MonoBehaviour {
 
 	}
 	void OnTriggerEnter (Collider collider) {
-		if (collider.gameObject.tag == "Player") {
+		if (collider.gameObject.tag == "Cowboy") {
+			print ("fuck you Chris");
 			Destroy (gun);
 		}
 	}

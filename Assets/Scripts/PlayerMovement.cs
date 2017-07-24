@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour {
 		strafeKeyInputValue = Input.GetAxisRaw (strafeKeyAxisName);
 		turnKeyInputValue = Input.GetAxisRaw (turnKeyAxisName);
 
-		movementJoyInputValue = Input.GetAxisRaw (movementJoyAxisName);
+		movementJoyInputValue = -Input.GetAxisRaw (movementJoyAxisName);
 		strafeJoyInputValue = Input.GetAxisRaw(strafeJoyAxisName);
 		turnJoyInputValueX = Input.GetAxisRaw (turnJoyAxisNameX);
 		turnJoyInputValueY = Input.GetAxisRaw (turnJoyAxisNameY);
@@ -163,17 +163,26 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public void Move() {
-		
-		Vector3 keyMovement = transform.forward * movementKeyInputValue * speed * Time.deltaTime;
-		Vector3 keyStrafe = transform.right * strafeKeyInputValue * speed * Time.deltaTime;
 
-		Vector3 joyMovement = transform.forward * -movementJoyInputValue * speed * Time.deltaTime;
-		Vector3 joyStrafe = transform.right * strafeJoyInputValue * speed * Time.deltaTime;
+		float horizontal = strafeJoyInputValue * Time.deltaTime * speed;
+		float verticle = movementJoyInputValue * Time.deltaTime * speed;
 
+		Vector3 moveDirection = new Vector3 (strafeJoyInputValue, 0, movementJoyInputValue);
+		Vector3 moveAngle = new Vector3 (0, +0, 45);
+		transform.position += moveDirection * speed * Time.deltaTime;
+		float angle = Mathf.Atan2 (horizontal, verticle) * Mathf.Rad2Deg;
+		transform.LookAt( new Vector3 (0, angle, 0));
+
+
+		Vector3 keyMovement = Vector3.forward * movementKeyInputValue * speed * Time.deltaTime;
+		Vector3 keyStrafe = Vector3.right * strafeKeyInputValue * speed * Time.deltaTime;
+
+		/*Vector3 joyMovement = transform.up * -movementJoyInputValue * speed * Time.deltaTime;
+		Vector3 joyStrafe = transform.right * strafeJoyInputValue * speed * Time.deltaTime;*/
 		rb.MovePosition (rb.position + keyMovement);
 		rb.MovePosition (rb.position + keyStrafe);
-		rb.MovePosition (rb.position + joyMovement);
-		rb.MovePosition (rb.position + joyStrafe);
+		/*rb.MovePosition (rb.position + joyMovement);
+		rb.MovePosition (rb.position + joyStrafe);*/
 
 		if (movementKeyInputValue != 0) {
 			cowboy_anim.SetBool ("isMoving", true);
@@ -196,17 +205,10 @@ public class PlayerMovement : MonoBehaviour {
 		rb.MoveRotation (rb.rotation * keyTurnRotation);
 
 		float joyTurnX = turnJoyInputValueX * turnSpeed * Time.deltaTime;
-		float joyTurnY = turnJoyInputValueY * turnSpeed * Time.deltaTime;
+		float joyTurnY = -turnJoyInputValueY * turnSpeed * Time.deltaTime;
 
-		Quaternion joyTurnRotation = Quaternion.Euler (joyTurnX, 0.0f, joyTurnY);
-
-		rb.MoveRotation (rb.rotation * joyTurnRotation);
-
-
-		/*Vector3 nextDir = new Vector3 (turnJoyInputValueX, turnJoyInputValueY);
-		if (nextDir != Vector3.zero) {
-			transform.rotation = Quaternion.LookRotation (nextDir);
-		}*/
+		float angle = Mathf.Atan2 (joyTurnX, joyTurnY) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.Euler (new Vector3(0, angle));
 	}
 
 	// Consider moving this function out of this script into the playershooting?
@@ -290,7 +292,7 @@ public class PlayerMovement : MonoBehaviour {
 			cowboy_anim.SetBool ("hasGun", false);
 			gunHolder.SetActive (false);
 			hasGun = false;
-			gunSpawn.Invoke ("Respawning", 1f);
+			gunSpawn.Invoke ("Respawning", 0.5f);
 		}
 	}
 
