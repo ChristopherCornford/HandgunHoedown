@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 222450499379465720}
   - component: {fileID: 114536534955182554}
   m_Layer: 5
-  m_Name: Game CountDown
+  m_Name: CountDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

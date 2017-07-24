@@ -52,23 +52,8 @@ public class GameManager : MonoBehaviour {
 		// Passing 3 to this uses another case that runs a for loop and removes all bullets
 		UI_Manager.removeBullets(3,0);
 		// If we wanted to lerp the camera add that code here - yield return StarCoroutine
-		yield return StartCoroutine("RoundStartCountdown");
+		yield return StartCoroutine(UI_Manager.RoundStartCountdown());
 		SetPlayerInput(true);
-		yield return null;
-	}
-
-	private IEnumerator RoundStartCountdown(){
-		int countDown = 3;
-		StartCoroutine(UI_Manager.Message("3", 0f));
-		yield return new WaitForSeconds(1.0f);
-			countDown -= 1;
-		StartCoroutine(UI_Manager.Message("2", 0f));
-		yield return new WaitForSeconds(1.0f);
-			countDown -= 1;
-		StartCoroutine(UI_Manager.Message("1", 0f));
-		yield return new WaitForSeconds(1.0f);
-			countDown -= 1;
-		StartCoroutine(UI_Manager.Message("HOEDOWN!", 1f));
 		yield return null;
 	}
 

@@ -11,10 +11,9 @@ public class UI_Manager : MonoBehaviour {
 	[Header("Player 2 UI")]
 	public Image[] P2_Stars;
 	public Image[] P2_Bullets;
-
-	[Header("Message UI")]
-	public GameObject message_panel;
-	public Text message_text;
+	
+	[HeaderAttribute("Countdown Images")]
+	public Image[] Countdown;
 	
 	[HeaderAttribute("PlayCanvas UI Panels")]
 	public GameObject EndGameMenu;
@@ -25,6 +24,21 @@ public class UI_Manager : MonoBehaviour {
 
 	private IEnumerator timerUtil(float timerLength){
 		yield return new WaitForSeconds(timerLength);
+		yield return null;
+	}
+
+	public IEnumerator RoundStartCountdown(){
+		int countDown = 3;
+		StartCoroutine(UI_Manager.Message("3", 0f));
+		yield return new WaitForSeconds(1.0f);
+			countDown -= 1;
+		StartCoroutine(UI_Manager.Message("2", 0f));
+		yield return new WaitForSeconds(1.0f);
+			countDown -= 1;
+		StartCoroutine(UI_Manager.Message("1", 0f));
+		yield return new WaitForSeconds(1.0f);
+			countDown -= 1;
+		StartCoroutine(UI_Manager.Message("HOEDOWN!", 1f));
 		yield return null;
 	}
 
@@ -74,8 +88,8 @@ public class UI_Manager : MonoBehaviour {
 	}
 
 	public IEnumerator Message(string in_string, float wait){
-		message_text.text = in_string;
-		message_panel.SetActive(true);
+		/* message_text.text = in_string;
+		message_panel.SetActive(true); */
 		if (wait > 0.1f){
 			yield return StartCoroutine(timerUtil(wait));
 			message_panel.SetActive(false);
