@@ -18,6 +18,7 @@ public class UI_Manager : MonoBehaviour {
 	
 	[HeaderAttribute("PlayCanvas UI Panels")]
 	public GameObject EndGameMenu;
+	public GameObject PauseGameMenu;
 
 	/* Private */
 	private Color none = new Color32(0,0,0,0);
@@ -81,5 +82,10 @@ public class UI_Manager : MonoBehaviour {
 		}
 		// if you put in 0f as "wait", it'll just stay up - helpful for countdowns
 		yield return null;
+	}
+
+	public void PauseMenu(){
+		PauseGameMenu.SetActive(true);
+		
 	}
 }
