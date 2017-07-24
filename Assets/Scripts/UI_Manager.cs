@@ -13,7 +13,7 @@ public class UI_Manager : MonoBehaviour {
 	public Image[] P2_Bullets;
 	
 	[HeaderAttribute("Countdown Images")]
-	public Image[] Countdown;
+	public GameObject[] Countdown;
 	
 	[HeaderAttribute("PlayCanvas UI Panels")]
 	public GameObject EndGameMenu;
@@ -28,17 +28,17 @@ public class UI_Manager : MonoBehaviour {
 	}
 
 	public IEnumerator RoundStartCountdown(){
-		int countDown = 3;
-		StartCoroutine(UI_Manager.Message("3", 0f));
+		int countDown = 4;
+		Countdown[countDown].SetActive(true);
 		yield return new WaitForSeconds(1.0f);
 			countDown -= 1;
-		StartCoroutine(UI_Manager.Message("2", 0f));
+		Countdown[countDown].SetActive(true);
 		yield return new WaitForSeconds(1.0f);
 			countDown -= 1;
-		StartCoroutine(UI_Manager.Message("1", 0f));
+		Countdown[countDown].SetActive(true);
 		yield return new WaitForSeconds(1.0f);
 			countDown -= 1;
-		StartCoroutine(UI_Manager.Message("HOEDOWN!", 1f));
+		Countdown[countDown].SetActive(true);
 		yield return null;
 	}
 
@@ -87,16 +87,16 @@ public class UI_Manager : MonoBehaviour {
 		}
 	}
 
-	public IEnumerator Message(string in_string, float wait){
-		/* message_text.text = in_string;
-		message_panel.SetActive(true); */
+	/* public IEnumerator Message(string in_string, float wait){
+		 message_text.text = in_string;
+		message_panel.SetActive(true); 
 		if (wait > 0.1f){
 			yield return StartCoroutine(timerUtil(wait));
 			message_panel.SetActive(false);
 		}
 		// if you put in 0f as "wait", it'll just stay up - helpful for countdowns
 		yield return null;
-	}
+	} */
 
 	public void PauseMenu(){
 		PauseGameMenu.SetActive(true);
