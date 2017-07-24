@@ -63,27 +63,27 @@ public class GameManager : MonoBehaviour {
 			case 1:
 				player1Score++;
 				UI_Manager.giveStars(playerindex, player1Score);
-				// yield return StartCoroutine(UI_Manager.Message("Player 1 Wins!", 3f));
+				yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player1Win, 3f));
 				break;
 			case 2:
 				player2Score++;
 				UI_Manager.giveStars(playerindex, player2Score);
-				// yield return StartCoroutine(UI_Manager.Message("Player 2 Wins!", 3f));
+				yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player2Win, 3f));
 				break;
 		}
-		if (player1Score == 3 || player2Score == 3){GameEnd(playerindex);}
+		if (player1Score == 3 || player2Score == 3){StartCoroutine(GameEnd(playerindex));}
 		else {StartCoroutine("RoundStart");}
 		yield return null;
 	}
 
-	private void GameEnd(int playerindex){
+	private IEnumerator GameEnd(int playerindex){
 		SetPlayerInput(false);
 		switch (playerindex){
 			case 1:
-				// StartCoroutine(UI_Manager.Message("Player 1 Wins!", 3f));
+				yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player1Win, 3f));
 				break;
 			case 2:
-				// StartCoroutine(UI_Manager.Message("Player 2 Wins!", 3f));
+				yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player2Win, 3f));
 				break;
 		}
 		// TODO: Change music cue

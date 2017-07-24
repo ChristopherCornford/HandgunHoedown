@@ -421,6 +421,8 @@ MonoBehaviour:
   - {fileID: 0}
   EndGameMenu: {fileID: 0}
   PauseGameMenu: {fileID: 0}
+  Player1Win: {fileID: 0}
+  Player2Win: {fileID: 0}
 --- !u!114 &114871800861087230
 MonoBehaviour:
   m_ObjectHideFlags: 1

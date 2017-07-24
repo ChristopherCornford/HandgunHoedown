@@ -19,6 +19,10 @@ public class UI_Manager : MonoBehaviour {
 	public GameObject EndGameMenu;
 	public GameObject PauseGameMenu;
 
+	[HeaderAttribute("Player Winner Screens")]
+	public GameObject Player1Win;
+	public GameObject Player2Win;
+
 	/* Private */
 	private Color none = new Color32(0,0,0,0);
 
@@ -28,18 +32,15 @@ public class UI_Manager : MonoBehaviour {
 	}
 
 	public IEnumerator RoundStartCountdown(){
-		int countDown = 4;
-		Countdown[countDown].SetActive(true);
-		yield return new WaitForSeconds(1.0f);
+		//TODO: FIX COUNTDOWN TO GET RID OF FLASHING
+		int countDown = 3;
+		yield return StartCoroutine(Message(Countdown[countDown], 1f));
 			countDown -= 1;
-		Countdown[countDown].SetActive(true);
-		yield return new WaitForSeconds(1.0f);
+		yield return StartCoroutine(Message(Countdown[countDown], 1f));
 			countDown -= 1;
-		Countdown[countDown].SetActive(true);
-		yield return new WaitForSeconds(1.0f);
+		yield return StartCoroutine(Message(Countdown[countDown], 1f));
 			countDown -= 1;
-		Countdown[countDown].SetActive(true);
-		yield return null;
+		yield return StartCoroutine(Message(Countdown[countDown], 1f));
 	}
 
 	public void giveBullets(int playerindex){
@@ -87,16 +88,14 @@ public class UI_Manager : MonoBehaviour {
 		}
 	}
 
-	/* public IEnumerator Message(string in_string, float wait){
-		 message_text.text = in_string;
-		message_panel.SetActive(true); 
+	 public IEnumerator Message(GameObject gameObject, float wait){
+		gameObject.SetActive(true);
 		if (wait > 0.1f){
 			yield return StartCoroutine(timerUtil(wait));
-			message_panel.SetActive(false);
-		}
-		// if you put in 0f as "wait", it'll just stay up - helpful for countdowns
+			gameObject.SetActive(false);
+		}	
 		yield return null;
-	} */
+	} 
 
 	public void PauseMenu(){
 		PauseGameMenu.SetActive(true);
