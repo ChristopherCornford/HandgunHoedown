@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 	/* Managers */
 	private GameManager gamemanager;
 	private UI_Manager UI_Manager;
+	private GunSpawn gunSpawn;
 	
 	/* Public */
 	[Header("Player Variables")]
@@ -145,6 +146,7 @@ public class PlayerMovement : MonoBehaviour {
 			
 		StartCoroutine (checkForAiming(0.1f));
 		isAiming = false;
+
 	}
 
 	private void FixedUpdate () {
@@ -209,6 +211,17 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Consider moving this function out of this script into the playershooting?
 	private void Action() {
+
+		if (hasGun == false) {
+			RaycastHit punch;
+			Ray throwPunch = new Ray (transform.position, transform.forward);
+			if (Physics.Raycast (throwPunch, out punch, 1.0f)) {
+				punch.transform.SendMessage ("Punch");
+			}
+			cowboy_anim.SetTrigger ("isPunching");
+		}
+
+
 		if ((hasGun == true) && (bulletCount > 0)){
 			RaycastHit hit;
 			Ray gunShot = new Ray (transform.position, transform.forward);
@@ -270,6 +283,15 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	void YouAreDead () {
 		cowboy_anim.SetTrigger ("isDead");
+	}
+	void Punch () {
+		cowboy_anim.SetTrigger ("isDead");
+		if (hasGun == true) {
+			cowboy_anim.SetBool ("hasgun", false);
+			gunHolder.SetActive (false);
+			hasGun = false;
+			gunSpawn.Respawning ();
+		}
 	}
 }
 

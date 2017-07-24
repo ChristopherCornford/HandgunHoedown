@@ -23,8 +23,8 @@ public class GunSpawn : MonoBehaviour {
 	}
 	public void Spawn () {
 		gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
-
 	}
+
 	public void Respawning () {
 		StartCoroutine (Spawning (1f));
 
