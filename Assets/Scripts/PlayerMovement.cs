@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour {
 	public GameObject gunHolder;
 	public GameObject gunPickup;
 	public GameObject gun;
-	[HideInInspector]
+
 	public bool hasGun;
 	public int bulletCount;
 
@@ -275,7 +275,6 @@ public class PlayerMovement : MonoBehaviour {
 			cowboy_anim.SetBool("hasGun", true);
 			print ("Got It!");
 			gunHolder.SetActive(true);
-			Destroy(gunPickup);
 			hasGun = true;
 			bulletCount = 6;
 			UI_Manager.giveBullets(m_playerNumber);
@@ -286,12 +285,12 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Punch () {
-		cowboy_anim.SetTrigger ("isDead");
+		//cowboy_anim.SetTrigger ("isDead");
 		if (hasGun == true) {
-			cowboy_anim.SetBool ("hasgun", false);
+			cowboy_anim.SetBool ("hasGun", false);
 			gunHolder.SetActive (false);
 			hasGun = false;
-			gunSpawn.Respawning ();
+			gunSpawn.Invoke ("Respawning", 1f);
 		}
 	}
 

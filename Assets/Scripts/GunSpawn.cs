@@ -23,6 +23,7 @@ public class GunSpawn : MonoBehaviour {
 	}
 	public void Spawn () {
 		gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+
 	}
 
 	public void Respawning () {
@@ -37,6 +38,11 @@ public class GunSpawn : MonoBehaviour {
 		Invoke ("Spawn", 2.5f);
 		yield return new WaitForSeconds (sec);
 
+	}
+	void OnTriggerEnter (Collider collider) {
+		if (collider.gameObject.tag == "Player") {
+			Destroy (gun);
+		}
 	}
 
 }

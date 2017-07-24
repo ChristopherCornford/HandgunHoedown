@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class PlayerManager {
-	public Color playerColor;
+	//public Color playerColor;
 	public Transform spawnPoint;
 	[HideInInspector] public GameManager manager;
 	[HideInInspector] public int playerNumber;
@@ -22,11 +22,11 @@ public class PlayerManager {
 
 		movement.m_playerNumber = playerNumber;
 
-		MeshRenderer[] renderers = instance.GetComponentsInChildren<MeshRenderer> ();
+		/*MeshRenderer[] renderers = instance.GetComponentsInChildren<MeshRenderer> ();
 
 		for ( int i = 0; i < renderers.Length; i++) {
 			renderers[i].material.color = playerColor;
-		}
+		}*/
 	}
 
 	/* public void Reset () { 
