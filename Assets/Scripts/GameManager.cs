@@ -29,10 +29,10 @@ public class GameManager : MonoBehaviour {
 		for (int i = 0; i < player.Length; i++) {
 			player[i].instance.transform.position = player[i].spawnPoint.position;
 			player[i].instance.transform.rotation = player[i].spawnPoint.rotation;
-			player[i].instance.GetComponent<PlayerMovement>().cowboy_anim.Play("Idle");
-			player[i].instance.GetComponent<PlayerMovement>().cowboy_anim.SetBool("hasGun", false);
-			player[i].instance.GetComponent<PlayerMovement>().hasGun = false;
+			player[i].instance.GetComponent<PlayerMovement>().Reset();
 		}
+		// Passing 3 to this uses another case that runs a for loop and removes all bullets
+		UI_Manager.removeBullets(3,0);
 		yield return StartCoroutine("RoundStartCountdown");
 		SetPlayerInput(true);
 		yield return null;

@@ -271,5 +271,12 @@ public class PlayerMovement : MonoBehaviour {
 	void YouAreDead () {
 		cowboy_anim.SetTrigger ("isDead");
 	}
+
+	public void Reset(){
+		cowboy_anim.Play("Idle");
+		cowboy_anim.SetBool("hasGun", false);
+		hasGun = false;
+		bulletCount = 0;
+	}
 }
 
