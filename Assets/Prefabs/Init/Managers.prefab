@@ -143,6 +143,7 @@ MonoBehaviour:
   UI_Manager: {fileID: 114546717615237306}
   player1Score: 0
   player2Score: 0
+  isPaused: 0
   player:
   - playerColor: {r: 0, g: 1, b: 1, a: 0}
     spawnPoint: {fileID: 0}
@@ -175,7 +176,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  P1_BulletContainer: {fileID: 0}
   P1_Bullets:
   - {fileID: 0}
   - {fileID: 0}
@@ -187,7 +187,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  P2_BulletContainer: {fileID: 0}
   P2_Bullets:
   - {fileID: 0}
   - {fileID: 0}
@@ -198,6 +197,7 @@ MonoBehaviour:
   message_panel: {fileID: 0}
   message_text: {fileID: 0}
   EndGameMenu: {fileID: 0}
+  PauseGameMenu: {fileID: 0}
 --- !u!114 &114871800861087230
 MonoBehaviour:
   m_ObjectHideFlags: 1

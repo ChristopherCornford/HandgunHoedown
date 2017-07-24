@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	[HeaderAttribute("Player Data")]
 	public int player1Score;
 	public int player2Score;
+	public bool isPaused = false;
 	
 	[HeaderAttribute("Player References")]
 	public PlayerManager[] player;
@@ -17,22 +18,39 @@ public class GameManager : MonoBehaviour {
 	public GameObject t_camera;
 
 	/* private */
-
+	
 	void Awake () {
 		SpawnAllPlayers ();
 		SetCameraTargets ();
 		cameraControl.SetStartPositionAndSize ();
 	}
 
+	/*** PAUSING THE GAME ***/
+	// TODO: PAUSE THE FUCKING GAME
+	public void Pause(){
+		Debug.Log("The game is now paused!");
+		SetPlayerInput(false);
+		UI_Manager.PauseGameMenu.SetActive(true);
+		EventSystem.current.SetSelectedGameObject(GameObject.Find("Resume_B"));
+		isPaused = true;
+	}
+	public void Resume(){
+		UI_Manager.PauseGameMenu.SetActive(true);
+		isPaused = false;
+		SetPlayerInput(true);
+	}
+
+	/*** ROUND LOGIC ***/
 	private IEnumerator RoundStart(){
 		SetPlayerInput(false);
 		for (int i = 0; i < player.Length; i++) {
 			player[i].instance.transform.position = player[i].spawnPoint.position;
 			player[i].instance.transform.rotation = player[i].spawnPoint.rotation;
-			player[i].instance.GetComponent<PlayerMovement>().cowboy_anim.Play("Idle");
-			player[i].instance.GetComponent<PlayerMovement>().cowboy_anim.SetBool("hasGun", false);
-			player[i].instance.GetComponent<PlayerMovement>().hasGun = false;
+			player[i].instance.GetComponent<PlayerMovement>().Reset();
 		}
+		// Passing 3 to this uses another case that runs a for loop and removes all bullets
+		UI_Manager.removeBullets(3,0);
+		// If we wanted to lerp the camera add that code here - yield return StarCoroutine
 		yield return StartCoroutine("RoundStartCountdown");
 		SetPlayerInput(true);
 		yield return null;
@@ -87,7 +105,7 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-	// Player Related Shit
+	/*** PLAYER RELATED SHIT ***/
 	private void SetPlayerInput(bool status){
 		for (int i = 0; i < player.Length; i++){
 			player[i].instance.GetComponent<PlayerMovement>().enabled = status;

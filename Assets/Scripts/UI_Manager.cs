@@ -6,12 +6,10 @@ public class UI_Manager : MonoBehaviour {
 
 	[Header("Player 1 UI")]
 	public Image[] P1_Stars;
-	public GameObject P1_BulletContainer;
 	public Image[] P1_Bullets;
 
 	[Header("Player 2 UI")]
 	public Image[] P2_Stars;
-	public GameObject P2_BulletContainer;
 	public Image[] P2_Bullets;
 
 	[Header("Message UI")]
@@ -20,6 +18,7 @@ public class UI_Manager : MonoBehaviour {
 	
 	[HeaderAttribute("PlayCanvas UI Panels")]
 	public GameObject EndGameMenu;
+	public GameObject PauseGameMenu;
 
 	/* Private */
 	private Color none = new Color32(0,0,0,0);
@@ -32,10 +31,14 @@ public class UI_Manager : MonoBehaviour {
 	public void giveBullets(int playerindex){
 		switch (playerindex){
 			case 1:
-				P1_BulletContainer.SetActive(true);
+				for (int i = 0; i < P1_Bullets.Length; i++){
+					P1_Bullets[i].color = Color.white;
+				}
 				break;
 			case 2:
-				P2_BulletContainer.SetActive(true);
+				for (int i = 0; i < P1_Bullets.Length; i++){
+					P2_Bullets[i].color = Color.white;	
+				}
 				break;
 		}
 	}
@@ -47,6 +50,14 @@ public class UI_Manager : MonoBehaviour {
 				break;
 			case 2:
 				P2_Bullets[bulletCount].color = none;
+				break;
+			case 3:
+				for (int i = 0; i < P1_Bullets.Length; i++){
+					P1_Bullets[i].color = none;
+				}
+				for (int i = 0; i < P1_Bullets.Length; i++){
+					P2_Bullets[i].color = none;	
+				}
 				break;
 		}
 	}
@@ -71,5 +82,10 @@ public class UI_Manager : MonoBehaviour {
 		}
 		// if you put in 0f as "wait", it'll just stay up - helpful for countdowns
 		yield return null;
+	}
+
+	public void PauseMenu(){
+		PauseGameMenu.SetActive(true);
+		
 	}
 }

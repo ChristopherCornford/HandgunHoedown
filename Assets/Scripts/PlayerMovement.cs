@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
 	/* Managers */
-	private GameManager gamemanager;
+	private GameManager GameManager;
 	private UI_Manager UI_Manager;
 	private GunSpawn gunSpawn;
 	
@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour {
 		rb = GetComponent<Rigidbody> ();
 		shooting = GetComponent<PlayerShooting>();
 		cowboy_anim = GetComponent<Animator>();
-		gamemanager = GameObject.Find("/Managers/GameManager").GetComponent<GameManager>();
+		GameManager = GameObject.Find("/Managers/GameManager").GetComponent<GameManager>();
 		UI_Manager = GameObject.Find("/Managers/UI_Manager").GetComponent<UI_Manager>();
 	}
 
@@ -232,7 +232,7 @@ public class PlayerMovement : MonoBehaviour {
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
 				print ("Boom, you're dead!");
 				hit.transform.SendMessage ("YouAreDead");
-				StartCoroutine(gamemanager.RoundEnd(m_playerNumber));
+				StartCoroutine(GameManager.RoundEnd(m_playerNumber));
 			}
 			bulletCount -= 1;
 			UI_Manager.removeBullets(m_playerNumber, bulletCount);
@@ -284,6 +284,7 @@ public class PlayerMovement : MonoBehaviour {
 	void YouAreDead () {
 		cowboy_anim.SetTrigger ("isDead");
 	}
+
 	void Punch () {
 		cowboy_anim.SetTrigger ("isDead");
 		if (hasGun == true) {
@@ -292,6 +293,14 @@ public class PlayerMovement : MonoBehaviour {
 			hasGun = false;
 			gunSpawn.Respawning ();
 		}
+	}
+
+
+	public void Reset(){
+		cowboy_anim.Play("Idle");
+		cowboy_anim.SetBool("hasGun", false);
+		hasGun = false;
+		bulletCount = 0;
 	}
 }
 
