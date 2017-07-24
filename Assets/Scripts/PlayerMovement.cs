@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour {
 	private string dashJoyAxisName;
 
 	private Rigidbody rb;
-	private LineRenderer line;
+	public LineRenderer line;
 
 	private float movementKeyInputValue;
 	private float strafeKeyInputValue;
@@ -67,10 +67,10 @@ public class PlayerMovement : MonoBehaviour {
 		cowboy_anim = GetComponent<Animator>();
 		GameManager = GameObject.Find("/Managers/GameManager").GetComponent<GameManager>();
 		UI_Manager = GameObject.Find("/Managers/UI_Manager").GetComponent<UI_Manager>();
+		gunSpawn = GameObject.Find ("/Managers/Gun Spawner").GetComponent<GunSpawn> ();
 	}
 
 	private void OnEnable() {
-
 		rb.isKinematic = false;
 
 		movementKeyInputValue = 0f;
@@ -242,11 +242,13 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void Aim () {
-		isAiming = true;
-		line.enabled = true;
+		if (hasGun == true) {
+			isAiming = true;
+			line.enabled = true;
 		
-		Ray aimLine = new Ray (transform.position, transform.forward);		
-		Debug.DrawRay(transform.position, transform.forward, Color.black);
+			Ray aimLine = new Ray (transform.position, transform.forward);		
+			Debug.DrawRay (transform.position, transform.forward, Color.black);
+		}
 
 	}
 	public void Dash () {
@@ -292,7 +294,7 @@ public class PlayerMovement : MonoBehaviour {
 			cowboy_anim.SetBool ("hasGun", false);
 			gunHolder.SetActive (false);
 			hasGun = false;
-			gunSpawn.Invoke ("Respawning", 0.5f);
+			gunSpawn.Respawning ();
 		}
 	}
 
@@ -301,6 +303,7 @@ public class PlayerMovement : MonoBehaviour {
 		cowboy_anim.Play("Idle");
 		cowboy_anim.SetBool("hasGun", false);
 		hasGun = false;
+		gunHolder.SetActive (false);
 		bulletCount = 0;
 	}
 }

@@ -11,10 +11,9 @@ public class UI_Manager : MonoBehaviour {
 	[Header("Player 2 UI")]
 	public Image[] P2_Stars;
 	public Image[] P2_Bullets;
-
-	[Header("Message UI")]
-	public GameObject message_panel;
-	public Text message_text;
+	
+	[HeaderAttribute("Countdown Images")]
+	public GameObject[] Countdown;
 	
 	[HeaderAttribute("PlayCanvas UI Panels")]
 	public GameObject EndGameMenu;
@@ -25,6 +24,21 @@ public class UI_Manager : MonoBehaviour {
 
 	private IEnumerator timerUtil(float timerLength){
 		yield return new WaitForSeconds(timerLength);
+		yield return null;
+	}
+
+	public IEnumerator RoundStartCountdown(){
+		int countDown = 4;
+		Countdown[countDown].SetActive(true);
+		yield return new WaitForSeconds(1.0f);
+			countDown -= 1;
+		Countdown[countDown].SetActive(true);
+		yield return new WaitForSeconds(1.0f);
+			countDown -= 1;
+		Countdown[countDown].SetActive(true);
+		yield return new WaitForSeconds(1.0f);
+			countDown -= 1;
+		Countdown[countDown].SetActive(true);
 		yield return null;
 	}
 
@@ -73,16 +87,16 @@ public class UI_Manager : MonoBehaviour {
 		}
 	}
 
-	public IEnumerator Message(string in_string, float wait){
-		message_text.text = in_string;
-		message_panel.SetActive(true);
+	/* public IEnumerator Message(string in_string, float wait){
+		 message_text.text = in_string;
+		message_panel.SetActive(true); 
 		if (wait > 0.1f){
 			yield return StartCoroutine(timerUtil(wait));
 			message_panel.SetActive(false);
 		}
 		// if you put in 0f as "wait", it'll just stay up - helpful for countdowns
 		yield return null;
-	}
+	} */
 
 	public void PauseMenu(){
 		PauseGameMenu.SetActive(true);

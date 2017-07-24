@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Gun
   - Cowboy
+  - GunSpawner
   layers:
   - Default
   - TransparentFX
