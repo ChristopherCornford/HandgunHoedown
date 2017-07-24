@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
 	
 	void Awake () {
 		SpawnAllPlayers ();
+		StartCoroutine ("RoundStart");
 		SetCameraTargets ();
 		cameraControl.SetStartPositionAndSize ();
 	}

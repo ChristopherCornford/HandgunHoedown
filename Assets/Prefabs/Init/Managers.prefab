@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 114871800861087230}
   m_Layer: 0
   m_Name: Gun Spawner
-  m_TagString: Untagged
+  m_TagString: GunSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,14 +145,12 @@ MonoBehaviour:
   player2Score: 0
   isPaused: 0
   player:
-  - playerColor: {r: 0, g: 1, b: 1, a: 0}
-    spawnPoint: {fileID: 0}
+  - spawnPoint: {fileID: 0}
     manager: {fileID: 0}
     playerNumber: 0
     instance: {fileID: 0}
     wins: 0
-  - playerColor: {r: 1, g: 1, b: 0, a: 0}
-    spawnPoint: {fileID: 0}
+  - spawnPoint: {fileID: 0}
     manager: {fileID: 0}
     playerNumber: 0
     instance: {fileID: 0}
