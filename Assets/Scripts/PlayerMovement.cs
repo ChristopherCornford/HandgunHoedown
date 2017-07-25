@@ -164,14 +164,16 @@ public class PlayerMovement : MonoBehaviour {
 
 	public void Move() {
 
-		float horizontal = strafeJoyInputValue * Time.deltaTime * speed;
-		float verticle = movementJoyInputValue * Time.deltaTime * speed;
+		if(strafeJoyInputValue != 0 || movementJoyInputValue != 0) {
+			float horizontal = strafeJoyInputValue * Time.deltaTime * speed;
+			float verticle = movementJoyInputValue * Time.deltaTime * speed;
 
-		Vector3 moveDirection = new Vector3 (strafeJoyInputValue, 0, movementJoyInputValue);
-		Vector3 moveAngle = new Vector3 (0, +0, 45);
-		transform.position += moveDirection * speed * Time.deltaTime;
-		float angle = Mathf.Atan2 (horizontal, verticle) * Mathf.Rad2Deg;
-		transform.LookAt( new Vector3 (0, angle, 0));
+			Vector3 moveDirection = new Vector3 (strafeJoyInputValue, 0, movementJoyInputValue);
+			Vector3 moveAngle = new Vector3 (0, +0, 45);
+			transform.position += moveDirection * speed * Time.deltaTime;
+			float angle = Mathf.Atan2 (horizontal, verticle) * Mathf.Rad2Deg;
+			transform.LookAt( new Vector3 (0, angle, 0));
+		}
 
 
 		Vector3 keyMovement = Vector3.forward * movementKeyInputValue * speed * Time.deltaTime;
