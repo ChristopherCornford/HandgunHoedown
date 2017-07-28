@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour {
 		}
 			
 		StartCoroutine (checkForAiming(0.1f));
-		isAiming = false;
+		//isAiming = false;
 		StartCoroutine (checkForSprinting(0.1f));
 		isSprinting = false;
 
@@ -209,6 +209,16 @@ public class PlayerMovement : MonoBehaviour {
 			cowboy_anim.SetBool("isMoving", false);
 		}
 		if (movementJoyInputValue != 0) {
+			cowboy_anim.SetBool ("isMoving", true);
+		} else {
+			cowboy_anim.SetBool("isMoving", false);
+		}
+		if (strafeKeyInputValue != 0) {
+			cowboy_anim.SetBool ("isMoving", true);
+		} else {
+			cowboy_anim.SetBool("isMoving", false);
+		}
+		if (strafeJoyInputValue != 0) {
 			cowboy_anim.SetBool ("isMoving", true);
 		} else {
 			cowboy_anim.SetBool("isMoving", false);
@@ -280,7 +290,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		switch (isAiming) {
 		case true:
-			speed = (speed * 0.5f);
+			speed = 6f;
 			turnSpeed = 90f;
 			break;
 
@@ -291,6 +301,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		}
 		yield return new WaitForSeconds (sec);
+		isAiming = false;
 	}
 	
 	public IEnumerator checkForSprinting (float sec){
@@ -303,7 +314,11 @@ public class PlayerMovement : MonoBehaviour {
 			break;
 
 		case false:
-			speed = 12f;
+			if (isAiming == true) {
+				speed = 6f;
+			} else {
+				speed = 12f;
+			}
 			sprintCD += Time.deltaTime;
 			SetSprintUI ();
 			if (sprintCD >= 1.5f) {
