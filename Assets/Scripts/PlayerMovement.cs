@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour {
 	public int m_playerNumber = 0;
 	public float speed = 12f;
 	public float turnSpeed = 180f;
+	public bool canBeStunned;
 
 	[Header("Sprint Varibles")]
 	public float sprintCD = 1.5f;
@@ -109,6 +110,7 @@ public class PlayerMovement : MonoBehaviour {
 		gunHolder.SetActive(false);
 		line = this.GetComponent<LineRenderer> ();
 		line.enabled = false;
+		canBeStunned = true;
 
 		movementKeyAxisName = "Player" + m_playerNumber + "KeyMove";
 		strafeKeyAxisName = "Player" + m_playerNumber + "KeyStrafe";
@@ -337,13 +339,14 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Punch () {
-		//cowboy_anim.SetTrigger ("isDead");
-		if (hasGun == true) {
-			Reset ();
-			GunSpawn.Spawning ();
+		if( canBeStunned == true) {
+			if (hasGun == true) {
+				Reset ();
+				GunSpawn.Spawning ();
+			}
+			StartCoroutine (Stun (0.01f));
 		}
 	}
-
 
 	public void Reset(){
 		cowboy_anim.Play("Idle");
@@ -365,6 +368,15 @@ public class PlayerMovement : MonoBehaviour {
 			break;
 		}
 		fillImage.color = fillColor;
+	}
+
+	public IEnumerator Stun (float sec) {
+		canBeStunned = false;
+		this.enabled = false;
+		yield return new WaitForSeconds (0.5f);
+		this.enabled = true;
+		yield return new WaitForSeconds (1.0f);
+		canBeStunned = true;
 	}
 }
 
