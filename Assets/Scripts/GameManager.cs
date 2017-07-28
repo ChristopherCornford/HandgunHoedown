@@ -50,7 +50,9 @@ public class GameManager : MonoBehaviour {
 			player[i].instance.transform.position = player[i].spawnPoint.position;
 			player[i].instance.transform.rotation = player[i].spawnPoint.rotation;
 			player[i].instance.GetComponent<PlayerMovement>().Reset();
+			player[i].instance.GetComponent<PlayerMovement> ().SetSprintUI ();
 		}
+	
 		// Passing 3 to this uses another case that runs a for loop and removes all bullets
 		UI_Manager.removeBullets(3,0);
 		// If we wanted to lerp the camera add that code here - yield return StarCoroutine

@@ -27,6 +27,8 @@ public class UI_Manager : MonoBehaviour {
 	public GameObject Player1Win;
 	public GameObject Player2Win;
 
+
+
 	/* Private */
 	private Color none = new Color32(0,0,0,0);
 

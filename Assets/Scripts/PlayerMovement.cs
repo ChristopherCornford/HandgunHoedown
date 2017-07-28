@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
 
 	/* Managers */
+	//public PlayerManager playerManager;
 	private GameManager GameManager;
 	private UI_Manager UI_Manager;
 	private GunSpawn GunSpawn;
@@ -16,10 +18,17 @@ public class PlayerMovement : MonoBehaviour {
 	public int m_playerNumber = 0;
 	public float speed = 12f;
 	public float turnSpeed = 180f;
+
+	[Header("Sprint Varibles")]
 	public float sprintCD = 1.5f;
 	public bool isAbleToSprint;
 	public bool isSprinting;
 	public bool isAiming;
+	public Slider slider;
+	public Image fillImage;
+	public Color fillColor;
+	public Color playerOneColor;
+	public Color playerTwoColor;
 
 	//Picking up Gun
 	[Header("Gun References & Variables")]
@@ -74,7 +83,9 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void OnEnable() {
+
 		rb.isKinematic = false;
+		SetSprintUI ();
 
 		movementKeyInputValue = 0f;
 		strafeKeyInputValue = 0f;
@@ -93,6 +104,8 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void Start () {
+		
+
 		gunHolder.SetActive(false);
 		line = this.GetComponent<LineRenderer> ();
 		line.enabled = false;
@@ -241,6 +254,7 @@ public class PlayerMovement : MonoBehaviour {
 				StartCoroutine(GameManager.RoundEnd(m_playerNumber));
 			}
 			bulletCount -= 1;
+			StartCoroutine (checkForBullets (0.1f));
 			UI_Manager.removeBullets(m_playerNumber, bulletCount);
 		}
 	} 
@@ -264,7 +278,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		switch (isAiming) {
 		case true:
-			speed = 6f;
+			speed = (speed * 0.5f);
 			turnSpeed = 90f;
 			break;
 
@@ -283,17 +297,28 @@ public class PlayerMovement : MonoBehaviour {
 		case true:
 			speed = 18f;
 			sprintCD -= Time.deltaTime;
+			SetSprintUI ();
 			break;
 
 		case false:
 			speed = 12f;
 			sprintCD += Time.deltaTime;
+			SetSprintUI ();
 			if (sprintCD >= 1.5f) {
 				sprintCD = 1.5f;
 			}
 			break;
 		}
 		yield return new WaitForSeconds (sec);
+	}
+
+	public IEnumerator checkForBullets ( float sec) {
+
+		if (bulletCount == 0 ) {
+			Reset ();
+			GunSpawn.Spawning ();
+			}
+		yield return new WaitForSeconds (0.1f);
 	}
 
 	void OnTriggerEnter (Collider collider) {
@@ -328,6 +353,20 @@ public class PlayerMovement : MonoBehaviour {
 		hasGun = false;
 		gunHolder.SetActive (false);
 		bulletCount = 0;
+	}
+
+	public void SetSprintUI() {
+		slider.value = sprintCD;
+		switch (m_playerNumber) {
+		case 1:
+			fillColor = playerOneColor;
+			break;
+
+		case 2:
+			fillColor = playerTwoColor;
+			break;
+		}
+		fillImage.color = fillColor;
 	}
 }
 
