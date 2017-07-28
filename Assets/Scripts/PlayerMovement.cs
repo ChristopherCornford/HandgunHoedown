@@ -16,6 +16,9 @@ public class PlayerMovement : MonoBehaviour {
 	public int m_playerNumber = 0;
 	public float speed = 12f;
 	public float turnSpeed = 180f;
+	public float sprintCD = 1.5f;
+	public bool isAbleToSprint;
+	public bool isSprinting;
 	public bool isAiming;
 
 	//Picking up Gun
@@ -38,7 +41,7 @@ public class PlayerMovement : MonoBehaviour {
 	private string turnKeyAxisName;
 	private string aimKeyAxisName;
 	private string actionKeyAxisName;
-	private string dashKeyAxisName;
+
 
 	private string movementJoyAxisName;
 	private string strafeJoyAxisName;
@@ -46,7 +49,7 @@ public class PlayerMovement : MonoBehaviour {
 	private string turnJoyAxisNameY;
 	private string aimJoyAxisName;
 	private string actionJoyAxisName;
-	private string dashJoyAxisName;
+
 
 	private Rigidbody rb;
 	public LineRenderer line;
@@ -99,7 +102,7 @@ public class PlayerMovement : MonoBehaviour {
 		turnKeyAxisName = "Player" + m_playerNumber + "KeyTurn";
 		aimKeyAxisName = "Player" + m_playerNumber + "KeyAim";
 		actionKeyAxisName = "Player" + m_playerNumber + "KeyAction";
-		dashKeyAxisName = " Player" + m_playerNumber + "KeyDash";
+
 
 		movementJoyAxisName = "Player" + m_playerNumber + "JoyMove";
 		strafeJoyAxisName = "Player" + m_playerNumber + "JoyStrafe";
@@ -107,7 +110,7 @@ public class PlayerMovement : MonoBehaviour {
 		turnJoyAxisNameY = "Player" + m_playerNumber + "JoyTurnY";
 		aimJoyAxisName = "Player" + m_playerNumber + "JoyAim";
 		actionJoyAxisName = "Player" + m_playerNumber + "JoyAction";
-		dashJoyAxisName = " Player" + m_playerNumber + "JoyDash";
+	
 
 	}
 
@@ -137,15 +140,18 @@ public class PlayerMovement : MonoBehaviour {
 			print ("maybe?");
 			Aim ();
 		}
-		if (Input.GetButtonDown (dashKeyAxisName)) {
-			Dash ();
+
+		if (sprintCD == 1.5f) {
+			isAbleToSprint = true;
 		}
-		if (Input.GetButtonDown (dashJoyAxisName)) {
-			Dash ();
+		if (sprintCD <= 0f) {
+			isAbleToSprint = false;
 		}
 			
 		StartCoroutine (checkForAiming(0.1f));
 		isAiming = false;
+		StartCoroutine (checkForSprinting(0.1f));
+		isSprinting = false;
 
 	}
 
@@ -179,12 +185,8 @@ public class PlayerMovement : MonoBehaviour {
 		Vector3 keyMovement = Vector3.forward * movementKeyInputValue * speed * Time.deltaTime;
 		Vector3 keyStrafe = Vector3.right * strafeKeyInputValue * speed * Time.deltaTime;
 
-		/*Vector3 joyMovement = transform.up * -movementJoyInputValue * speed * Time.deltaTime;
-		Vector3 joyStrafe = transform.right * strafeJoyInputValue * speed * Time.deltaTime;*/
 		rb.MovePosition (rb.position + keyMovement);
 		rb.MovePosition (rb.position + keyStrafe);
-		/*rb.MovePosition (rb.position + joyMovement);
-		rb.MovePosition (rb.position + joyStrafe);*/
 
 		if (movementKeyInputValue != 0) {
 			cowboy_anim.SetBool ("isMoving", true);
@@ -241,7 +243,7 @@ public class PlayerMovement : MonoBehaviour {
 			bulletCount -= 1;
 			UI_Manager.removeBullets(m_playerNumber, bulletCount);
 		}
-	}
+	} 
 
 	private void Aim () {
 		if (hasGun == true) {
@@ -252,12 +254,12 @@ public class PlayerMovement : MonoBehaviour {
 			Debug.DrawRay (transform.position, transform.forward, Color.black);
 		}
 
-	}
-	public void Dash () {
-		Vector3 dash = (transform.forward * Time.deltaTime * (speed * 2));
-		rb.MovePosition (rb.position + dash);
+		if ((hasGun == false) && (isAbleToSprint == true)){
+			isSprinting = true;
+		}
 
 	}
+	
 	public IEnumerator checkForAiming (float sec) {
 
 		switch (isAiming) {
@@ -271,6 +273,25 @@ public class PlayerMovement : MonoBehaviour {
 			turnSpeed = 180f;
 			break;
 
+		}
+		yield return new WaitForSeconds (sec);
+	}
+	
+	public IEnumerator checkForSprinting (float sec){
+
+		switch(isSprinting){
+		case true:
+			speed = 18f;
+			sprintCD -= Time.deltaTime;
+			break;
+
+		case false:
+			speed = 12f;
+			sprintCD += Time.deltaTime;
+			if (sprintCD >= 1.5f) {
+				sprintCD = 1.5f;
+			}
+			break;
 		}
 		yield return new WaitForSeconds (sec);
 	}
