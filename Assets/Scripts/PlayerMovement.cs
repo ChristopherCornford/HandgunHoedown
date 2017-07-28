@@ -339,9 +339,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Punch () {
 		//cowboy_anim.SetTrigger ("isDead");
 		if (hasGun == true) {
-			cowboy_anim.SetBool ("hasGun", false);
-			gunHolder.SetActive (false);
-			hasGun = false;
+			Reset ();
 			GunSpawn.Spawning ();
 		}
 	}
