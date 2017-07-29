@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour {
 
-	public AudioClip[] gunshots;
+	
 	private AudioSource gunshot_source;
 
 	// Use this for initialization
@@ -17,8 +17,5 @@ public class PlayerShooting : MonoBehaviour {
 		
 	}
 
-	public void Shoot (){
-		gunshot_source.clip = gunshots[Random.Range(0, gunshots.Length)];
-		gunshot_source.Play();
-	}
+
 }

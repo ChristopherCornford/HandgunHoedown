@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	/* Private */
 	// Components
-	private PlayerShooting shooting;
+	private SoundManager SoundManager;
 	public Animator cowboy_anim;
 
 	// Axis Names
@@ -74,13 +74,12 @@ public class PlayerMovement : MonoBehaviour {
 	private float turnJoyInputValueY;
 
 	private void Awake () {
-		
 		rb = GetComponent<Rigidbody> ();
-		shooting = GetComponent<PlayerShooting>();
 		cowboy_anim = GetComponent<Animator>();
 		GameManager = GameObject.Find("/Managers/GameManager").GetComponent<GameManager>();
 		UI_Manager = GameObject.Find("/Managers/UI_Manager").GetComponent<UI_Manager>();
 		GunSpawn = GameObject.Find ("/Managers/GunSpawner").GetComponent<GunSpawn> ();
+		SoundManager = GameObject.Find ("/Managers/SoundManager").GetComponent<SoundManager> ();
 	}
 
 	private void OnEnable() {
@@ -240,7 +239,6 @@ public class PlayerMovement : MonoBehaviour {
 		transform.rotation = Quaternion.Euler (new Vector3(0, angle));
 	}
 
-	// Consider moving this function out of this script into the playershooting?
 	private void Action() {
 
 		if (hasGun == false) {
@@ -248,17 +246,18 @@ public class PlayerMovement : MonoBehaviour {
 			Ray throwPunch = new Ray (transform.position, transform.forward);
 			if (Physics.Raycast (throwPunch, out punch, 1.0f)) {
 				punch.transform.SendMessage ("Punch");
+				SoundManager.Punch(true);
 			}
 			cowboy_anim.SetTrigger ("isPunching");
+			SoundManager.Punch(false);
 		}
-
 
 		if ((hasGun == true) && (bulletCount > 0)){
 			RaycastHit hit;
 			Ray gunShot = new Ray (transform.position, transform.forward);
 		
-			// This activates the gunshot method in PlayerShooting to make the sound
-			shooting.Shoot ();
+			// This activates the gunshot method in SoundManager to make the sound
+			SoundManager.Shoot ();
 
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
 				print ("Boom, you're dead!");
@@ -354,6 +353,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Punch () {
+		SoundManager.Punch(true);
 		if( canBeStunned == true) {
 			if (hasGun == true) {
 				Reset ();

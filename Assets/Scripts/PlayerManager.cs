@@ -12,13 +12,11 @@ public class PlayerManager {
 	[HideInInspector] public int wins;
 
 	private PlayerMovement movement;
-	private PlayerShooting shooting;
 
 	public void Setup() {
 		
 	
 		movement = instance.GetComponent<PlayerMovement> ();
-		shooting = instance.GetComponent<PlayerShooting> ();
 		//movement.fillColor = playerColor;
 
 		movement.m_playerNumber = playerNumber;
