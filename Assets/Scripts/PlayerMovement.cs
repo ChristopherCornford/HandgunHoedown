@@ -67,7 +67,6 @@ public class PlayerMovement : MonoBehaviour {
 	private float movementKeyInputValue;
 	private float strafeKeyInputValue;
 	private float turnKeyInputValue;
-
 	private float movementJoyInputValue;
 	private float strafeJoyInputValue;
 	private float turnJoyInputValueX;
@@ -98,14 +97,10 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void OnDisable () {
-
 		rb.isKinematic = true;
-	
 	}
 
 	private void Start () {
-		
-
 		gunHolder.SetActive(false);
 		line = this.GetComponent<LineRenderer> ();
 		line.enabled = false;
@@ -117,14 +112,12 @@ public class PlayerMovement : MonoBehaviour {
 		aimKeyAxisName = "Player" + m_playerNumber + "KeyAim";
 		actionKeyAxisName = "Player" + m_playerNumber + "KeyAction";
 
-
 		movementJoyAxisName = "Player" + m_playerNumber + "JoyMove";
 		strafeJoyAxisName = "Player" + m_playerNumber + "JoyStrafe";
 		turnJoyAxisNameX = "Player" + m_playerNumber + "JoyTurnX";
 		turnJoyAxisNameY = "Player" + m_playerNumber + "JoyTurnY";
 		aimJoyAxisName = "Player" + m_playerNumber + "JoyAim";
 		actionJoyAxisName = "Player" + m_playerNumber + "JoyAction";
-	
 
 	}
 
@@ -169,17 +162,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 
-	private void FixedUpdate () {
-
+	void FixedUpdate () {
 		line.enabled = false;
-
-		// How the fuck do we detect when someone is or is not moving?
-		// Once we can do that, I can set animation parameters
-		// cowboy_anim.SetBool("isMoving", true);
 		Move ();
 		Turn ();
-
-
 	}
 
 	public void Move() {
@@ -246,7 +232,6 @@ public class PlayerMovement : MonoBehaviour {
 			Ray throwPunch = new Ray (transform.position, transform.forward);
 			if (Physics.Raycast (throwPunch, out punch, 1.0f)) {
 				punch.transform.SendMessage ("Punch");
-				SoundManager.Punch(true);
 			}
 			cowboy_anim.SetTrigger ("isPunching");
 			SoundManager.Punch(false);
@@ -386,6 +371,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public IEnumerator Stun (float sec) {
+		SoundManager.Punch(true);
 		canBeStunned = false;
 		this.enabled = false;
 		yield return new WaitForSeconds (0.5f);
