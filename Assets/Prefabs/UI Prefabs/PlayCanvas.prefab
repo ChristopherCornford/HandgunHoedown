@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 222617824888608640}
   - component: {fileID: 114708963441908868}
   m_Layer: 5
-  m_Name: GameOverMenu
+  m_Name: EndGameMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
