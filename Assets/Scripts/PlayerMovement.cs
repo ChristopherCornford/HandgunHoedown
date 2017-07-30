@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	/* Private */
 	// Components
-	private PlayerShooting shooting;
+	private SoundManager SoundManager;
 	public Animator cowboy_anim;
 
 	// Axis Names
@@ -67,20 +67,18 @@ public class PlayerMovement : MonoBehaviour {
 	private float movementKeyInputValue;
 	private float strafeKeyInputValue;
 	private float turnKeyInputValue;
-
 	private float movementJoyInputValue;
 	private float strafeJoyInputValue;
 	private float turnJoyInputValueX;
 	private float turnJoyInputValueY;
 
 	private void Awake () {
-		
 		rb = GetComponent<Rigidbody> ();
-		shooting = GetComponent<PlayerShooting>();
 		cowboy_anim = GetComponent<Animator>();
 		GameManager = GameObject.Find("/Managers/GameManager").GetComponent<GameManager>();
 		UI_Manager = GameObject.Find("/Managers/UI_Manager").GetComponent<UI_Manager>();
 		GunSpawn = GameObject.Find ("/Managers/GunSpawner").GetComponent<GunSpawn> ();
+		SoundManager = GameObject.Find ("/Managers/SoundManager").GetComponent<SoundManager> ();
 	}
 
 	private void OnEnable() {
@@ -99,14 +97,10 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void OnDisable () {
-
 		rb.isKinematic = true;
-	
 	}
 
 	private void Start () {
-		
-
 		gunHolder.SetActive(false);
 		line = this.GetComponent<LineRenderer> ();
 		line.enabled = false;
@@ -118,14 +112,12 @@ public class PlayerMovement : MonoBehaviour {
 		aimKeyAxisName = "Player" + m_playerNumber + "KeyAim";
 		actionKeyAxisName = "Player" + m_playerNumber + "KeyAction";
 
-
 		movementJoyAxisName = "Player" + m_playerNumber + "JoyMove";
 		strafeJoyAxisName = "Player" + m_playerNumber + "JoyStrafe";
 		turnJoyAxisNameX = "Player" + m_playerNumber + "JoyTurnX";
 		turnJoyAxisNameY = "Player" + m_playerNumber + "JoyTurnY";
 		aimJoyAxisName = "Player" + m_playerNumber + "JoyAim";
 		actionJoyAxisName = "Player" + m_playerNumber + "JoyAction";
-	
 
 	}
 
@@ -170,17 +162,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 
-	private void FixedUpdate () {
-
+	void FixedUpdate () {
 		line.enabled = false;
-
-		// How the fuck do we detect when someone is or is not moving?
-		// Once we can do that, I can set animation parameters
-		// cowboy_anim.SetBool("isMoving", true);
 		Move ();
 		Turn ();
-
-
 	}
 
 	public void Move() {
@@ -240,7 +225,6 @@ public class PlayerMovement : MonoBehaviour {
 		transform.rotation = Quaternion.Euler (new Vector3(0, angle));
 	}
 
-	// Consider moving this function out of this script into the playershooting?
 	private void Action() {
 
 		if (hasGun == false) {
@@ -250,15 +234,15 @@ public class PlayerMovement : MonoBehaviour {
 				punch.transform.SendMessage ("Punch");
 			}
 			cowboy_anim.SetTrigger ("isPunching");
+			SoundManager.Punch(false);
 		}
-
 
 		if ((hasGun == true) && (bulletCount > 0)){
 			RaycastHit hit;
 			Ray gunShot = new Ray (transform.position, transform.forward);
 		
-			// This activates the gunshot method in PlayerShooting to make the sound
-			shooting.Shoot ();
+			// This activates the gunshot method in SoundManager to make the sound
+			SoundManager.Shoot ();
 
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
 				print ("Boom, you're dead!");
@@ -354,7 +338,11 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Punch () {
+<<<<<<< HEAD
 		cowboy_anim.SetTrigger ("isPunched");
+=======
+		SoundManager.Punch(true);
+>>>>>>> 21ff268e5e8a25faf5d3be47be1b3025d3767ab6
 		if( canBeStunned == true) {
 			if (hasGun == true) {
 				Reset ();
@@ -387,6 +375,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public IEnumerator Stun (float sec) {
+		SoundManager.Punch(true);
 		canBeStunned = false;
 		this.enabled = false;
 		yield return new WaitForSeconds (0.5f);

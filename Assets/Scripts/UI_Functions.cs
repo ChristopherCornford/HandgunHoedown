@@ -29,9 +29,10 @@ public class UI_Functions : MonoBehaviour {
 		Application.Quit();
 	}
 
-	// Level Select Buttons
-	/* Create all the level button functions here
-	SceneManager.LoadScene(name of scene or int in build index) */
+	/* Level Select Buttons */
+	public void LoadDesert(){SceneManager.LoadScene("Desert");}
+	public void LoadTown(){SceneManager.LoadScene("Town");}
+	public void LoadMine(){SceneManager.LoadScene("Mine");}
 
 	/* End of Game Menu Buttons */
 	public void PlayAgain(){
