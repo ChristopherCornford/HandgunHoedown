@@ -1207,8 +1207,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1686205167935636}
-  m_LocalRotation: {x: -0.47285643, y: 0.52574396, z: 0.47285554, w: 0.5257449}
-  m_LocalPosition: {x: 3.5216693e-10, y: 0.73750687, z: -0.0040283203}
+  m_LocalRotation: {x: -0.47285643, y: 0.525744, z: 0.47285557, w: 0.525745}
+  m_LocalPosition: {x: 0.000000017927952, y: 0.7375069, z: -0.004028254}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
   m_Children:
   - {fileID: 4459274372618138}
@@ -1988,6 +1988,7 @@ MonoBehaviour:
   m_playerNumber: 0
   speed: 12
   turnSpeed: 180
+  canBeStunned: 0
   sprintCD: 1.5
   isAbleToSprint: 0
   isSprinting: 0
@@ -1995,8 +1996,8 @@ MonoBehaviour:
   slider: {fileID: 114849330639703918}
   fillImage: {fileID: 114057293612210438}
   fillColor: {r: 1, g: 1, b: 1, a: 1}
-  playerOneColor: {r: 0.7607844, g: 0.25490198, b: 0.25490198, a: 1}
-  playerTwoColor: {r: 0.2901961, g: 0.3137255, b: 0.63529414, a: 1}
+  playerOneColor: {r: 0.7607844, g: 0.25490198, b: 0.25490198, a: 0.7254902}
+  playerTwoColor: {r: 0.2901961, g: 0.3137255, b: 0.63529414, a: 0.7254902}
   gunHolder: {fileID: 1238350743084026}
   gunPickup: {fileID: 1318780201197668, guid: a05bd02028784744eb592d9bfb66198d, type: 2}
   gun: {fileID: 1318780201197668, guid: 1a74abfb40fe1ec4ea418ec2597f2d6c, type: 2}
