@@ -11,13 +11,13 @@ public class UI_Functions : MonoBehaviour {
 	public GameObject LevelSelect_Panel;
 	public GameObject Controls_Panel;
 	public GameObject Credits_Panel;
-	[HeaderAttribute("Level Button to Focus")]
-	public GameObject Level1Button;
+	[HeaderAttribute("Level Select Button to Focus")]
+	public GameObject Canyon_Button;
 
 	/* Main Menu Buttons */
 	public void LevelSelect(){
 		LevelSelect_Panel.SetActive(true);
-		EventSystem.current.SetSelectedGameObject(Level1Button);
+		EventSystem.current.SetSelectedGameObject(Canyon_Button);
 	}
 	public void Controls(){
 		Controls_Panel.SetActive(true);
@@ -33,6 +33,8 @@ public class UI_Functions : MonoBehaviour {
 	public void LoadDesert(){SceneManager.LoadScene("Desert");}
 	public void LoadTown(){SceneManager.LoadScene("Town");}
 	public void LoadMine(){SceneManager.LoadScene("Mine");}
+	// TODO: MAKE RANDOM FUNCTION
+	public void LoadRandom(){SceneManager.LoadScene(Random.Range(1,3));}
 
 	/* End of Game Menu Buttons */
 	public void PlayAgain(){
