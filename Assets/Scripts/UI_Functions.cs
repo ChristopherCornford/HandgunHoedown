@@ -58,7 +58,7 @@ public class UI_Functions : MonoBehaviour {
 	}
 
 	/* Level Select Buttons */
-	public void LoadDesert(){SceneManager.LoadScene("Desert");}
+	public void LoadCanyon(){SceneManager.LoadScene("Canyon");}
 	public void LoadTown(){SceneManager.LoadScene("Town");}
 	public void LoadMine(){SceneManager.LoadScene("Mine");}
 	public void LoadRandom(){SceneManager.LoadScene(Random.Range(1,3));}
