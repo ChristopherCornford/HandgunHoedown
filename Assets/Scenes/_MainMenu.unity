@@ -512,11 +512,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1907414223160836, guid: 6cc190569134a504fad5b12b35163698,
     type: 2}
   m_PrefabInternal: {fileID: 2047288614}
---- !u!1 &1862408257 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1259283546559010, guid: 6cc190569134a504fad5b12b35163698,
-    type: 2}
-  m_PrefabInternal: {fileID: 2047288614}
 --- !u!1001 &2047288614
 Prefab:
   m_ObjectHideFlags: 0
@@ -614,11 +609,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114183714973747710, guid: 6cc190569134a504fad5b12b35163698,
-        type: 2}
-      propertyPath: Credits_Panel
-      value: 
-      objectReference: {fileID: 1862408257}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6cc190569134a504fad5b12b35163698, type: 2}
   m_IsPrefabParent: 0
