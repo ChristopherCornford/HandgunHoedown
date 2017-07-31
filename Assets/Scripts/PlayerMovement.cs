@@ -248,8 +248,10 @@ public class PlayerMovement : MonoBehaviour {
 
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
 				print ("Boom, you're dead!");
-				hit.transform.SendMessage ("YouAreDead");
-				StartCoroutine(GameManager.RoundEnd(m_playerNumber));
+				if (hit.transform.tag == "Cowboy") {
+					hit.transform.SendMessage ("YouAreDead");
+					StartCoroutine (GameManager.RoundEnd (m_playerNumber));
+				}
 			}
 			bulletCount -= 1;
 			StartCoroutine (checkForBullets (0.1f));
