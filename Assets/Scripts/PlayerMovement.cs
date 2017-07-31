@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour {
 	public GameObject gunHolder;
 	public GameObject gunPickup;
 	public GameObject gun;
-
 	public bool hasGun;
 	public int bulletCount;
 
@@ -62,7 +61,9 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	private Rigidbody rb;
-	public LineRenderer line;
+	private LineRenderer line;
+	public GameObject lineRend;
+
 
 	private float movementKeyInputValue;
 	private float strafeKeyInputValue;
@@ -79,6 +80,7 @@ public class PlayerMovement : MonoBehaviour {
 		UI_Manager = GameObject.Find("/Managers/UI_Manager").GetComponent<UI_Manager>();
 		GunSpawn = GameObject.Find ("/Managers/GunSpawner").GetComponent<GunSpawn> ();
 		SoundManager = GameObject.Find ("/Managers/SoundManager").GetComponent<SoundManager> ();
+
 	}
 
 	private void OnEnable() {
@@ -102,7 +104,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void Start () {
 		gunHolder.SetActive(false);
-		line = this.GetComponent<LineRenderer> ();
+		line = lineRend.GetComponent<LineRenderer> ();
 		line.enabled = false;
 		canBeStunned = true;
 
@@ -175,7 +177,7 @@ public class PlayerMovement : MonoBehaviour {
 			float verticle = movementJoyInputValue * Time.deltaTime * speed;
 
 			Vector3 moveDirection = new Vector3 (strafeJoyInputValue, 0, movementJoyInputValue);
-			Vector3 moveAngle = new Vector3 (0, +0, 45);
+			Vector3 moveAngle = new Vector3 (0, 0, 45);
 			transform.position += moveDirection * speed * Time.deltaTime;
 		}
 
