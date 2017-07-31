@@ -338,11 +338,9 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Punch () {
-<<<<<<< HEAD
 		cowboy_anim.SetTrigger ("isPunched");
-=======
+
 		SoundManager.Punch(true);
->>>>>>> 21ff268e5e8a25faf5d3be47be1b3025d3767ab6
 		if( canBeStunned == true) {
 			if (hasGun == true) {
 				Reset ();
