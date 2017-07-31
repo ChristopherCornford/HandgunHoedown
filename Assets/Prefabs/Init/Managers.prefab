@@ -505,10 +505,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI_Manager: {fileID: 114546717615237306}
   GunSpawn: {fileID: 114871800861087230}
+  Gun_Spawn_Wait: 3
+  Round_End_Wait: 4
   player1Score: 0
   player2Score: 0
   isPaused: 0
-  death: {fileID: 0}
   player:
   - playerColor: {r: 0.7607844, g: 0.25490198, b: 0.25490198, a: 0}
     spawnPoint: {fileID: 0}
@@ -582,6 +583,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   currentPoint: {fileID: 0}

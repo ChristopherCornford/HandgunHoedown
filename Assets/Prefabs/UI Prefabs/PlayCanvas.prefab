@@ -1967,7 +1967,11 @@ MonoBehaviour:
   LevelSelect_Panel: {fileID: 0}
   Controls_Panel: {fileID: 0}
   Credits_Panel: {fileID: 0}
-  Level1Button: {fileID: 0}
+  Control_Button: {fileID: 0}
+  Keyboard_Controls: {fileID: 0}
+  Controller_Controls: {fileID: 0}
+  Canyon_Button: {fileID: 0}
+  Levels: []
 --- !u!114 &114240247480536108
 MonoBehaviour:
   m_ObjectHideFlags: 1

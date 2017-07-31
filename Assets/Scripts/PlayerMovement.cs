@@ -331,7 +331,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider collider) {
-
 		if ((collider.gameObject.tag == "Gun") && (hasGun == false)) {
 			cowboy_anim.SetBool("hasGun", true);
 			print ("Got It!");
@@ -347,7 +346,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Punch () {
 		cowboy_anim.SetTrigger ("isPunched");
-
 		SoundManager.Punch(true);
 		if( canBeStunned == true) {
 			if (hasGun == true) {
