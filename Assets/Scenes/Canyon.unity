@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44942862, g: 0.49950236, b: 0.5756951, a: 1}
+  m_IndirectSpecularColor: {r: 0.44942898, g: 0.49950314, b: 0.5756962, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1511,31 +1511,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: P1_Stars.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: P2_Stars.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: Countdown.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: P1_Bullets.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: P2_Bullets.Array.size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4208672935587562, guid: 73f1f19027d26ad489fc76201f47c314, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1568,6 +1543,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: spawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 633494095}
+    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: spawnPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1598919993}
     - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
         type: 2}
       propertyPath: player.Array.data[0].spawnPoint
@@ -1578,26 +1563,16 @@ Prefab:
       propertyPath: player.Array.data[1].spawnPoint
       value: 
       objectReference: {fileID: 88137798}
-    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
+    - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
         type: 2}
-      propertyPath: Countdown.Array.data[0]
+      propertyPath: cameraControl
       value: 
-      objectReference: {fileID: 1727389872}
-    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
+      objectReference: {fileID: 1629592219}
+    - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
         type: 2}
-      propertyPath: Countdown.Array.data[1]
+      propertyPath: t_camera
       value: 
-      objectReference: {fileID: 1391975068}
-    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: Countdown.Array.data[2]
-      value: 
-      objectReference: {fileID: 750505848}
-    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: Countdown.Array.data[3]
-      value: 
-      objectReference: {fileID: 2096429431}
+      objectReference: {fileID: 1629592218}
     - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
         type: 2}
       propertyPath: P1_Stars.Array.data[0]
@@ -1690,6 +1665,26 @@ Prefab:
       objectReference: {fileID: 1336101519}
     - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
         type: 2}
+      propertyPath: Countdown.Array.data[0]
+      value: 
+      objectReference: {fileID: 1727389872}
+    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: Countdown.Array.data[1]
+      value: 
+      objectReference: {fileID: 1391975068}
+    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: Countdown.Array.data[2]
+      value: 
+      objectReference: {fileID: 750505848}
+    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: Countdown.Array.data[3]
+      value: 
+      objectReference: {fileID: 2096429431}
+    - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
       propertyPath: EndGameMenu
       value: 
       objectReference: {fileID: 722548298}
@@ -1720,24 +1715,9 @@ Prefab:
       objectReference: {fileID: 544087607}
     - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
         type: 2}
-      propertyPath: cameraControl
-      value: 
-      objectReference: {fileID: 1629592219}
-    - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: t_camera
-      value: 
-      objectReference: {fileID: 1629592218}
-    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 633494095}
-    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1598919993}
+      propertyPath: Round_End_Wait
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73f1f19027d26ad489fc76201f47c314, type: 2}
   m_IsPrefabParent: 0

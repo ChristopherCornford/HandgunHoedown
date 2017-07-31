@@ -325,7 +325,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (bulletCount == 0 ) {
 			Reset ();
-			GunSpawn.Spawning ();
+			StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
 			}
 		yield return new WaitForSeconds (0.1f);
 	}
@@ -352,7 +352,7 @@ public class PlayerMovement : MonoBehaviour {
 		if( canBeStunned == true) {
 			if (hasGun == true) {
 				Reset ();
-				GunSpawn.Spawning ();
+				StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
 			}
 			StartCoroutine (Stun (0.01f));
 		}

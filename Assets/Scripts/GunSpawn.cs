@@ -12,11 +12,8 @@ public class GunSpawn : MonoBehaviour {
 	public GameObject gunPrefab;
 	private Vector3 pos;
 
-	public void Spawning () {
-		/* if (gun.activeInHierarchy == true) {
-			Destroy (gun);
-		} */
-		// GunSpawn instance = new GunSpawn ();
+	public IEnumerator SpawnGun (float delay) {
+		yield return new WaitForSeconds(delay);
 		currentPoint = spawnPoints[Random.Range (0, spawnPoints.Length)];
 		Debug.Log(currentPoint.name);
 		gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;

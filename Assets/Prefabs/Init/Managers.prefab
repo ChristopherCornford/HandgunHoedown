@@ -508,6 +508,7 @@ MonoBehaviour:
   player1Score: 0
   player2Score: 0
   isPaused: 0
+  death: {fileID: 0}
   player:
   - playerColor: {r: 0.7607844, g: 0.25490198, b: 0.25490198, a: 0}
     spawnPoint: {fileID: 0}

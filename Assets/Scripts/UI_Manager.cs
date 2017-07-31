@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 public class UI_Manager : MonoBehaviour {
 
 	[Header("Player 1 UI")]
@@ -27,14 +28,11 @@ public class UI_Manager : MonoBehaviour {
 	public GameObject Player1Win;
 	public GameObject Player2Win;
 
-
-
 	/* Private */
 	private Color none = new Color32(0,0,0,0);
 
-	private IEnumerator timerUtil(float timerLength){
+	public IEnumerator timerUtil(float timerLength){
 		yield return new WaitForSeconds(timerLength);
-		yield return null;
 	}
 
 	public IEnumerator RoundStartCountdown(){
@@ -97,7 +95,7 @@ public class UI_Manager : MonoBehaviour {
 	 public IEnumerator Message(GameObject gameObject, float wait){
 		gameObject.SetActive(true);
 		if (wait > 0.1f){
-			yield return StartCoroutine(timerUtil(wait));
+			yield return new WaitForSeconds (wait);
 			gameObject.SetActive(false);
 		}	
 		yield return null;
@@ -105,6 +103,7 @@ public class UI_Manager : MonoBehaviour {
 
 	public void PauseMenu(){
 		PauseGameMenu.SetActive(true);
-		
+		GameObject pause_button = GameObject.Find("Resume_B");
+		EventSystem.current.SetSelectedGameObject(pause_button);
 	}
 }

@@ -8,6 +8,12 @@ public class GameManager : MonoBehaviour {
 	public UI_Manager UI_Manager;
 	public GunSpawn GunSpawn;
 	
+	[HeaderAttribute("Gun spawn delay")]
+	public float Gun_Spawn_Wait = 5.0f;
+	
+	[HeaderAttribute("Time between rounds")]
+	public float Round_End_Wait = 3.0f;
+	
 	[HeaderAttribute("Player Data")]
 	public int player1Score;
 	public int player2Score;
@@ -55,25 +61,26 @@ public class GameManager : MonoBehaviour {
 	
 		// Passing 3 to this uses another case that runs a for loop and removes all bullets
 		UI_Manager.removeBullets(3,0);
-		// If we wanted to lerp the camera add that code here - yield return StarCoroutine
 		yield return StartCoroutine(UI_Manager.RoundStartCountdown());
 		SetPlayerInput(true);
-		GunSpawn.Spawning();
+		StartCoroutine(GunSpawn.SpawnGun(Gun_Spawn_Wait));
 		yield return null;
 	}
 
 	public IEnumerator RoundEnd(int playerindex){
 		SetPlayerInput(false);
+		// TODO: Make this wait until the death animation is over
+		yield return new WaitForSeconds(Round_End_Wait);
 		switch (playerindex){
 			case 1:
 				player1Score++;
 				UI_Manager.giveStars(playerindex, player1Score);
-				yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player1Win, 3f));
+				// yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player1Win, 3f));
 				break;
 			case 2:
 				player2Score++;
 				UI_Manager.giveStars(playerindex, player2Score);
-				yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player2Win, 3f));
+				// yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player2Win, 3f));
 				break;
 		}
 		if (player1Score == 3 || player2Score == 3){StartCoroutine(GameEnd(playerindex));}

@@ -102,7 +102,8 @@ public class UI_Functions : MonoBehaviour {
 	/* End of Game Menu Buttons */
 	public void PlayAgain(){
 		// Reloads the current scene
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		int lvl = SceneManager.GetActiveScene().buildIndex;
+		SceneManager.LoadScene(lvl);
 	}
 	public void ExittoMain(){
 		// Loads Main Menu
