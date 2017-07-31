@@ -64,7 +64,8 @@ public class PlayerMovement : MonoBehaviour {
 	private LineRenderer line;
 	public GameObject lineRend;
 
-
+	public float horizontal;
+	public float verticle;
 	private float movementKeyInputValue;
 	private float strafeKeyInputValue;
 	private float turnKeyInputValue;
@@ -173,8 +174,8 @@ public class PlayerMovement : MonoBehaviour {
 	public void Move() {
 
 		if(strafeJoyInputValue != 0 || movementJoyInputValue != 0) {
-			float horizontal = strafeJoyInputValue * Time.deltaTime * speed;
-			float verticle = movementJoyInputValue * Time.deltaTime * speed;
+			horizontal = strafeJoyInputValue * Time.deltaTime * speed;
+			verticle = movementJoyInputValue * Time.deltaTime * speed;
 
 			Vector3 moveDirection = new Vector3 (strafeJoyInputValue, 0, movementJoyInputValue);
 			Vector3 moveAngle = new Vector3 (0, 0, 45);
@@ -193,7 +194,7 @@ public class PlayerMovement : MonoBehaviour {
 		} else {
 			cowboy_anim.SetBool("isMoving", false);
 		}
-		if (movementJoyInputValue != 0) {
+		if (horizontal != 0) {
 			cowboy_anim.SetBool ("isMoving", true);
 		} else {
 			cowboy_anim.SetBool("isMoving", false);
@@ -203,7 +204,7 @@ public class PlayerMovement : MonoBehaviour {
 		} else {
 			cowboy_anim.SetBool("isMoving", false);
 		}
-		if (strafeJoyInputValue != 0) {
+		if (verticle != 0) {
 			cowboy_anim.SetBool ("isMoving", true);
 		} else {
 			cowboy_anim.SetBool("isMoving", false);
@@ -240,11 +241,15 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 		if ((hasGun == true) && (bulletCount > 0)){
+			bulletCount -= 1;
+			StartCoroutine (checkForBullets (0.1f));
+			UI_Manager.removeBullets(m_playerNumber, bulletCount);
+			SoundManager.Shoot ();
 			RaycastHit hit;
 			Ray gunShot = new Ray (transform.position, transform.forward);
 		
 			// This activates the gunshot method in SoundManager to make the sound
-			SoundManager.Shoot ();
+
 
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
 				print ("Boom, you're dead!");
@@ -252,12 +257,10 @@ public class PlayerMovement : MonoBehaviour {
 				hit.transform.SendMessage ("YouAreDead");
 				StartCoroutine(GameManager.RoundEnd(m_playerNumber));
 
+				}
+			
 			}
-			bulletCount -= 1;
-			StartCoroutine (checkForBullets (0.1f));
-			UI_Manager.removeBullets(m_playerNumber, bulletCount);
 		}
-	}
 	}
 
 	private void Aim () {
