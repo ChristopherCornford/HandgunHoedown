@@ -218,19 +218,21 @@ public class PlayerMovement : MonoBehaviour {
 
 		rb.MoveRotation (rb.rotation * keyTurnRotation);
 
-		float joyTurnX = turnJoyInputValueX * turnSpeed * Time.deltaTime;
-		float joyTurnY = -turnJoyInputValueY * turnSpeed * Time.deltaTime;
+		if(turnJoyInputValueX != 0 || turnJoyInputValueY != 0){
+			float joyTurnX = turnJoyInputValueX * turnSpeed * Time.deltaTime;
+			float joyTurnY = -turnJoyInputValueY * turnSpeed * Time.deltaTime;
 
-		float angle = Mathf.Atan2 (joyTurnX, joyTurnY) * Mathf.Rad2Deg;
-		transform.rotation = Quaternion.Euler (new Vector3(0, angle));
+			float angle = Mathf.Atan2 (joyTurnX, joyTurnY) * Mathf.Rad2Deg;
+			transform.rotation = Quaternion.Euler (new Vector3(0, angle));
+	
+		}
 	}
-
 	private void Action() {
 
 		if (hasGun == false) {
 			RaycastHit punch;
 			Ray throwPunch = new Ray (transform.position, transform.forward);
-			if (Physics.Raycast (throwPunch, out punch, 1.0f)) {
+			if (Physics.Raycast (throwPunch, out punch, 1.75f)) {
 				punch.transform.SendMessage ("Punch");
 			}
 			cowboy_anim.SetTrigger ("isPunching");

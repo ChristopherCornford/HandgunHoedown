@@ -2053,10 +2053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921cab52e57bcd343b8af116d862a182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunshots:
-  - {fileID: 8300000, guid: f269eaa4e0fae0148af9845142fbe196, type: 3}
-  - {fileID: 8300000, guid: 72d376443aea46e4d9e450740d107d19, type: 3}
-  - {fileID: 8300000, guid: 2387f4b4ec8a9cc45a1e297ea9805700, type: 3}
 --- !u!114 &114849330639703918
 MonoBehaviour:
   m_ObjectHideFlags: 1
