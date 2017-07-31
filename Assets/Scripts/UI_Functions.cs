@@ -25,17 +25,32 @@ public class UI_Functions : MonoBehaviour {
 	[HeaderAttribute("Levels")]
 	public GameObject[] Levels;
 	private int currentLevel;
+	
+	// Put this before each button function to check what to do
+	private void PanelCheck(){
+		if(LevelSelect_Panel.activeInHierarchy == true){
+			LevelSelect_Panel.SetActive(false);
+		}
+		if(Controls_Panel.activeInHierarchy == true){
+			Controls_Panel.SetActive(false);
+		}if(Credits_Panel.activeInHierarchy == true){
+			Credits_Panel.SetActive(false);
+		}
+	}
 
 	/* Main Menu Buttons */
 	public void LevelSelect(){
+		PanelCheck();
 		LevelSelect_Panel.SetActive(true);
 		EventSystem.current.SetSelectedGameObject(Canyon_Button);
 	}
 	public void Controls(){
+		PanelCheck();
 		Controls_Panel.SetActive(true);
 		EventSystem.current.SetSelectedGameObject(Control_Button);
 	}
 	public void Credits(){
+		PanelCheck();
 		Credits_Panel.SetActive(true);
 	}
 	public void Quit(){
