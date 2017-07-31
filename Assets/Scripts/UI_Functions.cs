@@ -13,6 +13,9 @@ public class UI_Functions : MonoBehaviour {
 	public GameObject Credits_Panel;
 	[HeaderAttribute("Level Select Button to Focus")]
 	public GameObject Canyon_Button;
+	[HeaderAttribute("Levels")]
+	public GameObject[] Levels;
+	private int currentLevel;
 
 	/* Main Menu Buttons */
 	public void LevelSelect(){
@@ -33,8 +36,31 @@ public class UI_Functions : MonoBehaviour {
 	public void LoadDesert(){SceneManager.LoadScene("Desert");}
 	public void LoadTown(){SceneManager.LoadScene("Town");}
 	public void LoadMine(){SceneManager.LoadScene("Mine");}
-	// TODO: MAKE RANDOM FUNCTION
 	public void LoadRandom(){SceneManager.LoadScene(Random.Range(1,3));}
+
+	/* Level Select Scrolling */
+	public void LevelScrollRight(){
+		Levels[currentLevel].SetActive(false);
+		if (currentLevel == 3){
+			currentLevel = 0;
+			Levels[currentLevel].SetActive(true);
+		}
+		else{
+			currentLevel += 1;
+			Levels[currentLevel].SetActive(true);
+		}
+	}
+	public void LevelScrollLeft(){
+		Levels[currentLevel].SetActive(false);
+		if (currentLevel == 0){
+			currentLevel = 3;
+			Levels[currentLevel].SetActive(true);
+		}
+		else{
+			currentLevel -= 1;
+			Levels[currentLevel].SetActive(true);
+		}
+	}
 
 	/* End of Game Menu Buttons */
 	public void PlayAgain(){
