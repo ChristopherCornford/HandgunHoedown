@@ -11,8 +11,17 @@ public class UI_Functions : MonoBehaviour {
 	public GameObject LevelSelect_Panel;
 	public GameObject Controls_Panel;
 	public GameObject Credits_Panel;
+	
+	[HeaderAttribute("Control Select Button to Focus")]
+	public GameObject Control_Button;
+	
+	[HeaderAttribute("Control Schemes")]
+	public GameObject Keyboard_Controls;
+	public GameObject Controller_Controls;
+	
 	[HeaderAttribute("Level Select Button to Focus")]
 	public GameObject Canyon_Button;
+	
 	[HeaderAttribute("Levels")]
 	public GameObject[] Levels;
 	private int currentLevel;
@@ -24,6 +33,7 @@ public class UI_Functions : MonoBehaviour {
 	}
 	public void Controls(){
 		Controls_Panel.SetActive(true);
+		EventSystem.current.SetSelectedGameObject(Control_Button);
 	}
 	public void Credits(){
 		Credits_Panel.SetActive(true);
@@ -59,6 +69,18 @@ public class UI_Functions : MonoBehaviour {
 		else{
 			currentLevel -= 1;
 			Levels[currentLevel].SetActive(true);
+		}
+	}
+
+	/* Control Scrolling */
+	public void ControlScrolling(){
+		if(Controller_Controls.activeInHierarchy == true){
+			Controller_Controls.SetActive(false);
+			Keyboard_Controls.SetActive(true);
+		}
+		else{
+			Keyboard_Controls.SetActive(false);
+			Controller_Controls.SetActive(true);
 		}
 	}
 
