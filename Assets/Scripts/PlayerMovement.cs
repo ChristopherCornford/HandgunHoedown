@@ -248,16 +248,17 @@ public class PlayerMovement : MonoBehaviour {
 
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
 				print ("Boom, you're dead!");
-				if (hit.transform.tag == "Cowboy") {
-					hit.transform.SendMessage ("YouAreDead");
-					StartCoroutine (GameManager.RoundEnd (m_playerNumber));
-				}
+				if(hit.transform.tag == "Cowboy") {
+				hit.transform.SendMessage ("YouAreDead");
+				StartCoroutine(GameManager.RoundEnd(m_playerNumber));
+
 			}
 			bulletCount -= 1;
 			StartCoroutine (checkForBullets (0.1f));
 			UI_Manager.removeBullets(m_playerNumber, bulletCount);
 		}
-	} 
+	}
+	}
 
 	private void Aim () {
 		if (hasGun == true) {
