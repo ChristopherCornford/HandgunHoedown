@@ -31,7 +31,13 @@ public class SoundManager : MonoBehaviour {
 		gunshot_source.Play();
 	}
 
+	public void Miss(){
+		punches_source.clip = gunshot_misses[Random.Range(0, gunshot_misses.Length)];
+		punches_source.Play();
+	}
+
 	public void Punch (bool Hit){
+		punches_source.Stop();
 		if (Hit == true){
 			punches_source.clip = punch_hits[Random.Range(0, punch_hits.Length)];
 		}

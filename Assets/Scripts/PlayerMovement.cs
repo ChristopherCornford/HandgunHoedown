@@ -249,11 +249,12 @@ public class PlayerMovement : MonoBehaviour {
 		
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
 				print ("Boom, you're dead!");
-				if(hit.transform.tag == "Cowboy") {
-				hit.transform.SendMessage ("YouAreDead");
-				StartCoroutine(GameManager.RoundEnd(m_playerNumber));
+				if (hit.transform.tag == "Cowboy") {
+					hit.transform.SendMessage ("YouAreDead");
+					StartCoroutine(GameManager.RoundEnd(m_playerNumber));
 				}
-			}
+				else {SoundManager.Miss();}
+			}	
 		}
 	}
 
@@ -339,9 +340,9 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void Punch () {
-		cowboy_anim.SetTrigger ("isPunched");
 		SoundManager.Punch(true);
-		if( canBeStunned == true) {
+		cowboy_anim.SetTrigger ("isPunched");
+		if (canBeStunned == true) {
 			if (hasGun == true) {
 				Reset ();
 				StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
