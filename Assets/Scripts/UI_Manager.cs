@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class UI_Manager : MonoBehaviour {
+	[Header("SoundManager")]
+	public SoundManager SoundManager;
 
 	[Header("Player 1 UI")]
 	public Image[] P1_Stars;
@@ -13,18 +15,18 @@ public class UI_Manager : MonoBehaviour {
 	public Image[] P2_Stars;
 	public Image[] P2_Bullets;
 	
-	[HeaderAttribute("Countdown Images")]
+	[Header("Countdown Images")]
 	public GameObject[] Countdown;
 	
-	[HeaderAttribute("Game Over Menu")]
+	[Header("Game Over Menu")]
 	public GameObject EndGameMenu;
 	public GameObject PlayAgain;
 	
-	[HeaderAttribute("Pause Menu")]
+	[Header("Pause Menu")]
 	public GameObject PauseGameMenu;
 	public GameObject Resume;
 
-	[HeaderAttribute("Player Winner Screens")]
+	[Header("Player Winner Screens")]
 	public GameObject Player1Win;
 	public GameObject Player2Win;
 
@@ -38,12 +40,16 @@ public class UI_Manager : MonoBehaviour {
 	public IEnumerator RoundStartCountdown(){
 		//TODO: FIX COUNTDOWN TO GET RID OF FLASHING
 		int countDown = 3;
+		SoundManager.CountdownSound(countDown);
 		yield return StartCoroutine(Message(Countdown[countDown], 1f));
 			countDown -= 1;
+		SoundManager.CountdownSound(countDown);	
 		yield return StartCoroutine(Message(Countdown[countDown], 1f));
 			countDown -= 1;
+		SoundManager.CountdownSound(countDown);
 		yield return StartCoroutine(Message(Countdown[countDown], 1f));
 			countDown -= 1;
+		SoundManager.CountdownSound(countDown);
 		yield return StartCoroutine(Message(Countdown[countDown], 1f));
 	}
 

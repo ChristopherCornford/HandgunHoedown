@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour {
 	public UI_Manager UI_Manager;
+	public SoundManager SoundManager;
 	public GunSpawn GunSpawn;
 	
 	[HeaderAttribute("Gun spawn delay")]
@@ -58,10 +59,13 @@ public class GameManager : MonoBehaviour {
 			player[i].instance.GetComponent<PlayerMovement>().Reset();
 			player[i].instance.GetComponent<PlayerMovement> ().SetSprintUI ();
 		}
-	
 		// Passing 3 to this uses another case that runs a for loop and removes all bullets
 		UI_Manager.removeBullets(3,0);
 		yield return StartCoroutine(UI_Manager.RoundStartCountdown());
+		if(player1Score == 2 | player2Score == 2){
+			SoundManager.SetMusic(1);
+		}
+		else {SoundManager.SetMusic(0);}
 		SetPlayerInput(true);
 		StartCoroutine(GunSpawn.SpawnGun(Gun_Spawn_Wait));
 		yield return null;
@@ -69,7 +73,8 @@ public class GameManager : MonoBehaviour {
 
 	public IEnumerator RoundEnd(int playerindex){
 		SetPlayerInput(false);
-		// TODO: Make this wait until the death animation is over
+		// TODO: Make the music fade!
+		SoundManager.music_source.Stop();
 		yield return new WaitForSeconds(Round_End_Wait);
 		switch (playerindex){
 			case 1:
@@ -101,7 +106,6 @@ public class GameManager : MonoBehaviour {
 		// TODO: Change music cue
 		UI_Manager.EndGameMenu.SetActive(true);
 		EventSystem.current.SetSelectedGameObject(GameObject.Find("PlayAgain_B"));
-		
 	}
 
 	/*** PLAYER RELATED SHIT ***/

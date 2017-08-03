@@ -81,7 +81,6 @@ public class PlayerMovement : MonoBehaviour {
 		UI_Manager = GameObject.Find("/Managers/UI_Manager").GetComponent<UI_Manager>();
 		GunSpawn = GameObject.Find ("/Managers/GunSpawner").GetComponent<GunSpawn> ();
 		SoundManager = GameObject.Find ("/Managers/SoundManager").GetComponent<SoundManager> ();
-
 	}
 
 	private void OnEnable() {
@@ -248,17 +247,12 @@ public class PlayerMovement : MonoBehaviour {
 			RaycastHit hit;
 			Ray gunShot = new Ray (transform.position, transform.forward);
 		
-			// This activates the gunshot method in SoundManager to make the sound
-
-
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
 				print ("Boom, you're dead!");
 				if(hit.transform.tag == "Cowboy") {
 				hit.transform.SendMessage ("YouAreDead");
 				StartCoroutine(GameManager.RoundEnd(m_playerNumber));
-
 				}
-			
 			}
 		}
 	}

@@ -1527,56 +1527,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 633494095}
-    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1598919993}
-    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 1446470457}
-    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[3]
-      value: 
-      objectReference: {fileID: 1427113778}
-    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[4]
-      value: 
-      objectReference: {fileID: 1585406573}
-    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: spawnPoints.Array.data[5]
-      value: 
-      objectReference: {fileID: 487770894}
-    - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: player.Array.data[0].spawnPoint
-      value: 
-      objectReference: {fileID: 24026316}
-    - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: player.Array.data[1].spawnPoint
-      value: 
-      objectReference: {fileID: 88137798}
-    - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: cameraControl
-      value: 
-      objectReference: {fileID: 1629592219}
-    - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
-        type: 2}
-      propertyPath: t_camera
-      value: 
-      objectReference: {fileID: 1629592218}
     - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
         type: 2}
       propertyPath: P1_Stars.Array.data[0]
@@ -1717,6 +1667,56 @@ Prefab:
       propertyPath: Player2Win
       value: 
       objectReference: {fileID: 544087607}
+    - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: player.Array.data[0].spawnPoint
+      value: 
+      objectReference: {fileID: 24026316}
+    - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: player.Array.data[1].spawnPoint
+      value: 
+      objectReference: {fileID: 88137798}
+    - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: cameraControl
+      value: 
+      objectReference: {fileID: 1629592219}
+    - target: {fileID: 114184386926964398, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: t_camera
+      value: 
+      objectReference: {fileID: 1629592218}
+    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: spawnPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 633494095}
+    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: spawnPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1598919993}
+    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: spawnPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1446470457}
+    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: spawnPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 1427113778}
+    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: spawnPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 1585406573}
+    - target: {fileID: 114871800861087230, guid: 73f1f19027d26ad489fc76201f47c314,
+        type: 2}
+      propertyPath: spawnPoints.Array.data[5]
+      value: 
+      objectReference: {fileID: 487770894}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73f1f19027d26ad489fc76201f47c314, type: 2}
   m_IsPrefabParent: 0
