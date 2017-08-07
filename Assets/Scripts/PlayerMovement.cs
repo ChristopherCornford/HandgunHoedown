@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour {
 		strafeKeyInputValue = Input.GetAxisRaw (strafeKeyAxisName);
 		turnKeyInputValue = Input.GetAxisRaw (turnKeyAxisName);
 
-		movementJoyInputValue = -Input.GetAxisRaw (movementJoyAxisName);
+		movementJoyInputValue = Input.GetAxisRaw (movementJoyAxisName);
 		strafeJoyInputValue = Input.GetAxisRaw(strafeJoyAxisName);
 		turnJoyInputValueX = Input.GetAxisRaw (turnJoyAxisNameX);
 		turnJoyInputValueY = Input.GetAxisRaw (turnJoyAxisNameY);

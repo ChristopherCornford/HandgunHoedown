@@ -2022,9 +2022,9 @@ MonoBehaviour:
   speed: 1
   turnSpeed: 180
   canBeStunned: 0
-  walkSpeed: 1
-  aimSpeed: 0.5
-  sprintSpeed: 2
+  walkSpeed: 3
+  aimSpeed: 1.5
+  sprintSpeed: 5
   sprintCD: 1.5
   isAbleToSprint: 0
   isSprinting: 0
