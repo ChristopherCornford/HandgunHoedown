@@ -40,11 +40,10 @@ public class UI_Manager : MonoBehaviour {
 
 	public IEnumerator RoundStartCountdown(){
 		//TODO: FIX COUNTDOWN TO GET RID OF FLASHING
-		// TODO: Can't this be a while loop??
 		int countDown = 4;
 		while (countDown > 0){
-			SoundManager.CountdownSound(countDown);
 			Countdown.GetComponent<Animator>().Play("All_Countdown_Attack");
+			SoundManager.CountdownSound(countDown);
 			yield return StartCoroutine(timerUtil(1));
 			countDown -= 1;
 		}
