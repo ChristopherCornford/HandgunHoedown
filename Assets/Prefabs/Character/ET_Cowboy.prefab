@@ -2022,7 +2022,7 @@ MonoBehaviour:
   speed: 1
   turnSpeed: 180
   canBeStunned: 0
-  walkSpeed: 3
+  walkSpeed: 5
   aimSpeed: 1.5
   sprintSpeed: 7.5
   stunTimer: 1.91
