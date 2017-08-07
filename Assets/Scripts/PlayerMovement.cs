@@ -86,6 +86,7 @@ public class PlayerMovement : MonoBehaviour {
 	private void OnEnable() {
 
 		rb.isKinematic = false;
+		sprintCD = 1.5f;
 		SetSprintUI ();
 
 		movementKeyInputValue = 0f;
