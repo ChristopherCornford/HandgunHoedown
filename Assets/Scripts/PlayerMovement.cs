@@ -19,6 +19,12 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed = 12f;
 	public float turnSpeed = 180f;
 	public bool canBeStunned;
+	[Range (0, 5)]
+	public float walkSpeed;
+	[Range (0, 5)]
+	public float aimSpeed;
+	[Range (0, 10)]
+	public float sprintSpeed;
 
 	[Header("Sprint Varibles")]
 	public float sprintCD = 1.5f;
@@ -174,8 +180,8 @@ public class PlayerMovement : MonoBehaviour {
 	public void Move() {
 
 		if(strafeJoyInputValue != 0 || movementJoyInputValue != 0) {
-			horizontal = strafeJoyInputValue * Time.deltaTime * speed;
-			verticle = movementJoyInputValue * Time.deltaTime * speed;
+			horizontal = strafeJoyInputValue * Time.deltaTime * speed * 5;
+			verticle = movementJoyInputValue * Time.deltaTime * speed * 5;
 
 			Vector3 moveDirection = new Vector3 (strafeJoyInputValue, 0, movementJoyInputValue);
 			Vector3 moveAngle = new Vector3 (0, 0, 45);
@@ -191,20 +197,15 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (movementKeyInputValue != 0) {
 			cowboy_anim.SetBool ("isMoving", true);
-		} else {
-			cowboy_anim.SetBool("isMoving", false);
-		}
-		if (horizontal != 0) {
+		} else if (strafeKeyInputValue != 0) {
 			cowboy_anim.SetBool ("isMoving", true);
 		} else {
 			cowboy_anim.SetBool("isMoving", false);
 		}
-		if (strafeKeyInputValue != 0) {
+
+		if (movementJoyInputValue != 0) {
 			cowboy_anim.SetBool ("isMoving", true);
-		} else {
-			cowboy_anim.SetBool("isMoving", false);
-		}
-		if (verticle != 0) {
+		} else if (strafeJoyInputValue != 0) {
 			cowboy_anim.SetBool ("isMoving", true);
 		} else {
 			cowboy_anim.SetBool("isMoving", false);
@@ -278,12 +279,12 @@ public class PlayerMovement : MonoBehaviour {
 
 		switch (isAiming) {
 		case true:
-			speed = 6f;
+			speed = aimSpeed;
 			turnSpeed = 90f;
 			break;
 
 		case false:
-			speed = 12f;
+			speed = walkSpeed;
 			turnSpeed = 180f;
 			break;
 
@@ -296,16 +297,16 @@ public class PlayerMovement : MonoBehaviour {
 
 		switch(isSprinting){
 		case true:
-			speed = 18f;
+			speed = sprintSpeed;
 			sprintCD -= Time.deltaTime;
 			SetSprintUI ();
 			break;
 
 		case false:
 			if (isAiming == true) {
-				speed = 6f;
+				speed = aimSpeed;
 			} else {
-				speed = 12f;
+				speed = walkSpeed;
 			}
 			sprintCD += Time.deltaTime;
 			SetSprintUI ();
