@@ -49,16 +49,16 @@ public class SoundManager : MonoBehaviour {
 	
 	public void CountdownSound(int whichSound){
 		switch (whichSound){
-			case 3:
+			case 4:
 				UI_source.clip = countdown_sounds[0];
 				break;
-			case 2:
+			case 3:
 				UI_source.clip = countdown_sounds[1];
 				break;
-			case 1:
+			case 2:
 				UI_source.clip = countdown_sounds[2];
 				break;
-			case 0:
+			case 1:
 				UI_source.clip = countdown_sounds[3];
 				break;
 		}

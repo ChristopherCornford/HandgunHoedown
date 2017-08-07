@@ -16,7 +16,7 @@ public class UI_Manager : MonoBehaviour {
 	public Image[] P2_Bullets;
 	
 	[Header("Countdown Images")]
-	public GameObject[] Countdown;
+	public GameObject Countdown;
 	
 	[Header("Game Over Menu")]
 	public GameObject EndGameMenu;
@@ -35,22 +35,19 @@ public class UI_Manager : MonoBehaviour {
 
 	public IEnumerator timerUtil(float timerLength){
 		yield return new WaitForSeconds(timerLength);
+		yield return null;
 	}
 
 	public IEnumerator RoundStartCountdown(){
 		//TODO: FIX COUNTDOWN TO GET RID OF FLASHING
-		int countDown = 3;
-		SoundManager.CountdownSound(countDown);
-		yield return StartCoroutine(Message(Countdown[countDown], 1f));
+		// TODO: Can't this be a while loop??
+		int countDown = 4;
+		while (countDown > 0){
+			SoundManager.CountdownSound(countDown);
+			Countdown.GetComponent<Animator>().Play("All_Countdown_Attack");
+			yield return StartCoroutine(timerUtil(1));
 			countDown -= 1;
-		SoundManager.CountdownSound(countDown);	
-		yield return StartCoroutine(Message(Countdown[countDown], 1f));
-			countDown -= 1;
-		SoundManager.CountdownSound(countDown);
-		yield return StartCoroutine(Message(Countdown[countDown], 1f));
-			countDown -= 1;
-		SoundManager.CountdownSound(countDown);
-		yield return StartCoroutine(Message(Countdown[countDown], 1f));
+		}
 	}
 
 	public void giveBullets(int playerindex){
