@@ -2,9 +2,9 @@
 
 A Western Arcade Action game!
 
-Chris Cornford - Programming, Design
+Christopher Cornford - Programming, Design
 
-Kenny Howell - Art Direction, Design
+Kenneth Howell - Art Direction, Design
 
 [Ethan Thibault](http://ethanthibault.xyz) - Audio Design, Programming, Production
 
