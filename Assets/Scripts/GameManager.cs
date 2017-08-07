@@ -28,11 +28,11 @@ public class GameManager : MonoBehaviour {
 
 	/* private */
 	
-	void Awake () {
+	void Start () {
 		SpawnAllPlayers ();
-		StartCoroutine ("RoundStart");
 		SetCameraTargets ();
 		cameraControl.SetStartPositionAndSize ();
+		StartCoroutine ("RoundStart");
 	}
 
 	/*** PAUSING THE GAME ***/
