@@ -2024,7 +2024,8 @@ MonoBehaviour:
   canBeStunned: 0
   walkSpeed: 3
   aimSpeed: 1.5
-  sprintSpeed: 5
+  sprintSpeed: 7.5
+  stunTimer: 1.91
   sprintCD: 1.5
   isAbleToSprint: 0
   isSprinting: 0

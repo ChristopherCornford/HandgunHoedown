@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour {
 	public float aimSpeed;
 	[Range (0, 10)]
 	public float sprintSpeed;
+	[Range (0, 3)]
+	public float stunTimer;
 
 	[Header("Sprint Varibles")]
 	public float sprintCD = 1.5f;
@@ -379,7 +381,7 @@ public class PlayerMovement : MonoBehaviour {
 		SoundManager.Punch(true);
 		canBeStunned = false;
 		this.enabled = false;
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (stunTimer);
 		this.enabled = true;
 		yield return new WaitForSeconds (1.0f);
 		canBeStunned = true;
