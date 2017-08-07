@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour {
 			player[i].instance.transform.rotation = player[i].spawnPoint.rotation;
 			player[i].instance.GetComponent<PlayerMovement>().Reset();
 			player[i].instance.GetComponent<PlayerMovement> ().SetSprintUI ();
+			player [i].instance.GetComponent<PlayerMovement> ().sprintCD = 1.5f;
 		}
 		// Passing 3 to this uses another case that runs a for loop and removes all bullets
 		UI_Manager.removeBullets(3,0);
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour {
 		else {SoundManager.SetMusic(0);}
 		SetPlayerInput(true);
 		StartCoroutine(GunSpawn.SpawnGun(Gun_Spawn_Wait));
+
 		yield return null;
 	}
 
