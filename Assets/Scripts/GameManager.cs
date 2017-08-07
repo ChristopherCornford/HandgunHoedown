@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour {
 		SpawnAllPlayers ();
 		SetCameraTargets ();
 		cameraControl.SetStartPositionAndSize ();
-		StartCoroutine ("RoundStart");
+		StartCoroutine (RoundStart());
 	}
 
 	/*** PAUSING THE GAME ***/
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour {
 	public IEnumerator RoundEnd(int playerindex){
 		SetPlayerInput(false);
 		// TODO: Make the music fade!
-		SoundManager.music_source.Stop();
+		SoundManager.FadeMusic();
 		yield return new WaitForSeconds(Round_End_Wait);
 		switch (playerindex){
 			case 1:

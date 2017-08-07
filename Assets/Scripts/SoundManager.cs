@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
 
+	[Header("Music Fade Length")]
+	[SerializeField]
+	private float FadeTime = 1f;
+
+	[Header("Audio References)")]
 	public AudioClip[] gunshots;
 	public AudioClip[] gunshot_misses;
 	public AudioClip[] punch_hits;
@@ -66,6 +71,7 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	public void SetMusic(int track){
+		music_source.volume = 1f;
 		switch (track){
 			// 0 is the main usual track
 			case 0:
@@ -77,5 +83,16 @@ public class SoundManager : MonoBehaviour {
 				break;
 		}
 		music_source.Play();
+	}
+
+	public void FadeMusic(){
+		// I can't get this to sound great, but it does work!
+		float elapsedTime = 0;
+        float currentVolume = music_source.volume;
+		elapsedTime += Time.deltaTime;
+		while (music_source.volume > 0){
+			music_source.volume -= currentVolume * Time.deltaTime / FadeTime;
+		}
+		music_source.Stop();
 	}
 }

@@ -47,6 +47,7 @@ public class UI_Manager : MonoBehaviour {
 			yield return StartCoroutine(timerUtil(1));
 			countDown -= 1;
 		}
+		countDown = 4;
 	}
 
 	public void giveBullets(int playerindex){
