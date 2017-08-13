@@ -47,9 +47,9 @@ namespace Greyman{
 			manager.indicators = indicators;
 			manager.enableDebug = enableDebug;
 			manager.CheckFields();
-			foreach(FixedTarget target in targets){
+			/* foreach(FixedTarget target in targets){
 				AddIndicator(target.target, target.indicatorID);
-			}
+			} */
 		}
 
 		public void AddIndicator(Transform target, int indicatorID){
