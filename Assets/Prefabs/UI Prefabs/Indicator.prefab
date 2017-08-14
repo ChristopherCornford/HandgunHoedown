@@ -59,13 +59,13 @@ MonoBehaviour:
   canvas: {fileID: 0}
   Canvas_circleRadius: 5
   Canvas_border: 5
-  Canvas_indicatorSize: 25
+  Canvas_indicatorSize: 30
   indicators:
-  - onScreenSprite: {fileID: 21300000, guid: d9c3772b92e73aa4a82fef822fbe3449, type: 3}
-    onScreenColor: {r: 1, g: 0, b: 0, a: 1}
+  - onScreenSprite: {fileID: 21300000, guid: 54761cbfb490ab94e89130d3da0dc2bc, type: 3}
+    onScreenColor: {r: 1, g: 1, b: 1, a: 1}
     onScreenRotates: 0
-    offScreenSprite: {fileID: 21300000, guid: d9c3772b92e73aa4a82fef822fbe3449, type: 3}
-    offScreenColor: {r: 0.5310346, g: 1, b: 0, a: 1}
+    offScreenSprite: {fileID: 21300000, guid: 54761cbfb490ab94e89130d3da0dc2bc, type: 3}
+    offScreenColor: {r: 1, g: 1, b: 1, a: 1}
     offScreenRotates: 0
     targetOffset: {x: 0, y: 1.5, z: 0}
     transition: 0
