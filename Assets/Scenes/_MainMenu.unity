@@ -453,7 +453,7 @@ Prefab:
     - target: {fileID: 224927054523675570, guid: 6cc190569134a504fad5b12b35163698,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -85.825
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224069252372547276, guid: 6cc190569134a504fad5b12b35163698,
         type: 2}
@@ -473,7 +473,7 @@ Prefab:
     - target: {fileID: 224069252372547276, guid: 6cc190569134a504fad5b12b35163698,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -257.47498
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224490263312644820, guid: 6cc190569134a504fad5b12b35163698,
         type: 2}
@@ -493,7 +493,7 @@ Prefab:
     - target: {fileID: 224490263312644820, guid: 6cc190569134a504fad5b12b35163698,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -429.125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224544698981526244, guid: 6cc190569134a504fad5b12b35163698,
         type: 2}
@@ -513,7 +513,7 @@ Prefab:
     - target: {fileID: 224544698981526244, guid: 6cc190569134a504fad5b12b35163698,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -600.77496
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6cc190569134a504fad5b12b35163698, type: 2}
@@ -531,6 +531,7 @@ GameObject:
   - component: {fileID: 1416741414}
   - component: {fileID: 1416741413}
   - component: {fileID: 1416741419}
+  - component: {fileID: 1416741418}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -608,6 +609,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -15.000001, z: 0}
+--- !u!114 &1416741418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1416741412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: fb1e732a2bde0044286c407a9d42c446, type: 2}
 --- !u!95 &1416741419
 Animator:
   serializedVersion: 3

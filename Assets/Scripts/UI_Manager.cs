@@ -14,6 +14,9 @@ public class UI_Manager : MonoBehaviour {
 	[Header("Player 2 UI")]
 	public Image[] P2_Stars;
 	public Image[] P2_Bullets;
+
+	[Header("How to Play")]
+	public GameObject HowtoPlay;
 	
 	[Header("Countdown Images")]
 	public GameObject Countdown;
@@ -32,6 +35,10 @@ public class UI_Manager : MonoBehaviour {
 
 	/* Private */
 	private Color none = new Color32(0,0,0,0);
+
+	void Start(){
+		EventSystem.current.firstSelectedGameObject = HowtoPlay;
+	}
 
 	public IEnumerator timerUtil(float timerLength){
 		yield return new WaitForSeconds(timerLength);

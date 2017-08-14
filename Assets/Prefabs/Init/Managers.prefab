@@ -673,6 +673,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  HowtoPlay: {fileID: 0}
   Countdown: {fileID: 0}
   EndGameMenu: {fileID: 0}
   PlayAgain: {fileID: 0}

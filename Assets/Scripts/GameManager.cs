@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour {
 		SpawnAllPlayers ();
 		SetCameraTargets ();
 		cameraControl.SetStartPositionAndSize ();
-		StartCoroutine (RoundStart());
 	}
 
 	/*** PAUSING THE GAME ***/
@@ -51,6 +50,11 @@ public class GameManager : MonoBehaviour {
 	}
 
 	/*** ROUND LOGIC ***/
+	// Used to start the game from the how-to-play screen
+	public void RoundStartUtil(){
+		StartCoroutine (RoundStart());
+		GameObject.Find("PlayCanvas/How-to-Play").SetActive(false);
+	}
 	private IEnumerator RoundStart(){
 		SetPlayerInput(false);
 		for (int i = 0; i < player.Length; i++) {
