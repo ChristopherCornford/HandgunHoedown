@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class LineRend : MonoBehaviour {
 
-	private LineRenderer rend;
+	public LineRenderer rend;
 
 	// Use this for initialization
 	void Start () {

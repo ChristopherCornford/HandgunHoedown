@@ -1141,7 +1141,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1310424187029480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.668}
+  m_LocalPosition: {x: 0, y: 0, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4094931226052278}
@@ -2023,9 +2023,9 @@ MonoBehaviour:
   speed: 1
   turnSpeed: 180
   canBeStunned: 0
-  walkSpeed: 5
+  walkSpeed: 7.5
   aimSpeed: 1.5
-  sprintSpeed: 7.5
+  sprintSpeed: 12.5
   stunTimer: 1.91
   sprintCD: 1.5
   isAbleToSprint: 0
@@ -2042,6 +2042,7 @@ MonoBehaviour:
   hasGun: 0
   bulletCount: 0
   cowboy_anim: {fileID: 95275591209167136}
+  line: {fileID: 120616403452332896}
   lineRend: {fileID: 1310424187029480}
   horizontal: 0
   verticle: 0
@@ -2077,6 +2078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67acba36ea73a341a87918be00386f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rend: {fileID: 0}
 --- !u!114 &114591569623419212
 MonoBehaviour:
   m_ObjectHideFlags: 1

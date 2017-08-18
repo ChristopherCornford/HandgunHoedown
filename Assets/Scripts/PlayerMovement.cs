@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	private Rigidbody rb;
-	private LineRenderer line;
+	public LineRenderer line;
 	public GameObject lineRend;
 
 	public float horizontal;
