@@ -27,7 +27,6 @@ public class UI_Manager : MonoBehaviour {
 	
 	[Header("Pause Menu")]
 	public GameObject PauseGameMenu;
-	public GameObject Resume;
 
 	[Header("Player Winner Screens")]
 	public GameObject Player1Win;

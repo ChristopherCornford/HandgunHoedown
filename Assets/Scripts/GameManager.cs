@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	/*** PAUSING THE GAME ***/
-	// TODO: PAUSE THE FUCKING GAME
 	public void Pause(){
 		Debug.Log("The game is now paused!");
 		SetPlayerInput(false);
@@ -44,7 +43,7 @@ public class GameManager : MonoBehaviour {
 		isPaused = true;
 	}
 	public void Resume(){
-		UI_Manager.PauseGameMenu.SetActive(true);
+		UI_Manager.PauseGameMenu.SetActive(false);
 		isPaused = false;
 		SetPlayerInput(true);
 	}
