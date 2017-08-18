@@ -159,6 +159,10 @@ public class PlayerMovement : MonoBehaviour {
 			Aim ();
 		}
 
+		if (Input.GetButtonUp("Pause")){
+			GameManager.Pause();
+		}
+
 		if (sprintCD == 1.5f) {
 			isAbleToSprint = true;
 		}

@@ -99,6 +99,11 @@ public class UI_Functions : MonoBehaviour {
 		}
 	}
 
+	/* Pause Menu */
+	public void Resume(){
+		GameObject.Find("/Managers/GameManager").GetComponent<GameManager>().Resume();
+	}
+
 	/* End of Game Menu Buttons */
 	public void PlayAgain(){
 		// Reloads the current scene

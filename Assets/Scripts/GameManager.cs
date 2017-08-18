@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour {
 		Debug.Log("The game is now paused!");
 		SetPlayerInput(false);
 		UI_Manager.PauseGameMenu.SetActive(true);
-		EventSystem.current.SetSelectedGameObject(UI_Manager.PlayAgain);
+		EventSystem.current.SetSelectedGameObject(GameObject.Find("Resume_B"));
 		isPaused = true;
 	}
 	public void Resume(){
@@ -81,7 +81,6 @@ public class GameManager : MonoBehaviour {
 		SetPlayerInput(false);
 		// TODO: Make the music fade!
 		SoundManager.FadeMusic();
-		yield return new WaitForSeconds(Round_End_Wait);
 		switch (playerindex){
 			case 1:
 				player1Score++;
@@ -94,6 +93,7 @@ public class GameManager : MonoBehaviour {
 				// yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player2Win, 3f));
 				break;
 		}
+		yield return new WaitForSeconds(Round_End_Wait);
 		if (player1Score == 3 || player2Score == 3){StartCoroutine(GameEnd(playerindex));}
 		else {StartCoroutine("RoundStart");}
 		yield return null;

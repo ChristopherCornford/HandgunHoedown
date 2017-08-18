@@ -695,6 +695,12 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   currentPoint: {fileID: 0}
   gun: {fileID: 0}
   gunPrefab: {fileID: 1318780201197668, guid: a05bd02028784744eb592d9bfb66198d, type: 2}
