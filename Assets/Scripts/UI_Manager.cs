@@ -36,6 +36,7 @@ public class UI_Manager : MonoBehaviour {
 	private Color none = new Color32(0,0,0,0);
 
 	void Start(){
+		Cursor.visible = false;
 		EventSystem.current.firstSelectedGameObject = HowtoPlay;
 	}
 
