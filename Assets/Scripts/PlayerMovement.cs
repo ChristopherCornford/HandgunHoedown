@@ -19,11 +19,11 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed = 12f;
 	public float turnSpeed = 180f;
 	public bool canBeStunned;
-	[Range (0, 5)]
-	public float walkSpeed;
-	[Range (0, 5)]
-	public float aimSpeed;
 	[Range (0, 10)]
+	public float walkSpeed;
+	[Range (0, 10)]
+	public float aimSpeed;
+	[Range (0, 15)]
 	public float sprintSpeed;
 	[Range (0, 3)]
 	public float stunTimer;
