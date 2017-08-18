@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float sprintCD = 1.5f;
 	public bool isAbleToSprint;
 	public bool isSprinting;
+	public bool canAim;
 	public bool isAiming;
 	public Slider slider;
 	public Image fillImage;
@@ -114,7 +115,6 @@ public class PlayerMovement : MonoBehaviour {
 	private void Start () {
 		gunHolder.SetActive(false);
 		line = lineRend.GetComponent<LineRenderer> ();
-		line.enabled = false;
 		canBeStunned = true;
 
 		movementKeyAxisName = "Player" + m_playerNumber + "KeyMove";
@@ -155,7 +155,6 @@ public class PlayerMovement : MonoBehaviour {
 			Aim ();
 		}
 		if (Input.GetButton (aimJoyAxisName)) {
-			print ("maybe?");
 			Aim ();
 		}
 
@@ -171,14 +170,15 @@ public class PlayerMovement : MonoBehaviour {
 		}
 			
 		StartCoroutine (checkForAiming(0.1f));
-		//isAiming = false;
+		isAiming = false;
+		canAim = true;
 		StartCoroutine (checkForSprinting(0.1f));
 		isSprinting = false;
 
 	}
 
 	void FixedUpdate () {
-		line.enabled = false;
+		
 		Move ();
 		Turn ();
 	}
@@ -259,6 +259,8 @@ public class PlayerMovement : MonoBehaviour {
 				print ("Boom, you're dead!");
 				if (hit.transform.tag == "Cowboy") {
 					hit.transform.SendMessage ("YouAreDead");
+					canAim = false;
+					line.enabled = false;
 					StartCoroutine(GameManager.RoundEnd(m_playerNumber));
 				}
 				else {SoundManager.Miss();}
@@ -267,12 +269,18 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	private void Aim () {
-		if (hasGun == true) {
+		if (hasGun == true && canAim == true) {
 			isAiming = true;
-			line.enabled = true;
+			RaycastHit aimLine;
+
+			if (Physics.Raycast (transform.position, transform.forward, out aimLine)) {
+				if (aimLine.collider) {
+					line.SetPosition (0, new Vector3 (0, 0, aimLine.distance));
+				}
+			} else {
+				line.SetPosition(0, new Vector3( 0, 0 , 100f));
+			}
 		
-			Ray aimLine = new Ray (transform.position, transform.forward);		
-			Debug.DrawRay (transform.position, transform.forward, Color.black);
 		}
 
 		if ((hasGun == false) && (isAbleToSprint == true)){
@@ -285,18 +293,20 @@ public class PlayerMovement : MonoBehaviour {
 
 		switch (isAiming) {
 		case true:
+			line.enabled = true;
 			speed = aimSpeed;
 			turnSpeed = 90f;
 			break;
 
 		case false:
+			line.enabled = false;
 			speed = walkSpeed;
 			turnSpeed = 180f;
 			break;
 
 		}
 		yield return new WaitForSeconds (sec);
-		isAiming = false;
+		//isAiming = false;
 	}
 	
 	public IEnumerator checkForSprinting (float sec){

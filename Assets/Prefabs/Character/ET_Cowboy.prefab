@@ -378,7 +378,6 @@ GameObject:
   - component: {fileID: 4253690509703242}
   - component: {fileID: 65209000511701310}
   - component: {fileID: 120616403452332896}
-  - component: {fileID: 114404282210656940}
   m_Layer: 0
   m_Name: LineRend
   m_TagString: Untagged
@@ -2067,18 +2066,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114404282210656940
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1310424187029480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b67acba36ea73a341a87918be00386f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rend: {fileID: 0}
 --- !u!114 &114591569623419212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2203,7 +2190,7 @@ LineRenderer:
   - {x: 0, y: 1, z: 0}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.025
+    widthMultiplier: 0.05
     widthCurve:
       serializedVersion: 2
       m_Curve:
