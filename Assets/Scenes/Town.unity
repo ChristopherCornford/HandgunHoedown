@@ -216,7 +216,22 @@ Prefab:
     - target: {fileID: 108629302293449910, guid: 3617ec15ec463994e9fdb6849d0f4d1c,
         type: 2}
       propertyPath: m_Intensity
-      value: 2.5
+      value: 1.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 108629302293449910, guid: 3617ec15ec463994e9fdb6849d0f4d1c,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.49149746
+      objectReference: {fileID: 0}
+    - target: {fileID: 108629302293449910, guid: 3617ec15ec463994e9fdb6849d0f4d1c,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.916
+      objectReference: {fileID: 0}
+    - target: {fileID: 108629302293449910, guid: 3617ec15ec463994e9fdb6849d0f4d1c,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.009
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3617ec15ec463994e9fdb6849d0f4d1c, type: 2}
@@ -2552,7 +2567,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1580477454799414, guid: babc2ef9a30a28e4db8c7e78b868e636, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114742149851746854, guid: babc2ef9a30a28e4db8c7e78b868e636,
         type: 2}
