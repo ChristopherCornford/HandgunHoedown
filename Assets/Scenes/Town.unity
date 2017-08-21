@@ -746,6 +746,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1763753578979022, guid: 475210ac25b7d0e458e360e8db64db75,
     type: 2}
   m_PrefabInternal: {fileID: 570512610}
+--- !u!1 &1010114188 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1871262257534818, guid: babc2ef9a30a28e4db8c7e78b868e636,
+    type: 2}
+  m_PrefabInternal: {fileID: 1338573233}
 --- !u!1 &1036601460 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1707389926077884, guid: 20f9431ff73eb4bc4a2559b900b0ec66,
@@ -2472,11 +2477,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1613835512072500, guid: babc2ef9a30a28e4db8c7e78b868e636,
     type: 2}
   m_PrefabInternal: {fileID: 1338573233}
---- !u!1 &1338573237 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1110626363514506, guid: babc2ef9a30a28e4db8c7e78b868e636,
-    type: 2}
-  m_PrefabInternal: {fileID: 1338573233}
 --- !u!1 &1338573238 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1189504480747464, guid: babc2ef9a30a28e4db8c7e78b868e636,
@@ -3269,7 +3269,7 @@ Prefab:
         type: 2}
       propertyPath: PauseGameMenu
       value: 
-      objectReference: {fileID: 1338573237}
+      objectReference: {fileID: 1010114188}
     - target: {fileID: 114546717615237306, guid: 73f1f19027d26ad489fc76201f47c314,
         type: 2}
       propertyPath: Resume
