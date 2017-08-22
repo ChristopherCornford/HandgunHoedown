@@ -78,8 +78,7 @@ public class GameManager : MonoBehaviour {
 
 	public IEnumerator RoundEnd(int playerindex){
 		SetPlayerInput(false);
-		// TODO: Make the music fade!
-		SoundManager.FadeMusic();
+		SoundManager.SetMusic(2);
 		switch (playerindex){
 			case 1:
 				player1Score++;
@@ -108,7 +107,6 @@ public class GameManager : MonoBehaviour {
 				yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player2Win, 3f));
 				break;
 		}
-		// TODO: Change music cue
 		UI_Manager.EndGameMenu.SetActive(true);
 		EventSystem.current.SetSelectedGameObject(GameObject.Find("PlayAgain_B"));
 	}

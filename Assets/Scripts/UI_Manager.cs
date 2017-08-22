@@ -46,7 +46,6 @@ public class UI_Manager : MonoBehaviour {
 	}
 
 	public IEnumerator RoundStartCountdown(){
-		//TODO: FIX COUNTDOWN TO GET RID OF FLASHING
 		int countDown = 4;
 		Countdown.GetComponent<Animator>().Play("All_Countdown_Attack", 0, 0f);
 		while (countDown > 0){

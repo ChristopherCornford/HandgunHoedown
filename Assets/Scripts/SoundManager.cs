@@ -72,16 +72,14 @@ public class SoundManager : MonoBehaviour {
 
 	public void SetMusic(int track){
 		music_source.volume = 1f;
-		switch (track){
-			// 0 is the main usual track
-			case 0:
-				music_source.clip = music_tracks[0];
-				break;
-			// 1 is the special last round variant
-			case 1:
-				music_source.clip = music_tracks[1];
-				break;
+		// 0 is the main usual track
+		// 1 is the special last round variant
+		// 2 is the end of round cue
+		if (track == 2){
+			music_source.loop = false;
 		}
+		else {music_source.loop = true;}
+		music_source.clip = music_tracks[track];
 		music_source.Play();
 	}
 
