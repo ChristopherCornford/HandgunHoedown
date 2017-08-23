@@ -339,6 +339,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (bulletCount == 0 ) {
 			Reset ();
 			StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
+			GunSpawn.numGuns--;
 			}
 		yield return new WaitForSeconds (0.1f);
 	}
@@ -364,6 +365,7 @@ public class PlayerMovement : MonoBehaviour {
 			if (hasGun == true) {
 				Reset ();
 				StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
+				GunSpawn.numGuns--;
 			}
 			StartCoroutine (Stun (0.01f));
 		}
