@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour {
 	[Header("Gun References & Variables")]
 	public GameObject gunHolder;
 	public GameObject gunPickup;
-	public GameObject gun;
+	public ParticleSystem gunParticle;
 	public bool hasGun;
 	public int bulletCount;
 
@@ -251,6 +251,7 @@ public class PlayerMovement : MonoBehaviour {
 			StartCoroutine (checkForBullets (0.1f));
 			UI_Manager.removeBullets(m_playerNumber, bulletCount);
 			SoundManager.Shoot ();
+			gunParticle.Play();
 			RaycastHit hit;
 			Ray gunShot = new Ray (transform.position, transform.forward);
 		
