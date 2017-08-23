@@ -7,6 +7,7 @@ public class GunSpawn : MonoBehaviour {
 	public static GunSpawn instance ; 
 	public GameObject[] spawnPoints;
 	public GameObject currentPoint;
+	private GameObject nonpoint;
 	int index;
 	public GameObject gun;
 	public GameObject gunPrefab;
@@ -25,32 +26,47 @@ public class GunSpawn : MonoBehaviour {
 		
 	public IEnumerator SpawnGun (float delay) {
 		yield return new WaitForSeconds(delay);
-		currentPoint = spawnPoints[Random.Range (0, spawnPoints.Length)];
-		Debug.Log(currentPoint.name);
-		gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
-		numGuns++;
-		StartCoroutine ("checkForGuns", 0.01f);
-		// yield return new WaitForSeconds (sec);
-		OffScreenIndicator.AddIndicator(currentPoint.transform, 0);
-	}
-
-	public void RemoveIndicator(){
-		OffScreenIndicator.RemoveIndicator(currentPoint.transform);
-	}
-	public IEnumerator checkForGuns (float sec) {
 		switch (numGuns) {
 		case 0:
-
+			yield return new WaitForSeconds (delay);
+			currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
+			Debug.Log (currentPoint.name);
+			if (nonpoint != currentPoint) {
+				gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+			}
+			nonpoint = currentPoint;
+			numGuns++;
+			StartCoroutine ("SpawnGun", delay);
+			// yield return new WaitForSeconds (sec);
+			OffScreenIndicator.AddIndicator(currentPoint.transform, 0);
 			break;
 
 		case 1:
-			StartCoroutine ("SpawnGun", 1f);
+			yield return new WaitForSeconds (delay);
+			currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
+			Debug.Log (currentPoint.name);
+			if (nonpoint != currentPoint) {
+				gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+			}
+			nonpoint = currentPoint;
+			numGuns++;
+			StartCoroutine ("SpawnGun", delay);
+			// yield return new WaitForSeconds (sec);
+			OffScreenIndicator.AddIndicator(currentPoint.transform, 0);
 			break;
 
 		case 2:
 
 			break;
 		}
+
+	}
+
+	public void RemoveIndicator(){
+		OffScreenIndicator.RemoveIndicator(currentPoint.transform);
+	}
+	public IEnumerator checkForGuns (float sec) {
+		
 		yield return new WaitForSeconds (0.1f);
 	}
 }

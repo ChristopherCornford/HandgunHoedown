@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour {
 		}
 		else {SoundManager.SetMusic(0);}
 		SetPlayerInput(true);
+		GunSpawn.numGuns = 0;
 		StartCoroutine(GunSpawn.SpawnGun(Gun_Spawn_Wait));
 
 		yield return null;
