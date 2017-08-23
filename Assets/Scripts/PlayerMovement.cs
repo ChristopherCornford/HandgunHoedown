@@ -90,6 +90,7 @@ public class PlayerMovement : MonoBehaviour {
 		UI_Manager = GameObject.Find("/Managers/UI_Manager").GetComponent<UI_Manager>();
 		GunSpawn = GameObject.Find ("/Managers/GunSpawner").GetComponent<GunSpawn> ();
 		SoundManager = GameObject.Find ("/Managers/SoundManager").GetComponent<SoundManager> ();
+		line = lineRend.GetComponent<LineRenderer> ();
 	}
 
 	private void OnEnable() {
@@ -114,7 +115,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void Start () {
 		gunHolder.SetActive(false);
-		line = lineRend.GetComponent<LineRenderer> ();
 		canBeStunned = true;
 
 		movementKeyAxisName = "Player" + m_playerNumber + "KeyMove";
@@ -129,7 +129,6 @@ public class PlayerMovement : MonoBehaviour {
 		turnJoyAxisNameY = "Player" + m_playerNumber + "JoyTurnY";
 		aimJoyAxisName = "Player" + m_playerNumber + "JoyAim";
 		actionJoyAxisName = "Player" + m_playerNumber + "JoyAction";
-
 	}
 
 	private void Update () {

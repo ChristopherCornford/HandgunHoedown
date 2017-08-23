@@ -56,13 +56,16 @@ public class GameManager : MonoBehaviour {
 		StartCoroutine (RoundStart());
 	}
 	private IEnumerator RoundStart(){
+		// Destroys guns already spawned on the field
+		DestroyAllGuns();
 		SetPlayerInput(false);
 		for (int i = 0; i < player.Length; i++) {
 			player[i].instance.transform.position = player[i].spawnPoint.position;
 			player[i].instance.transform.rotation = player[i].spawnPoint.rotation;
-			player[i].instance.GetComponent<PlayerMovement>().Reset();
-			player[i].instance.GetComponent<PlayerMovement> ().sprintCD = 1.5f;
-			player[i].instance.GetComponent<PlayerMovement> ().SetSprintUI ();
+			PlayerMovement PlayerMovement = player[i].instance.GetComponent<PlayerMovement>();
+			PlayerMovement.Reset();
+			PlayerMovement.sprintCD = 1.5f;
+			PlayerMovement.SetSprintUI ();
 		}
 		/* Passing 3 to this uses another case that runs a for loop and 
 		removes all bullets from both players */
@@ -73,17 +76,11 @@ public class GameManager : MonoBehaviour {
 		SetPlayerInput(true);
 		GunSpawn.numGuns = 0;
 		StartCoroutine(GunSpawn.SpawnGun(Gun_Spawn_Wait));
-
 		yield return null;
 	}
 
 	public IEnumerator RoundEnd(int playerindex){
-		SetPlayerInput(false);
-		GameObject[] guns = GameObject.FindGameObjectsWithTag("Gun");
-		for (int i = 0; i < guns.Length; i++){
-			Destroy(guns[i]);
-			GunSpawn.RemoveIndicator();
-		}
+		SetPlayerInput(false);	
 		SoundManager.SetMusic(2);
 		switch (playerindex){
 			case 1:
@@ -140,5 +137,12 @@ public class GameManager : MonoBehaviour {
 			targets [i] = player[i].instance.transform;
 		}
 		t_camera.GetComponent<CameraControl>().m_Targets = targets;
+	}
+	private void DestroyAllGuns(){
+		GameObject[] guns = GameObject.FindGameObjectsWithTag("Gun");
+		for (int i = 0; i < guns.Length; i++){
+			Destroy(guns[i]);
+			GunSpawn.RemoveIndicator();
+		}
 	}
 }
