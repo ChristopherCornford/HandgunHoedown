@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour {
 		SpawnAllPlayers ();
 		SetCameraTargets ();
 		cameraControl.SetStartPositionAndSize ();
+		SetPlayerInput(false);
 	}
 
 	/*** PAUSING THE GAME ***/
@@ -51,8 +52,8 @@ public class GameManager : MonoBehaviour {
 	/*** ROUND LOGIC ***/
 	// Used to start the game from the how-to-play screen
 	public void RoundStartUtil(){
-		StartCoroutine (RoundStart());
 		GameObject.Find("PlayCanvas/How-to-Play").SetActive(false);
+		StartCoroutine (RoundStart());
 	}
 	private IEnumerator RoundStart(){
 		SetPlayerInput(false);
@@ -60,15 +61,14 @@ public class GameManager : MonoBehaviour {
 			player[i].instance.transform.position = player[i].spawnPoint.position;
 			player[i].instance.transform.rotation = player[i].spawnPoint.rotation;
 			player[i].instance.GetComponent<PlayerMovement>().Reset();
-			player [i].instance.GetComponent<PlayerMovement> ().sprintCD = 1.5f;
+			player[i].instance.GetComponent<PlayerMovement> ().sprintCD = 1.5f;
 			player[i].instance.GetComponent<PlayerMovement> ().SetSprintUI ();
 		}
-		// Passing 3 to this uses another case that runs a for loop and removes all bullets
+		/* Passing 3 to this uses another case that runs a for loop and 
+		removes all bullets from both players */
 		UI_Manager.removeBullets(3,0);
 		yield return StartCoroutine(UI_Manager.RoundStartCountdown());
-		if(player1Score == 2 | player2Score == 2){
-			SoundManager.SetMusic(1);
-		}
+		if(player1Score == 2 | player2Score == 2){SoundManager.SetMusic(1);}
 		else {SoundManager.SetMusic(0);}
 		SetPlayerInput(true);
 		GunSpawn.numGuns = 0;
@@ -79,17 +79,20 @@ public class GameManager : MonoBehaviour {
 
 	public IEnumerator RoundEnd(int playerindex){
 		SetPlayerInput(false);
+		GameObject[] guns = GameObject.FindGameObjectsWithTag("Gun");
+		for (int i = 0; i < guns.Length; i++){
+			Destroy(guns[i]);
+			GunSpawn.RemoveIndicator();
+		}
 		SoundManager.SetMusic(2);
 		switch (playerindex){
 			case 1:
 				player1Score++;
 				UI_Manager.giveStars(playerindex, player1Score);
-				// yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player1Win, 3f));
 				break;
 			case 2:
 				player2Score++;
 				UI_Manager.giveStars(playerindex, player2Score);
-				// yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player2Win, 3f));
 				break;
 		}
 		yield return new WaitForSeconds(Round_End_Wait);
