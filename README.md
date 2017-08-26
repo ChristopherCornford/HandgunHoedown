@@ -9,6 +9,7 @@ _**Handgun Hoedown**_ is a local multiplayer western action game about having a 
 - Using keyboard, some animations don't trigger
 - On Mac, when going through level select the game will hang for a moment, but will function regularly after that
 - The game is tested with Xbox 360 Controllers, but the game can be played with a Logitech F310, though turning doesn't work properly
+- If both players shoot each other at the EXACT SAME TIME, their death animation won't play until the beginning of the next round. They will then spend that round floating around on their backs, and the revolver will appear to be shooting out of their crotch. We did not fix this because it is hilarious.
 
 ## Credits
 
