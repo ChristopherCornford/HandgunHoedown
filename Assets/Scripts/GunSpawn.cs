@@ -35,6 +35,7 @@ public class GunSpawn : MonoBehaviour {
 				gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
 			}
 			nonpoint = currentPoint;
+			Debug.Log (nonpoint.name);
 			numGuns++;
 			StartCoroutine ("SpawnGun", delay);
 			// yield return new WaitForSeconds (sec);
@@ -49,6 +50,7 @@ public class GunSpawn : MonoBehaviour {
 				gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
 			}
 			nonpoint = currentPoint;
+			Debug.Log (nonpoint.name);
 			numGuns++;
 			StartCoroutine ("SpawnGun", delay);
 			// yield return new WaitForSeconds (sec);
