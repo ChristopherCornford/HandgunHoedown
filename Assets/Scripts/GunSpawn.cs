@@ -33,26 +33,36 @@ public class GunSpawn : MonoBehaviour {
 			Debug.Log ("Current Point is : " + currentPoint.name);
 			if (currentPoint != nonpoint) {
 				gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+				numGuns++;
+				Debug.Log ("Number of Guns in play: " + numGuns);
 			} else {
 				currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
 				Debug.Log ("Current Point is : " + currentPoint.name);
 				if (currentPoint != nonpoint) {
 					gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+					numGuns++;
+					Debug.Log ("Number of Guns in play: " + numGuns);
 				} else {
 					currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
 					Debug.Log ("Current Point is : " + currentPoint.name);
 					if (currentPoint != nonpoint) {
 						gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+						numGuns++;
+						Debug.Log ("Number of Guns in play: " + numGuns);
 					} else {
 						currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
 						Debug.Log ("Current Point is : " + currentPoint.name);
 						if (currentPoint != nonpoint) {
 							gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+							numGuns++;
+							Debug.Log ("Number of Guns in play: " + numGuns);
 						} else {
 							currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
 							Debug.Log ("Current Point is : " + currentPoint.name);
 							if (currentPoint != nonpoint) {
 								gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+								numGuns++;
+								Debug.Log ("Number of Guns in play: " + numGuns);
 							}
 						}
 					}
@@ -60,7 +70,6 @@ public class GunSpawn : MonoBehaviour {
 			}
 			nonpoint = currentPoint;
 			Debug.Log ("Nonpoint is : " + nonpoint.name);
-			numGuns++;
 			StartCoroutine ("SpawnGun", delay);
 			// yield return new WaitForSeconds (sec);
 			OffScreenIndicator.AddIndicator(currentPoint.transform, 0);
@@ -72,26 +81,36 @@ public class GunSpawn : MonoBehaviour {
 			Debug.Log ("Current Point is : " + currentPoint.name);
 			if (currentPoint != nonpoint) {
 				gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+				numGuns++;
+				Debug.Log ("Number of Guns in play: " + numGuns);
 			} else {
 				currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
 				Debug.Log ("Current Point is : " + currentPoint.name);
 				if (currentPoint != nonpoint) {
 					gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+					numGuns++;
+					Debug.Log ("Number of Guns in play: " + numGuns);
 				} else {
 					currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
 					Debug.Log ("Current Point is : " + currentPoint.name);
 					if (currentPoint != nonpoint) {
 						gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+						numGuns++;
+						Debug.Log ("Number of Guns in play: " + numGuns);
 					} else {
 						currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
 						Debug.Log ("Current Point is : " + currentPoint.name);
 						if (currentPoint != nonpoint) {
 							gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+							numGuns++;
+							Debug.Log ("Number of Guns in play: " + numGuns);
 						} else {
 							currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
 							Debug.Log ("Current Point is : " + currentPoint.name);
 							if (currentPoint != nonpoint) {
 								gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+								numGuns++;
+								Debug.Log ("Number of Guns in play: " + numGuns);
 							}
 						}
 					}
@@ -99,7 +118,6 @@ public class GunSpawn : MonoBehaviour {
 			}
 			nonpoint = currentPoint;
 			Debug.Log ("Nonpoint is : " + nonpoint.name);
-			numGuns++;
 			StartCoroutine ("SpawnGun", delay);
 			// yield return new WaitForSeconds (sec);
 			OffScreenIndicator.AddIndicator(currentPoint.transform, 0);
