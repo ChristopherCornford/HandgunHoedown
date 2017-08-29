@@ -40,11 +40,13 @@ public class GameManager : MonoBehaviour {
 		Debug.Log("The game is now paused!");
 		SetPlayerInput(false);
 		UI_Manager.PauseGameMenu.SetActive(true);
+		SoundManager.music_source.Pause();
 		EventSystem.current.SetSelectedGameObject(GameObject.Find("Resume_B"));
 		isPaused = true;
 	}
 	public void Resume(){
 		UI_Manager.PauseGameMenu.SetActive(false);
+		SoundManager.music_source.Play();
 		isPaused = false;
 		SetPlayerInput(true);
 	}
