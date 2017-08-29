@@ -257,6 +257,7 @@ public class PlayerMovement : MonoBehaviour {
 		
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
 				if (hit.transform.tag == "Cowboy") {
+					cowboy_anim.SetBool("isMoving", false);
 					hit.transform.SendMessage ("YouAreDead");
 					canAim = false;
 					line.enabled = false;
@@ -382,7 +383,6 @@ public class PlayerMovement : MonoBehaviour {
 		hasGun = false;
 		gunHolder.SetActive (false);
 		bulletCount = 0;
-		UI_Manager.removeBullets(m_playerNumber, bulletCount);
 	}
 
 	public void SetSprintUI() {
