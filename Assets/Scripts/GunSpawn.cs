@@ -30,12 +30,12 @@ public class GunSpawn : MonoBehaviour {
 		case 0:
 			yield return new WaitForSeconds (delay);
 			currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
-			Debug.Log (currentPoint.name);
-			if (nonpoint != currentPoint) {
+			Debug.Log ("Current Point is : " + currentPoint.name);
+			if (currentPoint != nonpoint) {
 				gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
 			}
 			nonpoint = currentPoint;
-			Debug.Log (nonpoint.name);
+			Debug.Log ("Nonpoint is : " + nonpoint.name);
 			numGuns++;
 			StartCoroutine ("SpawnGun", delay);
 			// yield return new WaitForSeconds (sec);
@@ -45,12 +45,12 @@ public class GunSpawn : MonoBehaviour {
 		case 1:
 			yield return new WaitForSeconds (delay);
 			currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
-			Debug.Log (currentPoint.name);
-			if (nonpoint != currentPoint) {
+			Debug.Log ("Current Point is : " + currentPoint.name);
+			if (currentPoint != nonpoint) {
 				gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
 			}
 			nonpoint = currentPoint;
-			Debug.Log (nonpoint.name);
+			Debug.Log ("Nonpoint is : " + nonpoint.name);
 			numGuns++;
 			StartCoroutine ("SpawnGun", delay);
 			// yield return new WaitForSeconds (sec);
