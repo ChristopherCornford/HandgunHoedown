@@ -9,18 +9,18 @@ public class GameManager : MonoBehaviour {
 	public SoundManager SoundManager;
 	public GunSpawn GunSpawn;
 	
-	[HeaderAttribute("Gun spawn delay")]
+	[Header("Gun spawn delay")]
 	public float Gun_Spawn_Wait = 5.0f;
 	
-	[HeaderAttribute("Time between rounds")]
+	[Header("Time between rounds")]
 	public float Round_End_Wait = 3.0f;
 	
-	[HeaderAttribute("Player Data")]
+	[Header("Player Data")]
 	public int player1Score;
 	public int player2Score;
 	public bool isPaused = false;
 	
-	[HeaderAttribute("Player References")]
+	[Header("Player References")]
 	public PlayerManager[] player;
 	public GameObject playerPrefab;
 	public CameraControl cameraControl;
@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
 	public void Pause(){
 		Debug.Log("The game is now paused!");
 		SetPlayerInput(false);
+		Time.timeScale = 0.0f;
 		UI_Manager.PauseGameMenu.SetActive(true);
 		SoundManager.music_source.Pause();
 		EventSystem.current.SetSelectedGameObject(GameObject.Find("Resume_B"));
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour {
 		SoundManager.music_source.Play();
 		isPaused = false;
 		SetPlayerInput(true);
+		Time.timeScale = 1.0f;
 	}
 
 	/*** ROUND LOGIC ***/
