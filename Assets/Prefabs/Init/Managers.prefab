@@ -703,6 +703,7 @@ MonoBehaviour:
   currentPoint: {fileID: 0}
   gun: {fileID: 0}
   gunPrefab: {fileID: 1318780201197668, guid: a05bd02028784744eb592d9bfb66198d, type: 2}
+  numGuns: 0
   OffScreenIndicatorObj: {fileID: 0}
 --- !u!114 &114961153994748836
 MonoBehaviour:

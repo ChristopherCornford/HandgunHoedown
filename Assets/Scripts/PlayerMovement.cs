@@ -256,7 +256,6 @@ public class PlayerMovement : MonoBehaviour {
 			Ray gunShot = new Ray (transform.position, transform.forward);
 		
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
-				print ("Boom, you're dead!");
 				if (hit.transform.tag == "Cowboy") {
 					hit.transform.SendMessage ("YouAreDead");
 					canAim = false;
@@ -353,7 +352,6 @@ public class PlayerMovement : MonoBehaviour {
 		}
 		if ((collider.gameObject.tag == "Gun") && (hasGun == false)) {
 			cowboy_anim.SetBool("hasGun", true);
-			print ("Got It!");
 			gunHolder.SetActive(true);
 			hasGun = true;
 			bulletCount = 6;

@@ -33,6 +33,30 @@ public class GunSpawn : MonoBehaviour {
 			Debug.Log ("Current Point is : " + currentPoint.name);
 			if (currentPoint != nonpoint) {
 				gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+			} else {
+				currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
+				Debug.Log ("Current Point is : " + currentPoint.name);
+				if (currentPoint != nonpoint) {
+					gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+				} else {
+					currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
+					Debug.Log ("Current Point is : " + currentPoint.name);
+					if (currentPoint != nonpoint) {
+						gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+					} else {
+						currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
+						Debug.Log ("Current Point is : " + currentPoint.name);
+						if (currentPoint != nonpoint) {
+							gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+						} else {
+							currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
+							Debug.Log ("Current Point is : " + currentPoint.name);
+							if (currentPoint != nonpoint) {
+								gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+							}
+						}
+					}
+				}
 			}
 			nonpoint = currentPoint;
 			Debug.Log ("Nonpoint is : " + nonpoint.name);
@@ -48,6 +72,30 @@ public class GunSpawn : MonoBehaviour {
 			Debug.Log ("Current Point is : " + currentPoint.name);
 			if (currentPoint != nonpoint) {
 				gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+			} else {
+				currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
+				Debug.Log ("Current Point is : " + currentPoint.name);
+				if (currentPoint != nonpoint) {
+					gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+				} else {
+					currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
+					Debug.Log ("Current Point is : " + currentPoint.name);
+					if (currentPoint != nonpoint) {
+						gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+					} else {
+						currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
+						Debug.Log ("Current Point is : " + currentPoint.name);
+						if (currentPoint != nonpoint) {
+							gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+						} else {
+							currentPoint = spawnPoints [Random.Range (0, spawnPoints.Length)];
+							Debug.Log ("Current Point is : " + currentPoint.name);
+							if (currentPoint != nonpoint) {
+								gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+							}
+						}
+					}
+				}
 			}
 			nonpoint = currentPoint;
 			Debug.Log ("Nonpoint is : " + nonpoint.name);
