@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour {
 				UI_Manager.giveStars(playerindex, player2Score);
 				break;
 		}
+		GunSpawn.numGuns = 0;
 		yield return new WaitForSeconds(Round_End_Wait);
 		if (player1Score == 3 || player2Score == 3){StartCoroutine(GameEnd(playerindex));}
 		else {StartCoroutine("RoundStart");}
