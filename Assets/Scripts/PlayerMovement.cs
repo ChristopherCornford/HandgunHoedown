@@ -356,6 +356,7 @@ public class PlayerMovement : MonoBehaviour {
 			hasGun = true;
 			bulletCount = 6;
 			UI_Manager.giveBullets(m_playerNumber);
+			SoundManager.PickupGun();
 		}
 	}
 	void YouAreDead () {
