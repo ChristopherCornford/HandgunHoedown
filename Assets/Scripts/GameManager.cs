@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour {
 		SetCameraTargets ();
 		cameraControl.SetStartPositionAndSize ();
 		SetPlayerInput(false);
+		EventSystem.current.SetSelectedGameObject(GameObject.Find("HowToPlay_Button"));
 	}
 
 	/*** PAUSING THE GAME ***/
