@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour {
 	public GameObject t_camera;
 
 	/* private */
+	[HideInInspector]
+	public Coroutine currentGunSpawn;
 	
 	void Start () {
 		SpawnAllPlayers ();
@@ -84,6 +86,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public IEnumerator RoundEnd(int playerindex){
+		StopCoroutine(currentGunSpawn);
 		SetPlayerInput(false);	
 		SoundManager.SetMusic(2);
 		switch (playerindex){
@@ -136,9 +139,7 @@ public class GameManager : MonoBehaviour {
 	private void SetCameraTargets() {
 		
 		Transform[] targets = new Transform[player.Length];
-
 		for (int i = 0; i < targets.Length; i++) {
-
 			targets [i] = player[i].instance.transform;
 		}
 		t_camera.GetComponent<CameraControl>().m_Targets = targets;
@@ -147,7 +148,7 @@ public class GameManager : MonoBehaviour {
 		GameObject[] guns = GameObject.FindGameObjectsWithTag("Gun");
 		for (int i = 0; i < guns.Length; i++){
 			Destroy(guns[i]);
-			GunSpawn.RemoveIndicator();
+			GunSpawn.RemoveIndicator(guns[i].GetComponent<GunPickupDestroyer>().myTransform);
 		}
 	}
 }

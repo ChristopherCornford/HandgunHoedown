@@ -4,11 +4,11 @@ using UnityEngine;
 using Greyman;
 
 public class GunSpawn : MonoBehaviour {
+	private GameManager GameManager;
 	public static GunSpawn instance ; 
 	public GameObject[] spawnPoints;
 	public GameObject currentPoint;
 	private GameObject nonpoint;
-	int index;
 	public GameObject gun;
 	public GameObject gunPrefab;
 	private Vector3 pos;
@@ -21,6 +21,7 @@ public class GunSpawn : MonoBehaviour {
 	private OffScreenIndicator OffScreenIndicator;
 
 	void Start(){
+		GameManager = GameObject.Find("/Managers/GameManager").GetComponent<GameManager>();
 		OffScreenIndicator = OffScreenIndicatorObj.GetComponent<OffScreenIndicator>();
 	}
 		
@@ -33,6 +34,7 @@ public class GunSpawn : MonoBehaviour {
 			Debug.Log ("Current Point is : " + currentPoint.name);
 			if (currentPoint != nonpoint) {
 				gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+				gun.GetComponent<GunPickupDestroyer>().myTransform = currentPoint.transform;
 				numGuns++;
 				Debug.Log ("Number of Guns in play: " + numGuns);
 			} else {
@@ -40,6 +42,7 @@ public class GunSpawn : MonoBehaviour {
 				Debug.Log ("Current Point is : " + currentPoint.name);
 				if (currentPoint != nonpoint) {
 					gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+					gun.GetComponent<GunPickupDestroyer>().myTransform = currentPoint.transform;
 					numGuns++;
 					Debug.Log ("Number of Guns in play: " + numGuns);
 				} else {
@@ -47,6 +50,7 @@ public class GunSpawn : MonoBehaviour {
 					Debug.Log ("Current Point is : " + currentPoint.name);
 					if (currentPoint != nonpoint) {
 						gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+						gun.GetComponent<GunPickupDestroyer>().myTransform = currentPoint.transform;
 						numGuns++;
 						Debug.Log ("Number of Guns in play: " + numGuns);
 					} else {
@@ -54,6 +58,7 @@ public class GunSpawn : MonoBehaviour {
 						Debug.Log ("Current Point is : " + currentPoint.name);
 						if (currentPoint != nonpoint) {
 							gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+							gun.GetComponent<GunPickupDestroyer>().myTransform = currentPoint.transform;
 							numGuns++;
 							Debug.Log ("Number of Guns in play: " + numGuns);
 						} else {
@@ -61,6 +66,7 @@ public class GunSpawn : MonoBehaviour {
 							Debug.Log ("Current Point is : " + currentPoint.name);
 							if (currentPoint != nonpoint) {
 								gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+								gun.GetComponent<GunPickupDestroyer>().myTransform = currentPoint.transform;
 								numGuns++;
 								Debug.Log ("Number of Guns in play: " + numGuns);
 							}
@@ -70,8 +76,7 @@ public class GunSpawn : MonoBehaviour {
 			}
 			nonpoint = currentPoint;
 			Debug.Log ("Nonpoint is : " + nonpoint.name);
-			StartCoroutine ("SpawnGun", delay);
-			// yield return new WaitForSeconds (sec);
+			GameManager.currentGunSpawn = StartCoroutine ("SpawnGun", delay);
 			OffScreenIndicator.AddIndicator(currentPoint.transform, 0);
 			break;
 
@@ -81,6 +86,7 @@ public class GunSpawn : MonoBehaviour {
 			Debug.Log ("Current Point is : " + currentPoint.name);
 			if (currentPoint != nonpoint) {
 				gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+				gun.GetComponent<GunPickupDestroyer>().myTransform = currentPoint.transform;
 				numGuns++;
 				Debug.Log ("Number of Guns in play: " + numGuns);
 			} else {
@@ -88,6 +94,7 @@ public class GunSpawn : MonoBehaviour {
 				Debug.Log ("Current Point is : " + currentPoint.name);
 				if (currentPoint != nonpoint) {
 					gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+					gun.GetComponent<GunPickupDestroyer>().myTransform = currentPoint.transform;
 					numGuns++;
 					Debug.Log ("Number of Guns in play: " + numGuns);
 				} else {
@@ -95,6 +102,7 @@ public class GunSpawn : MonoBehaviour {
 					Debug.Log ("Current Point is : " + currentPoint.name);
 					if (currentPoint != nonpoint) {
 						gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+						gun.GetComponent<GunPickupDestroyer>().myTransform = currentPoint.transform;
 						numGuns++;
 						Debug.Log ("Number of Guns in play: " + numGuns);
 					} else {
@@ -102,6 +110,7 @@ public class GunSpawn : MonoBehaviour {
 						Debug.Log ("Current Point is : " + currentPoint.name);
 						if (currentPoint != nonpoint) {
 							gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+							gun.GetComponent<GunPickupDestroyer>().myTransform = currentPoint.transform;
 							numGuns++;
 							Debug.Log ("Number of Guns in play: " + numGuns);
 						} else {
@@ -109,6 +118,7 @@ public class GunSpawn : MonoBehaviour {
 							Debug.Log ("Current Point is : " + currentPoint.name);
 							if (currentPoint != nonpoint) {
 								gun = Instantiate (gunPrefab, currentPoint.transform.position, currentPoint.transform.rotation) as GameObject;
+								gun.GetComponent<GunPickupDestroyer>().myTransform = currentPoint.transform;
 								numGuns++;
 								Debug.Log ("Number of Guns in play: " + numGuns);
 							}
@@ -118,8 +128,7 @@ public class GunSpawn : MonoBehaviour {
 			}
 			nonpoint = currentPoint;
 			Debug.Log ("Nonpoint is : " + nonpoint.name);
-			StartCoroutine ("SpawnGun", delay);
-			// yield return new WaitForSeconds (sec);
+			GameManager.currentGunSpawn = StartCoroutine ("SpawnGun", delay);
 			OffScreenIndicator.AddIndicator(currentPoint.transform, 0);
 			break;
 
@@ -130,11 +139,10 @@ public class GunSpawn : MonoBehaviour {
 
 	}
 
-	public void RemoveIndicator(){
-		OffScreenIndicator.RemoveIndicator(currentPoint.transform);
+	public void RemoveIndicator(Transform myTransform){
+		OffScreenIndicator.RemoveIndicator(myTransform);
 	}
 	public IEnumerator checkForGuns (float sec) {
-		
 		yield return new WaitForSeconds (0.1f);
 	}
 }

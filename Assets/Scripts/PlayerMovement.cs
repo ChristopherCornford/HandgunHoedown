@@ -335,11 +335,10 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public IEnumerator checkForBullets ( float sec) {
-
 		if (bulletCount == 0 ) {
 			Reset ();
 			GunSpawn.numGuns--;
-			StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
+			GameManager.currentGunSpawn = StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
 			}
 		yield return new WaitForSeconds (0.1f);
 	}
@@ -349,7 +348,7 @@ public class PlayerMovement : MonoBehaviour {
 			bulletCount = 6;
 			UI_Manager.giveBullets(m_playerNumber);
 			GunSpawn.numGuns--;
-			StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
+			GameManager.currentGunSpawn = StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
 		}
 		if ((collider.gameObject.tag == "Gun") && (hasGun == false)) {
 			cowboy_anim.SetBool("hasGun", true);
@@ -371,7 +370,7 @@ public class PlayerMovement : MonoBehaviour {
 			if (hasGun == true) {
 				Reset ();
 				GunSpawn.numGuns--;
-				StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
+				GameManager.currentGunSpawn = StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
 			}
 			StartCoroutine (Stun (0.01f));
 		}
