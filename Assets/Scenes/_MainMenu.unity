@@ -3163,12 +3163,13 @@ MonoBehaviour:
   Control_Button: {fileID: 434703687}
   Keyboard_Controls: {fileID: 1040748082}
   Controller_Controls: {fileID: 1202335499}
-  Canyon_Button: {fileID: 1677855399}
+  lvl_select_button: {fileID: 1284702921}
   Levels:
   - {fileID: 1677855399}
   - {fileID: 751919846}
   - {fileID: 692716094}
   - {fileID: 557422836}
+  pause_controls: {fileID: 0}
 --- !u!224 &1861517781
 RectTransform:
   m_ObjectHideFlags: 0

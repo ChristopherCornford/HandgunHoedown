@@ -20,7 +20,7 @@ public class UI_Functions : MonoBehaviour {
 	public GameObject Controller_Controls;
 	
 	[Header("Level Select Button to Focus")]
-	public GameObject Canyon_Button;
+	public GameObject lvl_select_button;
 	
 	[Header("Levels")]
 	public GameObject[] Levels;
@@ -45,7 +45,7 @@ public class UI_Functions : MonoBehaviour {
 	public void LevelSelect(){
 		PanelCheck();
 		LevelSelect_Panel.SetActive(true);
-		EventSystem.current.SetSelectedGameObject(Canyon_Button);
+		EventSystem.current.SetSelectedGameObject(lvl_select_button);
 	}
 	public void Controls(){
 		PanelCheck();

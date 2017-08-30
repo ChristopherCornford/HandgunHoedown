@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
 	public Coroutine currentGunSpawn;
 	
 	void Start () {
+		Time.timeScale = 1.0f;
 		SpawnAllPlayers ();
 		SetCameraTargets ();
 		cameraControl.SetStartPositionAndSize ();
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private IEnumerator GameEnd(int playerindex){
-		SetPlayerInput(false);
+		SoundManager.SetMusic(3);
 		switch (playerindex){
 			case 1:
 				yield return StartCoroutine(UI_Manager.Message(UI_Manager.Player1Win, 3f));

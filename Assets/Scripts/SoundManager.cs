@@ -76,9 +76,10 @@ public class SoundManager : MonoBehaviour {
 	/* Music Manager */
 	public void SetMusic(int track){
 		music_source.volume = 1f;
-		// 0 is the main usual track
-		// 1 is the special last round variant
-		// 2 is the end of round cue
+		/* 0 is the main usual track
+		1 is the special last round variant
+		2 is the end of round cue
+		3 is the main menu music */
 		if (track == 2){
 			music_source.loop = false;
 		}

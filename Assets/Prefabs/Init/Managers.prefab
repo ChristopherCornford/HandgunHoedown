@@ -716,7 +716,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 864ef40810c9108479684eb4e9ad22bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadeTime: 0.001
   gunshots:
   - {fileID: 8300000, guid: f269eaa4e0fae0148af9845142fbe196, type: 3}
   - {fileID: 8300000, guid: 72d376443aea46e4d9e450740d107d19, type: 3}
@@ -742,4 +741,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 27cfe3a2071c87a43a2ee098aa0e3ccc, type: 3}
   - {fileID: 8300000, guid: 3cc65f9eab46c1e43920887bb3fc3123, type: 3}
   - {fileID: 8300000, guid: e733c12f25c5d6a4497b66ebf9ddaf8d, type: 3}
+  - {fileID: 8300000, guid: cbeeb51e559e2f64e85cb250770148b8, type: 3}
+  gun_pickup: {fileID: 8300000, guid: 7e6e964725548074aab451d442e8e6b3, type: 3}
   music_source: {fileID: 0}
