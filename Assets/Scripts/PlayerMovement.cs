@@ -349,6 +349,7 @@ public class PlayerMovement : MonoBehaviour {
 			UI_Manager.giveBullets(m_playerNumber);
 			GunSpawn.numGuns--;
 			GameManager.currentGunSpawn = StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
+			SoundManager.PickupGun();
 		}
 		if ((collider.gameObject.tag == "Gun") && (hasGun == false)) {
 			cowboy_anim.SetBool("hasGun", true);
