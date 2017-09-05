@@ -37,3 +37,4 @@ sysinfo.txt
 #.DS_Store because Kenny uses a fucking mac.
 .DS_Store
 *.csproj
+README.md.backup
