@@ -90,6 +90,12 @@ public class GameManager : MonoBehaviour {
 	public IEnumerator RoundEnd(int playerindex){
 		StopCoroutine(currentGunSpawn);
 		SetPlayerInput(false);	
+		// For loop to disable line renderer, currently only does it on person who hits
+		for (int i = 0; i < player.Length; i++){
+			PlayerMovement current =  player[i].instance.GetComponent<PlayerMovement>();
+			current.cowboy_anim.SetBool("isMoving", false);
+			current.line.enabled = false;
+		}
 		SoundManager.SetMusic(2);
 		switch (playerindex){
 			case 1:

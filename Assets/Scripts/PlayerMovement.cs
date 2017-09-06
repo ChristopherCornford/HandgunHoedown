@@ -257,10 +257,10 @@ public class PlayerMovement : MonoBehaviour {
 		
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
 				if (hit.transform.tag == "Cowboy") {
-					cowboy_anim.SetBool("isMoving", false);
+					// cowboy_anim.SetBool("isMoving", false);
 					hit.transform.SendMessage ("YouAreDead");
 					canAim = false;
-					line.enabled = false;
+					// line.enabled = false;
 					StartCoroutine(GameManager.RoundEnd(m_playerNumber));
 				}
 				else {SoundManager.Miss();}
