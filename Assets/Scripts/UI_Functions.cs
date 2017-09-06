@@ -28,6 +28,11 @@ public class UI_Functions : MonoBehaviour {
 
 	[Header("Pause Control Pane")]
 	public GameObject pause_controls;
+
+	void Start(){
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+	}
 	
 	// Put this before each button function to check what to do
 	private void PanelCheck(){
