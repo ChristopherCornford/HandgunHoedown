@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour {
 	[Header("Gun References & Variables")]
 	public GameObject gunHolder;
 	public GameObject gunPickup;
-	public GameObject gun;
+	public ParticleSystem gunParticle;
 	public bool hasGun;
 	public int bulletCount;
 
@@ -90,6 +90,7 @@ public class PlayerMovement : MonoBehaviour {
 		UI_Manager = GameObject.Find("/Managers/UI_Manager").GetComponent<UI_Manager>();
 		GunSpawn = GameObject.Find ("/Managers/GunSpawner").GetComponent<GunSpawn> ();
 		SoundManager = GameObject.Find ("/Managers/SoundManager").GetComponent<SoundManager> ();
+		line = lineRend.GetComponent<LineRenderer> ();
 	}
 
 	private void OnEnable() {
@@ -114,7 +115,6 @@ public class PlayerMovement : MonoBehaviour {
 
 	private void Start () {
 		gunHolder.SetActive(false);
-		line = lineRend.GetComponent<LineRenderer> ();
 		canBeStunned = true;
 
 		movementKeyAxisName = "Player" + m_playerNumber + "KeyMove";
@@ -129,7 +129,6 @@ public class PlayerMovement : MonoBehaviour {
 		turnJoyAxisNameY = "Player" + m_playerNumber + "JoyTurnY";
 		aimJoyAxisName = "Player" + m_playerNumber + "JoyAim";
 		actionJoyAxisName = "Player" + m_playerNumber + "JoyAction";
-
 	}
 
 	private void Update () {
@@ -252,15 +251,16 @@ public class PlayerMovement : MonoBehaviour {
 			StartCoroutine (checkForBullets (0.1f));
 			UI_Manager.removeBullets(m_playerNumber, bulletCount);
 			SoundManager.Shoot ();
+			gunParticle.Play();
 			RaycastHit hit;
 			Ray gunShot = new Ray (transform.position, transform.forward);
 		
 			if (Physics.Raycast (gunShot, out hit, 100f)) {
-				print ("Boom, you're dead!");
 				if (hit.transform.tag == "Cowboy") {
+					// cowboy_anim.SetBool("isMoving", false);
 					hit.transform.SendMessage ("YouAreDead");
 					canAim = false;
-					line.enabled = false;
+					// line.enabled = false;
 					StartCoroutine(GameManager.RoundEnd(m_playerNumber));
 				}
 				else {SoundManager.Miss();}
@@ -335,22 +335,29 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	public IEnumerator checkForBullets ( float sec) {
-
 		if (bulletCount == 0 ) {
 			Reset ();
-			StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
+			GunSpawn.numGuns--;
+			GameManager.currentGunSpawn = StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
 			}
 		yield return new WaitForSeconds (0.1f);
 	}
 
 	void OnTriggerEnter (Collider collider) {
+		if ((collider.gameObject.tag == "Gun") && (hasGun == true)) {
+			bulletCount = 6;
+			UI_Manager.giveBullets(m_playerNumber);
+			GunSpawn.numGuns--;
+			GameManager.currentGunSpawn = StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
+			SoundManager.PickupGun();
+		}
 		if ((collider.gameObject.tag == "Gun") && (hasGun == false)) {
 			cowboy_anim.SetBool("hasGun", true);
-			print ("Got It!");
 			gunHolder.SetActive(true);
 			hasGun = true;
 			bulletCount = 6;
 			UI_Manager.giveBullets(m_playerNumber);
+			SoundManager.PickupGun();
 		}
 	}
 	void YouAreDead () {
@@ -363,7 +370,8 @@ public class PlayerMovement : MonoBehaviour {
 		if (canBeStunned == true) {
 			if (hasGun == true) {
 				Reset ();
-				StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
+				GunSpawn.numGuns--;
+				GameManager.currentGunSpawn = StartCoroutine(GunSpawn.SpawnGun(GameManager.Gun_Spawn_Wait));
 			}
 			StartCoroutine (Stun (0.01f));
 		}

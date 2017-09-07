@@ -7,24 +7,32 @@ using UnityEngine.SceneManagement;
 
 public class UI_Functions : MonoBehaviour {
 
-	[HeaderAttribute("MAIN MENU UI Panels")]
+	[Header("MAIN MENU UI Panels")]
 	public GameObject LevelSelect_Panel;
 	public GameObject Controls_Panel;
 	public GameObject Credits_Panel;
 	
-	[HeaderAttribute("Control Select Button to Focus")]
+	[Header("Control Select Button to Focus")]
 	public GameObject Control_Button;
 	
-	[HeaderAttribute("Control Schemes")]
+	[Header("Control Schemes")]
 	public GameObject Keyboard_Controls;
 	public GameObject Controller_Controls;
 	
-	[HeaderAttribute("Level Select Button to Focus")]
-	public GameObject Canyon_Button;
+	[Header("Level Select Button to Focus")]
+	public GameObject lvl_select_button;
 	
-	[HeaderAttribute("Levels")]
+	[Header("Levels")]
 	public GameObject[] Levels;
 	private int currentLevel;
+
+	[Header("Pause Control Pane")]
+	public GameObject pause_controls;
+
+	void Start(){
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+	}
 	
 	// Put this before each button function to check what to do
 	private void PanelCheck(){
@@ -42,7 +50,7 @@ public class UI_Functions : MonoBehaviour {
 	public void LevelSelect(){
 		PanelCheck();
 		LevelSelect_Panel.SetActive(true);
-		EventSystem.current.SetSelectedGameObject(Canyon_Button);
+		EventSystem.current.SetSelectedGameObject(lvl_select_button);
 	}
 	public void Controls(){
 		PanelCheck();
@@ -102,6 +110,14 @@ public class UI_Functions : MonoBehaviour {
 	/* Pause Menu */
 	public void Resume(){
 		GameObject.Find("/Managers/GameManager").GetComponent<GameManager>().Resume();
+	}
+	public void Pause_Controls(){
+		pause_controls.SetActive(true);
+		EventSystem.current.SetSelectedGameObject(GameObject.Find("Controls_RightArrow"));
+	}
+	public void Pause_Back(){
+		pause_controls.SetActive(false);
+		EventSystem.current.SetSelectedGameObject(GameObject.Find("Resume_B"));
 	}
 
 	/* End of Game Menu Buttons */
