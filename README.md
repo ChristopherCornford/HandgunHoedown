@@ -72,8 +72,6 @@ Christopher Cornford - Programming, Design
 
 [Ethan Thibault](http://ethanthibault.xyz) - Audio Design, Programming, Production
 
-Special Thanks to Nolan, Nick, Frank, Emily, and Lily
-
 ### Asset Packs
 
 [Western Low Poly Pack by Atom Studio](https://www.assetstore.unity3d.com/en/#!/content/73419) 
